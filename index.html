@@ -1,9 +1,930 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Goldchain AI</title>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;800&display=swap" rel="stylesheet">
-<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0b0b14;color:#f4f1ff;font-family:Heebo,sans-serif;text-align:center}
-.c{padding:32px;max-width:480px}h1{font-size:34px;margin:0 0 10px;background:linear-gradient(90deg,#f5d77a,#a78bfa);-webkit-background-clip:text;color:transparent}
-p{opacity:.8;line-height:1.6}a{display:inline-block;margin-top:18px;padding:12px 22px;border-radius:999px;border:1px solid #a78bfa;color:#f4f1ff;text-decoration:none;background:rgba(167,139,250,.08)}</style></head>
-<body><div class="c"><h1>Goldchain AI</h1><p>סוכני AI ואוטומציות שעובדים בתוך המערכות של העסק — בעיקר בצד הפיננסי.</p>
-<a href="https://instagram.com/goldchain_ai">לאינסטגרם</a></div></body></html>
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Goldchain AI · אוטומציה לעסקים</title>
+<meta name="description" content="מחברים את המערכות שכבר יש לכם, כמו Priority, וואטסאפ ומייל, כך שהצעות מחיר, גבייה ושירות לקוחות נעשים בלי הקלדה כפולה.">
+<meta property="og:title" content="Goldchain AI · אוטומציה לעסקים">
+<meta property="og:description" content="מחברים את המערכות שכבר יש לכם, כמו Priority, וואטסאפ ומייל, כך שהצעות מחיר, גבייה ושירות לקוחות נעשים בלי הקלדה כפולה.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://goldchain-ai.com/">
+<meta property="og:locale" content="he_IL">
+<link rel="canonical" href="https://goldchain-ai.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236B2BFF'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23fff'%3EG%3C/text%3E%3C/svg%3E">
+<style>html{scroll-behavior:smooth}section{scroll-margin-top:84px}body{margin:0;background:#FFFFFF}button{cursor:pointer;font-family:inherit}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&amp;family=Rubik:wght@500;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#6B2BFF}a:hover{color:#5530E0}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@keyframes driftr{from{transform:translateX(50%)}to{transform:translateX(0)}}
+.mrow:hover{animation-play-state:paused !important}
+@media (prefers-reduced-motion:reduce){.mrow{animation:none !important}}
+::selection{background:rgba(107,43,255,.18);color:inherit}
+button,input,textarea{font-family:inherit}
+button{cursor:pointer}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #6B2BFF;outline-offset:3px}
+.site{--stage:min(100svh,940px);--ease:cubic-bezier(.23,1,.32,1)}
+h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
+[data-sc]{--p:1}
+[data-sc="out"]{--p:0}
+.lift{transition:transform .16s var(--ease),background-color .16s var(--ease)}
+.lift:active{transform:scale(.97)}
+@media (hover:hover) and (pointer:fine){.lift:hover{transform:translateY(-2px)}}
+.mask{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.line-in{display:block;animation:lineup 1s var(--ease) both}
+@keyframes lineup{from{transform:translateY(105%)}to{transform:none}}
+.fade-in{animation:fadein .9s var(--ease) both}
+@keyframes fadein{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.plane{transform:translate3d(0,calc(var(--p) * var(--rate) * -1px),0);will-change:transform}
+.hero-copy{opacity:calc(1 - var(--p) * 1.5);transform:translateY(calc(var(--p) * 60px))}
+.stage{position:sticky;top:0;height:var(--stage);overflow:hidden}
+.stack{display:grid}.stack>*{grid-area:1/1}
+.cue{--o:min(clamp(0,(var(--p) - var(--a)) * 9,1),clamp(0,(var(--b) - var(--p)) * 9,1));opacity:var(--o);transform:translateY(calc((1 - var(--o)) * 28px))}
+.cue-last{--o:clamp(0,(var(--p) - var(--a)) * 9,1);opacity:var(--o);transform:translateY(calc((1 - var(--o)) * 28px)) scale(calc(.94 + var(--o) * .06))}
+.node{--on:clamp(0,(var(--p) - var(--t)) * 22,1)}
+.node-ring{opacity:var(--on);transform:scale(calc(.6 + var(--on) * .4))}
+.node-label{opacity:calc(.38 + var(--on) * .62)}
+.flow-fill{transform:scaleY(var(--p));transform-origin:top}
+.packet{transform:translateY(calc(var(--p) * (var(--len) - 44px)))}
+.peak{--len:520px}
+.zoom-num{transform:scale(calc(4.2 - min(var(--p) * 1.6, 1) * 3.2));opacity:clamp(0,var(--p) * 2.2,1)}
+.zoom-sub{opacity:clamp(0,(var(--p) - .5) * 3,1);transform:translateY(calc((1 - clamp(0,(var(--p) - .5) * 3,1)) * 30px))}
+.rail{transform:translate3d(var(--pan,0px),0,0);will-change:transform}
+.rise{opacity:calc(.3 + var(--p) * .7);transform:translateY(calc((1 - var(--p)) * 24px))}
+.mcta{display:none}
+@media (max-width:1180px){.hide-md{display:none !important}}
+.wa-in{animation:fadein .35s var(--ease) both}
+.flowln{stroke-dasharray:6 8;animation:dash 1.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-28}}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.dot{animation:blink 1.2s infinite}
+@media (max-width:760px){.peak{--len:360px}.peak-grid{flex-direction:column !important}.mcta{display:flex}.hide-sm{display:none !important}}
+@media (prefers-reduced-motion:reduce){.line-in,.fade-in{animation:none}.plane{transform:none}}
+.grad{background:linear-gradient(90deg,#6B2BFF,#FF2E93 35%,#FF7A00 60%,#6B2BFF 90%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent !important;animation:shine 7s linear infinite}
+@keyframes lineup2{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes simA{from{opacity:0;transform:translateY(8px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes simB{from{opacity:0;transform:translateY(8px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes barA{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes barB{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(-8vw,10vh) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(10vw,-8vh) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.glow{animation:none !important}}
+@keyframes navflow{to{background-position:300% 0, 0 0}}
+.skip{position:fixed;top:-80px;right:16px;z-index:100;background:#111111;color:#FFFFFF !important;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none}.skip:focus{top:12px}
+[data-big="1"]{zoom:1.15}
+[data-hc="1"] p,[data-hc="1"] li,[data-hc="1"] span,[data-hc="1"] label,[data-hc="1"] a,[data-hc="1"] h1,[data-hc="1"] h2,[data-hc="1"] h3{text-shadow:none !important}
+[data-hc="1"] .grad{background:none !important;-webkit-background-clip:border-box !important;background-clip:border-box !important;color:#3A0CA3 !important}
+[data-hc="1"] section p,[data-hc="1"] section li{color:#000000 !important}
+[data-hc="1"] .glow{display:none}
+[data-still="1"] *,[data-still="1"] *::before,[data-still="1"] *::after{animation:none !important;transition:none !important}
+[data-ul="1"] a{text-decoration:underline !important;text-underline-offset:3px}
+input:focus-visible,textarea:focus-visible{border-color:var(--ink) !important}
+.hero-cv{height:clamp(360px,calc(100svh - 330px),560px)}
+@media (max-width:760px){.hero-cv{height:clamp(300px,calc(100svh - 470px),460px)}}
+@keyframes shine{to{background-position:-200% 0}}
+.tile{transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+@media (hover:hover) and (pointer:fine){.tile:hover{transform:scale(1.015);box-shadow:0 30px 60px -30px rgba(0,0,0,.22)}}
+.hw{opacity:clamp(.3,(var(--p) * 1.25 - var(--i)) * 14,1);transition:opacity .1s linear}
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.span2{grid-column:span 2}.span3{grid-column:1/-1}
+@media (max-width:960px){.bento{grid-template-columns:minmax(0,1fr)}.span2,.span3{grid-column:auto}}
+.ring{stroke-dashoffset:calc(327 - var(--p) * 301)}
+.bar{height:calc(var(--p) * var(--h) * 1px)}
+@keyframes notif{0%{opacity:0;transform:translateY(-18px) scale(.96)}6%,30%{opacity:1;transform:none}38%,100%{opacity:0;transform:translateY(18px) scale(.95)}}
+.nt{animation:notif 9s var(--ease) infinite both}
+@keyframes orb{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(52,199,89,.5)}100%{box-shadow:0 0 0 12px rgba(52,199,89,0)}}
+.prog{transform:scaleX(var(--sp,0));transform-origin:right}
+@media (prefers-reduced-motion:reduce){.grad,.nt,.orb{animation:none !important}.nt{opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript><div dir="rtl" style="padding:40px;font-family:sans-serif"><h1>Goldchain AI · אוטומציה לעסקים</h1><p>מחברים את המערכות שכבר יש לכם, כמו Priority, וואטסאפ ומייל, כך שהצעות מחיר, גבייה ושירות לקוחות נעשים בלי הקלדה כפולה.</p><p>וואטסאפ: 058-635-2953 · karinatar9@gmail.com</p></div></noscript>
+<template id="tpl">
+<div class="site" dir="rtl" ref="{{setRoot}}" data-big="{{dBig}}" data-hc="{{dHc}}" data-still="{{dStill}}" data-ul="{{dUl}}" style="--acc: {{accent}}; --ink: #6B2BFF; background: #FFFFFF; color: #1D1D1F; font-family: 'IBM Plex Sans Hebrew', system-ui, sans-serif; font-size: 17px; line-height: 1.65; overflow-x: clip">
+
+<div aria-hidden="true" style="position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden">
+<div class="glow" style="position: absolute; width: 70vmax; height: 70vmax; top: -25vmax; right: -20vmax; border-radius: 50%; background: radial-gradient(circle, rgba(107,43,255,.30), transparent 62%); animation: drift1 22s ease-in-out infinite alternate"></div>
+<div class="glow" style="position: absolute; width: 60vmax; height: 60vmax; bottom: -25vmax; left: -15vmax; border-radius: 50%; background: radial-gradient(circle, rgba(255,46,147,.26), transparent 62%); animation: drift2 26s ease-in-out infinite alternate"></div>
+<div class="glow" style="position: absolute; width: 45vmax; height: 45vmax; top: 35%; left: 35%; border-radius: 50%; background: radial-gradient(circle, rgba(255,122,0,.12), transparent 62%); animation: drift1 30s ease-in-out infinite alternate-reverse"></div>
+</div>
+<div style="position: relative; z-index: 1">
+<a class="skip" href="#top">דלג לתוכן הראשי</a>
+<!-- NAV -->
+<header style="position: sticky; top: 0; z-index: 20; background: linear-gradient(90deg, rgba(107,43,255,.16), rgba(255,46,147,.16), rgba(255,122,0,.12), rgba(45,226,255,.12), rgba(107,43,255,.16)) 0 0 / 300% 100%, rgba(255,255,255,.72); animation: navflow 14s linear infinite; -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,.08)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #1D1D1F">
+<span style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 19px" dir="ltr">Goldchain AI</span> <span style="font-family: Rubik, sans-serif"><span style="font-weight: 500; color: #6E6E73; font-size: 15px">· אוטומציה לעסקים</span></span>
+</a>
+<nav class="hide-sm" aria-label="ניווט ראשי" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-size: 16px">
+<a href="#what" style="color: #424245; text-decoration: none">מה זה נותן</a>
+<a href="#process" style="color: #424245; text-decoration: none">איך זה עובד</a>
+<a href="#projects" role="button" onClick="{{openProj}}" style="color: #424245; text-decoration: none">פרויקטים</a>
+</nav>
+<a class="lift" href="#contact" style="background: var(--acc); color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 11px 22px; border-radius: 12px; font-size: 15.5px">צרו קשר</a>
+</div>
+<div aria-hidden="true" class="prog" style="position: absolute; bottom: -1px; right: 0; left: 0; height: 2px; background: linear-gradient(90deg,#6B2BFF,#FF2E93,var(--acc))"></div>
+</header>
+
+<!-- HERO -->
+<section id="top" style="position: relative; padding: 48px 0 56px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 40px 56px; align-items: center">
+<div style="flex: 1.4 1 460px; min-width: 0">
+<h1 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(40px, 4.8vw, 68px); line-height: 1; letter-spacing: -2px; margin: 0">
+<span class="mask"><span class="line-in" style="animation-delay: .05s">העסק שלכם עובד.</span></span>
+<span class="mask"><span class="line-in grad" style="animation-delay: .17s">גם כשאתם לא.</span></span>
+</h1>
+<p class="fade-in" style="animation-delay: .4s; font-size: clamp(19px, 1.7vw, 22px); line-height: 1.55; color: #424245; max-width: 34ch; margin: 24px 0 0">אני מחברת את המערכות שכבר יש לכם, כמו Priority, וואטסאפ ומייל, כך שהצעות מחיר, גבייה ושירות לקוחות נעשים בלי הקלדה כפולה.</p>
+<ul class="fade-in" style="animation-delay: .5s; list-style: none; padding: 0; margin: 22px 0 0; display: flex; flex-direction: column; gap: 8px; font-size: 17px; color: #1D1D1F">
+<li style="display: flex; align-items: center; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto"><path d="M5 12l5 5L20 7"></path></svg>בלי להחליף מערכות</li>
+<li style="display: flex; align-items: center; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto"><path d="M5 12l5 5L20 7"></path></svg>בלי להבין בטכנולוגיה</li>
+<li style="display: flex; align-items: center; gap: 10px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto"><path d="M5 12l5 5L20 7"></path></svg>שום דבר לא יוצא בלי אישור שלכם</li>
+</ul>
+<div class="fade-in" style="animation-delay: .6s; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px">
+<a class="lift" href="https://wa.me/972586352953" target="_blank" rel="noopener" style="background: var(--acc); color: #FFFFFF; font-weight: 700; text-decoration: none; padding: 16px 28px; border-radius: 14px; font-size: 17px">דברו איתי בוואטסאפ</a>
+<a class="lift" href="#process" style="border: 1px solid #C7C7CC; background: rgba(255,255,255,.6); color: #1D1D1F; text-decoration: none; padding: 16px 26px; border-radius: 14px; font-size: 17px">איך זה עובד</a>
+</div>
+</div>
+<div class="fade-in" style="animation-delay: .3s; flex: 1 1 340px; min-width: 0">
+<p style="margin: 0 0 12px; text-align: center; font-size: 15px; color: #6E6E73">הדגמה עם נתוני דמה. בחרו דוגמה.</p>
+<div role="group" aria-label="דוגמאות" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 16px">
+<sc-for list="{{waTabs}}" as="wt" hint-placeholder-count="3"><button class="lift" type="button" onClick="{{wt.pick}}" aria-pressed="{{wt.pressed}}" style="{{wt.pstyle}}">{{wt.label}}</button></sc-for>
+</div>
+<div ref="{{setWa}}" style="display: flex; justify-content: center">
+<div style="width: 340px; max-width: 100%; background: #1B1F24; border-radius: 48px; padding: 11px; box-shadow: 0 60px 100px -50px rgba(0,0,0,.28), inset 0 0 0 2px #2A3038">
+<div style="border-radius: 38px; overflow: hidden; display: flex; flex-direction: column; height: 520px; background: #EFEAE2">
+<div style="background: #008069; color: #FFFFFF; padding: 22px 14px 12px; display: flex; align-items: center; gap: 10px">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+<span style="width: 38px; height: 38px; border-radius: 50%; background: #D9FDD3; color: #075E54; display: flex; align-items: center; justify-content: center; font-weight: 800">{{waCur.ini}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-weight: 700; font-size: 16px">{{waCur.contact}}</span><span style="display: block; font-size: 12.5px; opacity: .85">{{waStatus}}</span></span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"></path></svg>
+</div>
+<div aria-live="polite" style="flex: 1; overflow: hidden; padding: 12px 10px; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; background-color: #EFEAE2; background-image: radial-gradient(rgba(0,0,0,.05) 1px, transparent 1px); background-size: 16px 16px">
+<div style="align-self: center; background: #FFFFFF; color: #54656F; font-size: 12px; border-radius: 8px; padding: 4px 10px; margin-bottom: 4px">היום</div>
+<sc-for list="{{waMsgs}}" as="m" hint-placeholder-count="4">
+<div class="wa-in" style="{{m.style}}">
+<sc-if value="{{m.doc}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 10px; background: #F5F6F6; border-radius: 8px; padding: 10px; margin-bottom: 6px"><span style="width: 34px; height: 40px; border-radius: 4px; background: #E54B4B; color: #FFFFFF; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">PDF</span><span style="font-size: 13.5px"><span style="display: block; font-weight: 600; color: #111B21">{{m.docName}}</span><span style="display: block; color: #667781; font-size: 12px">{{m.docMeta}}</span></span></div>
+</sc-if>
+<span style="white-space: pre-line">{{m.text}}</span>
+<span style="float: left; margin: 6px 10px -4px 0; font-size: 11px; color: #667781; display: inline-flex; align-items: center; gap: 3px">{{m.time}}<sc-if value="{{m.me}}" hint-placeholder-val="{{ false }}"><svg width="16" height="11" viewBox="0 0 16 11" fill="none" stroke="#53BDEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6l3 3 6-7M6 9l1 1 6-8"></path></svg></sc-if></span>
+</div>
+</sc-for>
+<sc-if value="{{waTyping}}" hint-placeholder-val="{{ false }}">
+<div style="align-self: flex-start; background: #FFFFFF; border-radius: 0 10px 10px 10px; padding: 12px 14px; display: flex; gap: 5px; box-shadow: 0 1px .5px rgba(11,20,26,.13)"><span class="dot" style="width: 7px; height: 7px; border-radius: 50%; background: #8696A0"></span><span class="dot" style="width: 7px; height: 7px; border-radius: 50%; background: #8696A0; animation-delay: .2s"></span><span class="dot" style="width: 7px; height: 7px; border-radius: 50%; background: #8696A0; animation-delay: .4s"></span></div>
+</sc-if>
+</div>
+<div style="background: #F0F2F5; padding: 8px 10px 14px; display: flex; align-items: center; gap: 8px">
+<span style="flex: 1; background: #FFFFFF; border-radius: 22px; padding: 10px 14px; font-size: 14px; color: #8696A0">הקלדת הודעה</span>
+<span style="width: 42px; height: 42px; border-radius: 50%; background: #00A884; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 19v3"></path></svg></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PAIN -->
+<section id="pain" aria-label="מכירים את זה?" style="padding: 8px 0 24px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 24px">
+<div style="background: #17131F; border-radius: 32px; padding: clamp(28px, 4vw, 52px)">
+<h2 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px; margin: 0; color: #FFFFFF">מכירים את זה?</h2>
+<ul style="list-style: none; padding: 0; margin: 26px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px">
+<li style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 22px 24px"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #FFFFFF">סוכן בשטח, בלי מידע.</span><span style="display: block; margin-top: 6px; font-size: 17.5px; line-height: 1.5; color: #C9C9D1">אצל הלקוח הוא לא רואה חוב, מלאי או מחיר עדכני, ומתקשר למשרד לברר.</span></li>
+<li style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 22px 24px"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #FFFFFF">הנתונים לא מסונכרנים.</span><span style="display: block; margin-top: 6px; font-size: 17.5px; line-height: 1.5; color: #C9C9D1">כל מערכת מציגה מספר אחר, ואף אחד לא בטוח מה נכון.</span></li>
+<li style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 22px 24px"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #FFFFFF">בלאגן של הקלדות כפולות.</span><span style="display: block; margin-top: 6px; font-size: 17.5px; line-height: 1.5; color: #C9C9D1">אותה הצעת מחיר נכתבת פעם באקסל ופעם ב-Priority.</span></li>
+<li style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 22px 24px"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #FFFFFF">״איפה ההזמנה שלי?״</span><span style="display: block; margin-top: 6px; font-size: 17.5px; line-height: 1.5; color: #C9C9D1">לקוח מתקשר, ומישהו עוזב הכל כדי לבדוק.</span></li>
+<li style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 22px 24px"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #FFFFFF">חובות שאף אחד לא רודף אחריהם.</span><span style="display: block; margin-top: 6px; font-size: 17.5px; line-height: 1.5; color: #C9C9D1">כסף שמגיע לכם יושב אצל לקוחות, כי לאף אחד אין זמן.</span></li>
+<li style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 22px 24px"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.25; color: #FFFFFF">הזמנה ללקוח שחרג מהאשראי.</span><span style="display: block; margin-top: 6px; font-size: 17.5px; line-height: 1.5; color: #C9C9D1">מגלים את זה רק אחרי שהסחורה כבר יצאה.</span></li>
+</ul>
+<p style="margin: 28px 0 0; font-family: Rubik, sans-serif; font-weight: 800; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.3; color: #C6FF1A">זה לא חוסר סדר. זו עבודה שמערכת יכולה לעשות במקומכם.</p>
+</div>
+</div>
+</section>
+
+<!-- WHAT -->
+<section id="what" style="padding: 56px 0">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 24px">
+<h2 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px; margin: 0">מה זה נותן לכם</h2>
+<div style="margin-top: 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px">
+<article class="tile" style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #F1ECFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5M10 13h6M10 17h6"></path></svg></span><span style="font-size: 15px; font-weight: 700; color: var(--ink)">מכירות</span></div>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; margin: 16px 0 8px">הצעת מחיר בלחיצה</h3>
+<p style="margin: 0; font-size: 17.5px; line-height: 1.55; color: #515154">בונים הצעה, והיא נרשמת ב-Priority לבד. בלי להקליד פעמיים.</p>
+</article>
+<article class="tile" style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #F1ECFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.3A8.5 8.5 0 1 1 21 12z"></path></svg></span><span style="font-size: 15px; font-weight: 700; color: var(--ink)">שירות לקוחות</span></div>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; margin: 16px 0 8px">לקוחות מקבלים תשובה מיד</h3>
+<p style="margin: 0; font-size: 17.5px; line-height: 1.55; color: #515154">השאלה ״איפה ההזמנה שלי״ נענית אוטומטית, ישר מהנתונים שלכם.</p>
+</article>
+<article class="tile" style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #F1ECFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="3"></rect><path d="M2.5 10h19M7 15h3"></path></svg></span><span style="font-size: 15px; font-weight: 700; color: var(--ink)">כספים וגבייה</span></div>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; margin: 16px 0 8px">הכסף נכנס מהר יותר</h3>
+<p style="margin: 0; font-size: 17.5px; line-height: 1.55; color: #515154">תזכורות לחובות פתוחים ותשלום בקישור. נשלח רק אחרי אישור שלכם.</p>
+</article>
+<article class="tile" style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #F1ECFF; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6h11v10H2zM13 9h5l3 3v4h-8z"></path><circle cx="6.5" cy="17.5" r="1.8"></circle><circle cx="17" cy="17.5" r="1.8"></circle></svg></span><span style="font-size: 15px; font-weight: 700; color: var(--ink)">מחסן ומשלוחים</span></div>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 23px; line-height: 1.2; margin: 16px 0 8px">הלקוח תמיד מעודכן</h3>
+<p style="margin: 0; font-size: 17.5px; line-height: 1.55; color: #515154">תעודת משלוח נסגרת, והלקוח מקבל הודעה עם מספר מעקב.</p>
+</article>
+</div>
+<p style="margin: 24px 0 0; font-size: 17px; color: #515154"><strong style="color: #1D1D1F">עובד עם מה שכבר יש לכם:</strong> Priority · וואטסאפ · Gmail ויומן Google · מורנינג (חשבונית ירוקה) · מאנדיי · בנקים וכרטיסי אשראי</p>
+<p style="margin: 14px 0 0; font-size: 17px; display: flex; flex-wrap: wrap; gap: 8px 28px"><a href="#guides" role="button" onClick="{{openPriority}}" style="color: var(--ink); font-weight: 700">כל מה שאפשר לחבר ל-Priority ←</a><a href="#library" role="button" onClick="{{openLib}}" style="color: var(--ink); font-weight: 700">עוד 60 אוטומציות לעסקים ←</a></p>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="padding: 56px 0 72px">
+<div style="max-width: 1180px; margin: 0 auto; padding: 0 24px">
+<h2 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px; margin: 0">איך זה עובד</h2>
+<p style="margin: 12px 0 0; font-size: 19px; color: #515154">שלושה צעדים, ואתם לא צריכים להבין במחשבים.</p>
+<ol style="list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+<li style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px; display: flex; gap: 18px; align-items: flex-start">
+<span aria-hidden="true" style="font-family: Rubik, sans-serif; font-weight: 900; font-size: 44px; line-height: 1; color: var(--ink)">1</span>
+<span><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 24px">מדברים</span><span style="display: block; margin-top: 6px; font-size: 18px; line-height: 1.55; color: #515154">שיחה קצרה. מספרים מה גוזל לכם הכי הרבה זמן.</span></span>
+</li>
+<li style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px; display: flex; gap: 18px; align-items: flex-start">
+<span aria-hidden="true" style="font-family: Rubik, sans-serif; font-weight: 900; font-size: 44px; line-height: 1; color: var(--ink)">2</span>
+<span><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 24px">בונים</span><span style="display: block; margin-top: 6px; font-size: 18px; line-height: 1.55; color: #515154">מחברים הכל למה שכבר יש לכם. אתם ממשיכים לעבוד כרגיל.</span></span>
+</li>
+<li style="background: rgba(255,255,255,.85); border: 1px solid #ECE8F7; border-radius: 24px; padding: 26px; display: flex; gap: 18px; align-items: flex-start">
+<span aria-hidden="true" style="font-family: Rubik, sans-serif; font-weight: 900; font-size: 44px; line-height: 1; color: var(--ink)">3</span>
+<span><span style="display: block; font-family: Rubik, sans-serif; font-weight: 800; font-size: 24px">מלווים</span><span style="display: block; margin-top: 6px; font-size: 18px; line-height: 1.55; color: #515154">בודקים יחד שהכל עובד, ונשארים זמינים לכל שאלה.</span></span>
+</li>
+</ol>
+</div>
+</section>
+
+<sc-if value="{{projOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="פרויקטים" style="position: fixed; inset: 0; z-index: 60; background: rgba(20,10,40,.42); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); overflow-y: auto; padding: 24px 16px">
+<div class="fade-in" style="position: relative; max-width: 1180px; margin: 0 auto; background: linear-gradient(160deg, #FFFFFF, #F7F3FF); border-radius: 30px; padding: clamp(24px, 4vw, 48px); box-shadow: 0 40px 100px -30px rgba(40,10,90,.5)">
+<button type="button" onClick="{{closeProj}}" aria-label="סגירה" style="position: absolute; top: 18px; left: 18px; width: 42px; height: 42px; border-radius: 50%; border: 0; background: #EFEDF5; font-size: 22px; color: #1D1D1F">×</button>
+<div style="font-size: 14px; font-weight: 700; color: var(--ink)">פרויקטים</div>
+<h2 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.02; letter-spacing: -1.5px; margin: 8px 0 0">מערכות שבנינו <span class="grad">ורצות היום.</span></h2>
+<p style="margin: 14px 0 0; font-size: 18px; color: #515154; max-width: 56ch">כמה מהפרויקטים שבנינו. בלי שמות ובלי מספרים, כדי לשמור על פרטיות הלקוחות.</p>
+<div style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px">
+<sc-for list="{{projects}}" as="pj" hint-placeholder-count="8">
+<article class="tile" style="background: #FFFFFF; border: 1px solid #ECE8F7; border-radius: 22px; padding: 24px; display: flex; flex-direction: column">
+<span style="align-self: flex-start; font-size: 12.5px; font-weight: 700; color: var(--ink); background: #F1ECFF; padding: 4px 12px; border-radius: 999px">{{pj.tag}}</span>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; line-height: 1.2; margin: 14px 0 6px">{{pj.title}}</h3>
+<p style="margin: 0; font-size: 15px; color: #6E6E73">{{pj.pain}}</p>
+<ul style="list-style: none; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid #EFEDF5">
+<sc-for list="{{pj.pts}}" as="pt" hint-placeholder-count="4"><li style="display: flex; gap: 9px; margin: 6px 0; font-size: 15px; color: #2C2C30"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: 0 0 auto; margin-top: 5px"><path d="M5 12l5 5L20 7"></path></svg><span>{{pt}}</span></li></sc-for>
+</ul>
+
+</article>
+</sc-for>
+</div>
+<div style="display: flex; justify-content: center; margin-top: 28px"><a class="lift" href="#contact" onClick="{{closeProj}}" style="background: var(--acc); color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 15px 30px; border-radius: 999px">רוצים מערכת כזו? בואו נדבר</a></div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{libOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="רשימת האוטומציות" style="position: fixed; inset: 0; z-index: 60; background: rgba(20,10,40,.42); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); overflow-y: auto; padding: 24px 16px">
+<div class="fade-in" style="position: relative; max-width: 1180px; margin: 0 auto; background: linear-gradient(160deg, #FFFFFF, #F7F3FF); border-radius: 30px; box-shadow: 0 40px 100px -30px rgba(40,10,90,.5)">
+<button type="button" onClick="{{closeLib}}" aria-label="סגירה" style="position: absolute; top: 18px; left: 18px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; border: 0; background: #EFEDF5; font-size: 22px; color: #1D1D1F">×</button>
+<!-- LIBRARY -->
+<section id="library" style="padding: 40px 0; background: transparent">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px">
+<h2 data-sc="in" class="rise" style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(30px, 3.6vw, 48px); line-height: 1; letter-spacing: -2px; margin: 0"><span class="grad">60</span> אוטומציות.<br>בחרו מה מתאים לכם.</h2>
+<div role="group" aria-label="לפי נושא" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; align-items: center">
+<span style="font-size: 14px; color: #6E6E73; margin-left: 6px; min-width: 76px">לפי נושא</span>
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="8"><button class="lift" type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" style="{{c.style}}">{{c.label}}</button></sc-for>
+</div>
+<div role="group" aria-label="לפי סוג עסק" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; align-items: center">
+<span style="font-size: 14px; color: #6E6E73; margin-left: 6px; min-width: 76px">לפי עסק</span>
+<sc-for list="{{sectors}}" as="sx" hint-placeholder-count="9"><button class="lift" type="button" onClick="{{sx.pick}}" aria-pressed="{{sx.pressed}}" style="{{sx.style}}">{{sx.name}}</button></sc-for>
+</div>
+<sc-if value="{{secOn}}" hint-placeholder-val="{{ false }}"><p class="fade-in" style="margin: 26px 0 0; font-size: 20px; color: #515154">{{secPain}}</p></sc-if>
+<div style="margin-top: 26px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px">
+<sc-for list="{{libShown}}" as="a" hint-placeholder-count="12">
+<article class="fade-in tile" style="background: #FFFFFF; border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 13px; color: var(--ink); font-weight: 700">{{a.cat}}</span>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 700; font-size: 19px; line-height: 1.3; margin: 0">{{a.title}}</h3>
+<p style="margin: 0; font-size: 15px; color: #515154">{{a.flow}}</p>
+<div style="margin-top: auto; padding-top: 6px; font-size: 13px; color: #6E6E73">{{a.sys}}</div>
+</article>
+</sc-for>
+</div>
+<sc-if value="{{hasMore}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; justify-content: center; margin-top: 28px">
+<button class="lift" type="button" onClick="{{showAll}}" style="min-height: 52px; padding: 0 30px; border-radius: 999px; border: 0; background: #111111; color: #FFFFFF; font-weight: 600; font-size: 16px">{{moreLabel}}</button>
+</div>
+</sc-if>
+</div>
+</section>
+
+</div>
+</div>
+</sc-if>
+<sc-if value="{{glOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="מדריכים" style="position: fixed; inset: 0; z-index: 60; background: rgba(20,10,40,.42); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); overflow-y: auto; padding: 24px 16px">
+<div class="fade-in" style="position: relative; max-width: 1180px; margin: 0 auto; background: linear-gradient(160deg, #FFFFFF, #F7F3FF); border-radius: 30px; box-shadow: 0 40px 100px -30px rgba(40,10,90,.5)">
+<button type="button" onClick="{{closeGl}}" aria-label="סגירה" style="position: absolute; top: 18px; left: 18px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; border: 0; background: #EFEDF5; font-size: 22px; color: #1D1D1F">×</button>
+<!-- GUIDES -->
+<section id="guides" style="padding: 40px 0; background: transparent">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<h2 data-sc="in" class="rise" style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(30px, 3.6vw, 48px); line-height: 1; letter-spacing: -1.5px; margin: 0">מדריכים בגובה העיניים.</h2>
+<p style="margin: 0; color: #6E6E73; font-size: 18px; max-width: 40ch">קצרים, ברורים ובלי ז׳רגון. דברים שאפשר ליישם מחר בבוקר.</p>
+</div>
+<div style="margin-top: 24px; border-top: 1px solid #E5E5EA">
+<sc-for list="{{guides}}" as="gd" hint-placeholder-count="6">
+<a class="lift" href="#guides" role="button" onClick="{{gd.open}}" style="cursor: pointer; display: flex; flex-wrap: wrap; gap: 8px 40px; align-items: baseline; padding: 26px 8px; border-bottom: 1px solid #E5E5EA; text-decoration: none; color: #1D1D1F">
+<span style="flex: 0 0 110px; font-size: 14px; color: var(--ink); font-weight: 600">{{gd.cat}}</span>
+<span style="flex: 1 1 360px; min-width: 0"><span style="display: block; font-family: Rubik, sans-serif; font-weight: 700; font-size: clamp(20px, 2vw, 26px); line-height: 1.25">{{gd.title}}</span><span style="display: block; margin-top: 6px; color: #6E6E73; font-size: 15.5px">{{gd.desc}}</span></span>
+<span style="flex: 0 0 auto; color: var(--ink); font-size: 14px; font-weight: 600">{{gd.level}} · לקריאה ←</span>
+</a>
+</sc-for>
+</div>
+</div>
+</section>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{gOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="{{gCur.title}}" style="position: fixed; inset: 0; z-index: 60; background: rgba(20,10,40,.42); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 16px">
+<article class="fade-in" style="position: relative; width: 760px; max-width: 100%; max-height: 88vh; overflow-y: auto; background: #FFFFFF; border-radius: 28px; padding: clamp(24px, 4vw, 48px); box-shadow: 0 40px 100px -30px rgba(40,10,90,.5)">
+<button type="button" onClick="{{gClose}}" aria-label="סגירה" style="position: absolute; top: 16px; left: 16px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #F2F2F5; font-size: 20px; color: #1D1D1F">×</button>
+<div style="font-size: 14px; font-weight: 700; color: var(--ink)">{{gCur.cat}} · {{gCur.level}}</div>
+<h3 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; letter-spacing: -.5px; margin: 8px 0 8px">{{gCur.title}}</h3>
+<sc-for list="{{gBlocks}}" as="gb" hint-placeholder-count="6"><div style="{{gb.style}}">{{gb.t}}</div></sc-for>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #EEEEF2">
+<a class="lift" href="#contact" onClick="{{closeAll}}" style="background: var(--acc); color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 13px 24px; border-radius: 999px">רוצים שאבנה לכם את זה?</a>
+<button class="lift" type="button" onClick="{{gNext}}" style="border: 1px solid #DCDCE1; background: #FFFFFF; color: #1D1D1F; font-weight: 600; padding: 13px 22px; border-radius: 999px; font-size: 16px">למדריך הבא ←</button>
+</div>
+</article>
+</div>
+</sc-if>
+
+
+
+<!-- CLOSE -->
+<section id="contact" style="padding: 88px 0 80px; background: linear-gradient(135deg, #6B2BFF 0%, #FF2E93 60%, #FF7A00 100%); color: #FFFFFF">
+<div style="max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start">
+<div style="flex: 1 1 460px; min-width: 0">
+<h2 data-sc="in" class="rise" style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 88px); line-height: .95; letter-spacing: -2px; margin: 0">בואו נתחיל <span style="color: #C6FF1A">מדבר אחד.</span></h2>
+<p style="font-size: 20px; margin: 28px 0 0; max-width: 38ch; color: rgba(255,255,255,.9)">ספרו לי מה הכי גוזל לכם זמן. בשיחה נמפה את זה ותצאו עם תוכנית ברורה, גם אם תחליטו לא להמשיך איתי.</p>
+<div style="display: flex; flex-direction: column; gap: 12px; margin-top: 30px; font-size: 17px; color: rgba(255,255,255,.9); align-items: flex-start">
+<a class="lift" href="https://wa.me/972586352953" target="_blank" rel="noopener" style="color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 600"><span style="width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.18); display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.3A8.5 8.5 0 1 1 21 12z'></path></svg></span>וואטסאפ: <span dir="ltr">058-635-2953</span></a>
+<a class="lift" href="mailto:karinatar9@gmail.com" style="color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 600"><span style="width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.18); display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x='3' y='5' width='18' height='14' rx='2'></rect><path d='M3 7l9 6 9-6'></path></svg></span><span dir="ltr">karinatar9@gmail.com</span></a>
+<a class="lift" href="https://instagram.com/goldchain_ai" target="_blank" rel="noopener" style="color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; font-weight: 600"><span style="width: 34px; height: 34px; border-radius: 10px; background: rgba(255,255,255,.18); display: inline-flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x='3' y='3' width='18' height='18' rx='5'></rect><circle cx='12' cy='12' r='4'></circle><circle cx='17.5' cy='6.5' r='1'></circle></svg></span>אינסטגרם: <span dir="ltr">@goldchain_ai</span></a>
+</div>
+</div>
+<form aria-label="טופס יצירת קשר" novalidate onSubmit="{{sendForm}}" style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border: 0; border-radius: 28px; color: #1D1D1F; box-shadow: 0 40px 80px -40px rgba(0,0,0,.45); padding: clamp(24px, 3vw, 38px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="f1" style="font-size: 14px; color: #515154">שם מלא *</label><input id="f1" type="text" autocomplete="name" required aria-required="true" value="{{fvN}}" onInput="{{onF1}}" style="min-height: 50px; background: #FFFFFF; border: 1px solid #C7C7CC; border-radius: 12px; color: #1D1D1F; padding: 0 14px; font-size: 16px"></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><label for="f2" style="font-size: 14px; color: #515154">טלפון *</label><input id="f2" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" value="{{fvP}}" onInput="{{onF2}}" style="min-height: 50px; background: #FFFFFF; border: 1px solid #C7C7CC; border-radius: 12px; color: #1D1D1F; padding: 0 14px; font-size: 16px"></div>
+<div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px"><label for="f3" style="font-size: 14px; color: #515154">שם העסק ומה הכי גוזל לכם זמן</label><textarea id="f3" rows="4" onInput="{{onF3}}" style="background: #FFFFFF; border: 1px solid #C7C7CC; border-radius: 12px; color: #1D1D1F; padding: 12px 14px; font-size: 16px; resize: vertical"></textarea></div>
+<div style="grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; color: #515154"><input id="f4" type="checkbox" required aria-required="true" onChange="{{onF4}}" style="width: 20px; height: 20px; margin-top: 2px; accent-color: #6B2BFF; flex: 0 0 auto"><label for="f4">קראתי ואני מסכים/ה ל<a href="#privacy" onClick="{{openPrivacy}}" style="color: var(--ink); font-weight: 600">מדיניות הפרטיות</a>.</label></div>
+<sc-if value="{{hasErr}}" hint-placeholder-val="{{ false }}"><div role="alert" style="grid-column: 1 / -1; color: #C4161C; font-weight: 600; font-size: 15px">{{formErr}}</div></sc-if>
+<sc-if value="{{formOk}}" hint-placeholder-val="{{ false }}"><div role="status" style="grid-column: 1 / -1; color: #1E7B34; font-weight: 600; font-size: 15px">נפתחה שיחת וואטסאפ עם ההודעה שלכם. רק לשלוח שם ✓</div></sc-if>
+<button class="lift" type="button" onClick="{{sendForm}}" style="grid-column: 1 / -1; min-height: 56px; background: #111111; color: #C6FF1A; border: 0; border-radius: 14px; font-weight: 800; font-size: 18px; font-family: Rubik, sans-serif">שליחה בוואטסאפ</button>
+</form>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #E5E5EA">
+<div style="max-width: 1280px; margin: 0 auto; padding: 26px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #6E6E73">
+<span>© 2026 Goldchain AI · אוטומציה לעסקים</span>
+<span style="display: flex; gap: 18px; flex-wrap: wrap"><a href="https://wa.me/972586352953" target="_blank" rel="noopener" style="color: #6E6E73">וואטסאפ</a><a href="mailto:karinatar9@gmail.com" style="color: #6E6E73">מייל</a><a href="https://instagram.com/goldchain_ai" target="_blank" rel="noopener" style="color: #6E6E73">אינסטגרם</a></span>
+<span style="display: flex; gap: 18px; flex-wrap: wrap"><a href="#projects" role="button" onClick="{{openProj}}" style="color: #6E6E73">פרויקטים</a><a href="#library" role="button" onClick="{{openLib}}" style="color: #6E6E73">רשימת אוטומציות</a><a href="#guides" role="button" onClick="{{openGl}}" style="color: #6E6E73">מדריכים</a><a href="#privacy" onClick="{{openPrivacy}}" style="color: #6E6E73">מדיניות פרטיות</a><a href="#accessibility" onClick="{{openA11yDoc}}" style="color: #6E6E73">הצהרת נגישות</a><span>הדוגמאות באתר מבוססות על נתונים מומצאים</span></span>
+</div>
+</footer>
+<button type="button" onClick="{{toggleA11y}}" aria-label="תפריט נגישות" aria-expanded="{{a11yExpanded}}" style="position: fixed; left: 16px; bottom: 16px; z-index: 55; width: 52px; height: 52px; border-radius: 50%; border: 0; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px -10px rgba(0,0,0,.5)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4" r="1.8"></circle><path d="M4 8l8 1.5L20 8M12 9.5V14l-3 7M12 14l3 7"></path></svg></button>
+<sc-if value="{{a11yOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-label="תפריט נגישות" style="position: fixed; left: 16px; bottom: 80px; z-index: 56; width: 280px; max-width: calc(100vw - 32px); background: #FFFFFF; border: 1px solid #E5E5EA; border-radius: 20px; padding: 16px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.35)">
+<div style="font-family: Rubik, sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 10px">נגישות</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{a11yItems}}" as="ai" hint-placeholder-count="4"><button type="button" aria-pressed="{{ai.on}}" onClick="{{ai.pick}}" style="{{ai.style}}"><span>{{ai.label}}</span><span style="font-size: 12.5px; opacity: .8">{{ai.mark}}</span></button></sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; font-size: 14px"><button type="button" onClick="{{resetA11y}}" style="border: 0; background: transparent; color: #1D1D1F; text-decoration: underline; padding: 6px 0; font-size: 14px">איפוס</button><a href="#accessibility" onClick="{{openA11yDoc}}" style="color: var(--ink); font-weight: 600; padding: 6px 0">הצהרת נגישות</a></div>
+</div>
+</sc-if>
+<sc-if value="{{docOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="{{docCur.title}}" style="position: fixed; inset: 0; z-index: 60; background: rgba(20,10,40,.42); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 16px">
+<article class="fade-in" style="position: relative; width: 760px; max-width: 100%; max-height: 88vh; overflow-y: auto; background: #FFFFFF; border-radius: 28px; padding: clamp(24px, 4vw, 48px); box-shadow: 0 40px 100px -30px rgba(40,10,90,.5)">
+<button type="button" onClick="{{closeDoc}}" aria-label="סגירה" style="position: absolute; top: 16px; left: 16px; width: 40px; height: 40px; border-radius: 50%; border: 0; background: #F2F2F5; font-size: 20px; color: #1D1D1F">×</button>
+<h2 style="font-family: Rubik, sans-serif; font-weight: 900; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; margin: 0 0 10px">{{docCur.title}}</h2>
+<sc-for list="{{docBlocks}}" as="db" hint-placeholder-count="8"><div style="{{db.style}}">{{db.t}}</div></sc-for>
+</article>
+</div>
+</sc-if>
+
+</div>
+</div>
+</template>
+<script>
+class DCLogic{constructor(p){this.props=p||{};this.state={}} setState(o){Object.assign(this.state,typeof o==='function'?o(this.state):o); if(!this._q){this._q=1;queueMicrotask(()=>{this._q=0;render()})}}}
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { cat: 'הכל', all: false, phase: 0, sector: -1, wa: 0, waN: 0, waTyping: false, tg: [false, false, false, false, false], vs: 0, done: 1284, guide: -1, proj: false, lib: false, gl: false, doc: '', a11yOpen: false, big: false, hc: false, still: false, ul: false, formErr: '', formOk: false, sim: -1, simK: 0 };
+    this.waT = []; this.waStarted = false; this.fv = { n: '', p: '', m: '', ok: false };
+    this.setWa = (el) => { this.waEl = el; };
+    this.root = null; this.live = false; this.raf = 0; this.timers = [];
+    this.canvas = null; this.phase = 0; this.visible = true; this.looping = false; this.mx = null; this.my = null;
+    this.setRoot = (el) => { this.root = el; };
+    this.setCanvas = (el) => { if (el && el !== this.canvas) { this.canvas = el; if (this.mountedP) this.initParticles(); } };
+    this.onScroll = () => { this.live = true; if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = 0; this.update(); }); };
+  }
+  componentDidMount() {
+    this.reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    document.addEventListener('scroll', this.onScroll, { capture: true, passive: true });
+    this.onKey = (e) => { if (e.key === 'Escape') this.setState({ guide: -1, proj: false, lib: false, gl: false, doc: '', a11yOpen: false }); };
+    document.addEventListener('keydown', this.onKey);
+    window.addEventListener('resize', this.onScroll);
+    this.later(() => this.update(), 60);
+    this.mountedP = true;
+    this.initParticles();
+    if (this.waEl && window.IntersectionObserver) {
+      this.waIo = new IntersectionObserver((es) => { if (es[0].isIntersecting && !this.waStarted) { this.waStarted = true; this.playWa(this.state.wa); } }, { threshold: 0.35 });
+      this.waIo.observe(this.waEl);
+    } else { this.playWa(0); }
+  }
+  waScripts() {
+    return [
+      { label: 'לקוח שואל על הזמנה', sub: 'שירות לקוחות', contact: 'שירות לקוחות', ini: 'ש', msgs: [
+        ['me', 'היי, איפה ההזמנה שלי?', '09:12'],
+        ['bot', 'היי דני! הזמנה 20418 יצאה מהמחסן הבוקר, וצפויה להגיע מחר עד 14:00.', '09:12'],
+        ['me', 'אפשר לקבל תעודת משלוח?', '09:13'],
+        ['bot', 'בטח, מצורפת.', '09:13', 'תעודת_משלוח_20418.pdf', '12 פריטים · מתוך Priority'],
+        ['bot', 'ההזמנה נמסרה ונחתמה. תודה שבחרתם בנו!', 'מחר 13:40'] ] },
+      { label: 'הצעת מחיר בלחיצה', sub: 'מכירות', contact: 'העוזר של המכירות', ini: 'מ', msgs: [
+        ['me', 'תכין הצעת מחיר ללקוח א.ב. בנייה: 40 יחידות מדגם 300', '10:05'],
+        ['bot', 'יש 52 יחידות במלאי. לפי המחירון: 480 ₪ ליחידה, 19,200 ₪ לפני מע״מ. לפתוח הצעה ב-Priority?', '10:05'],
+        ['me', 'כן', '10:06'],
+        ['bot', 'נפתחה הצעה מספר 7731 ב-Priority. מצורף קובץ לשליחה ללקוח.', '10:06', 'הצעת_מחיר_7731.pdf', '19,200 ₪ · מתוך Priority'] ] },
+      { label: 'גבייה באישור שלכם', sub: 'כספים', contact: 'סוכן הגבייה', ini: 'ג', msgs: [
+        ['bot', 'בוקר טוב. שלושה לקוחות עברו את מועד התשלום, 38,600 ₪ יחד. הכנתי להם תזכורות עם קישור לתשלום. לשלוח?', '08:00'],
+        ['me', 'כן, חוץ מהלקוח השלישי', '08:04'],
+        ['bot', 'נשלחו שתי תזכורות. אעדכן ברגע שישלמו.', '08:04'],
+        ['bot', 'עדכון: לקוח אחד שילם 14,200 ₪ בקישור, והקבלה נפתחה לבד ב-Priority.', '11:20'] ] }
+    ];
+  }
+  playWa(i) {
+    this.waT.forEach((t) => clearTimeout(t)); this.waT = [];
+    this.setState({ wa: i, waN: 0, waTyping: false });
+    const msgs = this.waScripts()[i].msgs;
+    let t = 500;
+    msgs.forEach((m, k) => {
+      if (m[0] === 'bot') { this.waT.push(setTimeout(() => this.setState({ waTyping: true }), t)); t += this.reduce ? 0 : 1200; }
+      this.waT.push(setTimeout(() => this.setState({ waN: k + 1, waTyping: false }), t));
+      t += this.reduce ? 0 : (m[0] === 'me' ? 1000 : 1500);
+    });
+  }
+  componentWillUnmount() {
+    this.dead = true;
+    if (this.tickT) clearInterval(this.tickT);
+    if (this.rafP) cancelAnimationFrame(this.rafP);
+    if (this.io) this.io.disconnect();
+    if (this.waIo) this.waIo.disconnect();
+    this.waT.forEach((t) => clearTimeout(t));
+    if (this.resizeCv) window.removeEventListener('resize', this.resizeCv);
+    if (this.canvas && this.cvMove) { this.canvas.removeEventListener('pointermove', this.cvMove); this.canvas.removeEventListener('pointerleave', this.cvLeave); }
+    document.removeEventListener('scroll', this.onScroll, { capture: true });
+    if (this.onKey) document.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    this.timers.forEach((t) => clearTimeout(t));
+  }
+  setA11y(k) {
+    const v = !this.state[k];
+    this.setState({ [k]: v });
+    if (k === 'still') { if (v) { this.stillOn = true; if (this.rafP) cancelAnimationFrame(this.rafP); this.looping = false; this.drawStatic(); } else { this.stillOn = false; this.loop(); } }
+  }
+  sendForm() {
+    const root = this.root || document;
+    const g = (id) => { const el = root.querySelector('#' + id); return el ? String(el.value || '').trim() : ''; };
+    const name = (this.fv.n || g('f1')).trim(), phone = (this.fv.p || g('f2')).trim(), msg = (this.fv.m || g('f3')).trim();
+    const cb = root.querySelector('#f4'); const ok = { checked: this.fv.ok || !!(cb && cb.checked) };
+    if (!name || !phone) { this.setState({ formErr: 'נא למלא שם וטלפון.', formOk: false }); return; }
+    if (!ok.checked) { this.setState({ formErr: 'נא לאשר את מדיניות הפרטיות.', formOk: false }); return; }
+    this.setState({ formErr: '', formOk: true });
+    const text = 'היי, הגעתי מהאתר של Goldchain AI.\nשם: ' + name + '\nטלפון: ' + phone + (msg ? '\n' + msg : '');
+    window.open('https://wa.me/972586352953?text=' + encodeURIComponent(text), '_blank', 'noopener');
+  }
+  later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
+  update() {
+    const root = this.root;
+    if (!root || this.reduce) return;
+    const vh = window.innerHeight;
+    const se = document.scrollingElement || document.documentElement;
+    if (!this.live && se.scrollHeight <= vh + 4) return;
+    const rr = root.getBoundingClientRect();
+    root.style.setProperty('--sp', Math.min(1, Math.max(0, -rr.top / Math.max(rr.height - vh, 1))).toFixed(4));
+    const els = root.querySelectorAll('[data-sc]');
+    for (let i = 0; i < els.length; i++) {
+      const el = els[i], r = el.getBoundingClientRect(), t = el.getAttribute('data-sc');
+      let p;
+      if (t === 'pin') p = -r.top / Math.max(r.height - vh, 1);
+      else if (t === 'out') p = -r.top / Math.max(r.height, 1);
+      else p = (vh - r.top) / (vh * 0.3);
+      p = Math.min(1, Math.max(0, p));
+      el.style.setProperty('--p', p.toFixed(4));
+      if (el.hasAttribute('data-pan')) {
+        const rail = el.querySelector('[data-rail]');
+        if (rail && rail.parentElement) {
+          const over = Math.max(rail.offsetWidth - rail.parentElement.clientWidth, 0);
+          const e = Math.min(1, Math.max(0, (p - 0.08) / 0.84));
+          el.style.setProperty('--pan', (e * over).toFixed(1) + 'px');
+        }
+      }
+    }
+  }
+  initParticles() {
+    const cv = this.canvas;
+    if (!cv || !cv.getContext || cv === this.cvInit) return;
+    this.cvInit = cv;
+    if (this.io) this.io.disconnect();
+    this.ctx = cv.getContext('2d');
+    this.resizeCv = () => {
+      const r = cv.getBoundingClientRect();
+      this.dpr = Math.min(window.devicePixelRatio || 1, 2);
+      this.cw = Math.max(1, r.width); this.ch = Math.max(1, r.height);
+      cv.width = Math.round(this.cw * this.dpr); cv.height = Math.round(this.ch * this.dpr);
+      this.buildText();
+    };
+    const cols = ['#6B2BFF', '#FF2E93', '#2DA8FF', '#1D1D1F'];
+    const N = 3200; const fresh = !this.pts || !this.pts.length; if (fresh) this.pts = [];
+    for (let i = 0; fresh && i < N; i++) {
+      const sy = 1 - (i / (N - 1)) * 2, rad = Math.sqrt(1 - sy * sy), phi = i * 2.399963;
+      this.pts.push({ x: Math.random() * 1400, y: Math.random() * 600, c: cols[i % 4], sx: Math.cos(phi) * rad, sy: sy, sz: Math.sin(phi) * rad, gr: Math.pow(Math.random(), 0.7), arm: i % 2, gn: (Math.random() - 0.5) * 0.6, jx: Math.random() - 0.5, jy: Math.random() - 0.5, lu: 0, lv: 0 });
+      const k = Math.floor(i / 4), last = this.pts[this.pts.length - 1];
+      if (k < 784) { last.lu = (k % 28) / 27 * 2 - 1; last.lv = Math.floor(k / 28) / 27 * 2 - 1; } else { last.lu = Math.random() * 2 - 1; last.lv = Math.random() * 2 - 1; }
+    }
+    this.resizeCv();
+    window.addEventListener('resize', this.resizeCv);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this.buildText());
+    cv.addEventListener('pointermove', (this.cvMove = (e) => { const r = cv.getBoundingClientRect(); this.mx = e.clientX - r.left; this.my = e.clientY - r.top; }));
+    cv.addEventListener('pointerleave', (this.cvLeave = () => { this.mx = null; }));
+    if (!this.t0) this.t0 = performance.now();
+    if (this.reduce) { this.drawStatic(); return; }
+    if (window.IntersectionObserver) {
+      this.io = new IntersectionObserver((es) => { this.visible = es[0].isIntersecting; if (this.visible) this.loop(); });
+      this.io.observe(cv);
+    }
+    this.loop();
+  }
+  buildText() {
+    const w = Math.round(this.cw), h = Math.round(this.ch);
+    if (!w || !h) return;
+    const off = document.createElement('canvas'); off.width = w; off.height = h;
+    const c = off.getContext('2d');
+    c.fillStyle = '#FFFFFF'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.direction = 'rtl';
+    const fs = Math.min(w / 4.2, h * 0.3);
+    c.font = '900 ' + fs + 'px Rubik, sans-serif';
+    c.fillText('אוטומציה', w / 2, h * 0.27);
+    c.fillText('לעסקים', w / 2, h * 0.27 + fs * 0.98);
+    const d = c.getImageData(0, 0, w, h).data, pts = [], step = Math.max(2, Math.round(w / 560));
+    for (let y = 0; y < h; y += step) for (let x = 0; x < w; x += step) if (d[(y * w + x) * 4 + 3] > 128) pts.push([x, y]);
+    for (let i = pts.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = pts[i]; pts[i] = pts[j]; pts[j] = t; }
+    this.textPts = pts.length ? pts : [[w / 2, h / 2]];
+  }
+  loop() {
+    if (this.looping) return;
+    this.looping = true;
+    const step = (now) => {
+      if (!this.visible || this.dead || this.stillOn) { this.looping = false; return; }
+      this.fc = (this.fc || 0) + 1;
+      if (this.fc % 30 === 0 && this.canvas) { const r = this.canvas.getBoundingClientRect(); if (r.width > 0 && (Math.abs(r.width - this.cw) > 2 || Math.abs(r.height - this.ch) > 2)) this.resizeCv(); }
+      this.frame(now);
+      this.rafP = requestAnimationFrame(step);
+    };
+    this.rafP = requestAnimationFrame(step);
+  }
+  layerXY(p, i, el, gap, w, h) {
+    const L = i % 4, a = el * 0.0007, c = Math.cos(a), sn = Math.sin(a);
+    const nr = w < 700, W = nr ? w * 0.19 : Math.min(w * 0.16, h * 0.34), cx = nr ? w * 0.4 : w / 2, cy = h * 0.5;
+    const ru = p.lu * c - p.lv * sn, rv = p.lu * sn + p.lv * c;
+    return [cx + (ru - rv) * W, cy + (ru + rv) * W * 0.28 + (L - 1.5) * gap + Math.sin(el * 0.0016 + L) * gap * 0.06];
+  }
+  drawLabels(ctx, w, h, gap, alpha) {
+    if (alpha <= 0) return;
+    const names = ['סוכני AI', 'אוטומציות', 'המערכות שלכם', 'הנתונים'], cols = ['#6B2BFF', '#FF2E93', '#2DA8FF', '#1D1D1F'];
+    const nr = w < 700, W = nr ? w * 0.19 : Math.min(w * 0.16, h * 0.34), cx = nr ? w * 0.4 : w / 2, cy = h * 0.5;
+    ctx.globalAlpha = alpha; ctx.font = '800 ' + (nr ? 13 : Math.max(15, Math.min(22, w / 52))) + 'px Rubik, sans-serif'; ctx.textBaseline = 'middle'; ctx.direction = 'rtl'; ctx.textAlign = 'left';
+    const maxW = Math.max.apply(null, names.map((t) => ctx.measureText(t).width)), x = nr ? w - 10 - maxW : cx + 2 * W + 34;
+    for (let L = 0; L < 4; L++) {
+      const y = cy + (L - 1.5) * gap;
+      ctx.strokeStyle = cols[L]; ctx.lineWidth = 1.2; ctx.setLineDash([3, 5]); ctx.beginPath(); ctx.moveTo(cx + 2 * W * 0.55, y); ctx.lineTo(x - 10, y); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = cols[L]; ctx.beginPath(); ctx.arc(x - 10, y, 3.5, 0, 6.3); ctx.fill();
+      ctx.fillText(names[L], x, y);
+    }
+    ctx.globalAlpha = 1;
+  }
+  drawStatic() {
+    const ctx = this.ctx; if (!ctx) return;
+    ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+    ctx.clearRect(0, 0, this.cw, this.ch);
+    const gap = this.ch * 0.2;
+    this.pts.forEach((p, i) => { const q = this.layerXY(p, i, 0, gap, this.cw, this.ch); ctx.fillStyle = p.c; ctx.fillRect(q[0], q[1], 2, 2); });
+    this.drawLabels(ctx, this.cw, this.ch, gap, 1);
+  }
+  frame(now) {
+    const ctx = this.ctx, w = this.cw, h = this.ch;
+    if (!ctx) return;
+    const el = now - this.t0, m = el % 9000;
+    const phase = m < 1800 ? 0 : (m < 4600 ? 1 : (m < 6800 ? 2 : 3));
+    this.phase = phase;
+    ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
+    ctx.globalCompositeOperation = 'destination-out'; ctx.fillStyle = 'rgba(0,0,0,0.3)'; ctx.fillRect(0, 0, w, h); ctx.globalCompositeOperation = 'source-over';
+    const R = Math.min(w, h) * 0.36, rot = el * 0.0009, cx = w / 2, cy = h * 0.5;
+    const cr = Math.cos(rot), sr = Math.sin(rot);
+    const gap = phase === 0 ? 9 : h * 0.2;
+    for (let i = 0; i < this.pts.length; i++) {
+      const p = this.pts[i];
+      let tx, ty, dep = 1;
+      if (phase <= 1) { const q = this.layerXY(p, i, el, gap, w, h); tx = q[0]; ty = q[1]; dep = 0.75 + (i % 4 === 0 ? 0.25 : 0); }
+      else if (phase === 2) { const x = p.sx * cr - p.sz * sr, z = p.sx * sr + p.sz * cr; tx = cx + x * R; ty = cy + p.sy * R; dep = (z + 1) / 2; }
+      else { const r = p.gr * R * 1.35, a = p.gr * 5.5 + p.arm * Math.PI + rot * 2.4 + p.gn; tx = cx + Math.cos(a) * r + p.jx * r * 0.14; ty = cy + Math.sin(a) * r * 0.6 + p.jy * r * 0.14; dep = 1 - p.gr * 0.55; }
+      if (this.mx != null) {
+        const dx = p.x - this.mx, dy = p.y - this.my, d2 = dx * dx + dy * dy;
+        if (d2 < 9000) { const dd = Math.sqrt(d2) || 1, f = (9000 - d2) / 9000 * 7; p.x += dx / dd * f; p.y += dy / dd * f; }
+      }
+      p.x += (tx - p.x) * 0.12; p.y += (ty - p.y) * 0.12;
+      ctx.globalAlpha = 0.35 + 0.65 * dep; ctx.fillStyle = p.c; ctx.fillRect(p.x, p.y, 2, 2);
+    }
+    ctx.globalAlpha = 1;
+    if (phase === 1) this.drawLabels(ctx, w, h, gap, Math.min(1, (m - 2100) / 450, (4600 - m) / 350));
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#6B2BFF';
+    const st = this.state;
+
+    const journeyRaw = [
+      ['21:47. העסק סגור.', 'לקוחה כותבת בוואטסאפ: ״יש תור פנוי ביום חמישי אחה״צ?״'],
+      ['הסוכן קורא ומבין.', 'בקשת תור, יום חמישי, אחרי הצהריים. בלי טפסים ובלי תפריטים.'],
+      ['בודק ביומן.', 'מוצא שני חלונות פנויים ושומר אותם לרגע.'],
+      ['עונה, בטון שלכם.', '״יש 16:30 או 18:00, מה נוח לך?״ היא בוחרת 16:30.'],
+      ['קובע ומעדכן הכל.', 'התור ביומן, הלקוחה ב-CRM, ותזכורת יוצאת יום לפני.'],
+      ['ובבוקר, אתם רק קוראים.', 'סיכום קצר בוואטסאפ: מה נקבע בלילה ומה מחכה לכם היום.']
+    ];
+    const journey = journeyRaw.map((j, i) => {
+      const a = i * 0.17, last = i === journeyRaw.length - 1;
+      return { head: j[0], body: j[1], cls: last ? 'cue-last' : 'cue', vars: '--a: ' + (i === 0 ? -1 : a).toFixed(2) + '; --b: ' + (a + 0.2).toFixed(2) };
+    });
+    const nodes = ['הודעה נכנסת', 'הסוכן מבין', 'בדיקה ביומן', 'מענה ללקוחה', 'יומן ו-CRM', 'סיכום בוקר'].map((l, i) => ({ label: l, vars: '--t: ' + (i * 0.17 + 0.01).toFixed(2) }));
+
+    const L = [
+      ['מכירות','מענה מיידי לליד מכל ערוץ','ליד נכנס ← הודעה אישית בוואטסאפ תוך שניות','וואטסאפ · אינסטגרם · טפסים'],
+      ['מכירות','דירוג לידים','ליד חדש ← ציון לפי תקציב, צורך ודחיפות','monday · CRM'],
+      ['מכירות','פולואפ אחרי הצעת מחיר','3 ימים בלי תשובה ← תזכורת עדינה ואישית','מייל · וואטסאפ'],
+      ['מכירות','תיאום פגישות בלי פינג-פונג','בקשה לפגישה ← שעות פנויות ונקבע ביומן','Google Calendar'],
+      ['מכירות','הצעת מחיר מתוך שיחה','שיחה הסתיימה ← טיוטת הצעה מוכנה לשליחה','Zoom · Docs'],
+      ['מכירות','החזרת עגלות נטושות','עגלה ננטשה ← תזכורת אישית בזמן הנכון','Shopify · וואטסאפ'],
+      ['מכירות','סיכום שיחת מכירה','שיחה הסתיימה ← סיכום ומשימות ב-CRM','Zoom · HubSpot'],
+      ['מכירות','החזרת לקוחות רדומים','90 יום בלי רכישה ← הצעה שמתאימה ללקוח','CRM · וואטסאפ'],
+      ['שירות','בוט שאלות נפוצות','שאלה בוואטסאפ ← תשובה לפי הנהלים שלכם','וואטסאפ'],
+      ['שירות','איפה ההזמנה שלי?','לקוח שואל ← סטטוס משלוח ומספר מעקב','Shopify · וואטסאפ'],
+      ['שירות','תזכורות ואישור הגעה','יום לפני ← תזכורת, וביטול עובר לרשימת המתנה','יומן · SMS'],
+      ['שירות','מענה לביקורות','ביקורת חדשה ← תשובה בטון של המותג','Google'],
+      ['שירות','מיון פניות במייל','מייל נכנס ← סיווג לפי דחיפות ונושא','Gmail · Outlook'],
+      ['שירות','משוב אחרי שירות','יומיים אחרי ← סקר קצר ובקשת ביקורת','וואטסאפ · Typeform'],
+      ['שירות','העברה לנציג אנושי','שאלה מורכבת ← מגיעה אליכם עם סיכום','וואטסאפ · Slack'],
+      ['כספים','קליטת חשבוניות ספקים','חשבונית במייל ← נקלטת במורנינג','Gmail · מורנינג'],
+      ['כספים','בדיקה מול הזמנת רכש','חשבונית נקלטה ← הוצלבה מול ההזמנה','Priority · SAP'],
+      ['כספים','זיהוי חשבונית כפולה','אותה חשבונית פעמיים ← התשלום נעצר','מורנינג · בנק'],
+      ['כספים','קבלות אוטומטיות','תשלום בביט או במזומן ← קבלה ללקוח','מורנינג · וואטסאפ'],
+      ['כספים','התאמות בנק','תנועות חדשות ← הוצלבו, רק חריגים מסומנים','בנקאות פתוחה'],
+      ['כספים','תזכורות תשלום','חוב פתוח 30 יום ← תזכורת עם קישור לתשלום','מורנינג · וואטסאפ'],
+      ['כספים','תזרים מזומנים יומי','כל בוקר ← יתרות ותחזית בהודעה אחת','בנקים · Excel'],
+      ['כספים','התראה על חיוב חריג','חיוב לא רגיל ← התראה עם הסבר','בנקים · כרטיסים'],
+      ['כספים','הוראות קבע חדשות','הוראת קבע לא מוכרת ← שאלה אליכם','בנקים'],
+      ['תפעול','סנכרון מלאי','שינוי במלאי ← כל המערכות מתעדכנות','Priority · Shopify'],
+      ['תפעול','הזמנת רכש אוטומטית','פריט מתחת לסף ← הזמנה לספק לאישור','Priority · מייל'],
+      ['תפעול','מעקב משלוחי יבוא','עדכון מחברת השילוח ← התראה על פריקה','Gmail'],
+      ['תפעול','מעקב מכרזים','מכרז חדש ← סיכום עם מועדים','אתרי מכרזים'],
+      ['תפעול','חלוקת משימות לצוות','משימה חדשה ← משויכת לפי עומס','monday · ClickUp'],
+      ['תפעול','כתב כמויות מתוכניות','תוכנית PDF ← טיוטת כתב כמויות לבדיקה','PDF · Excel'],
+      ['תפעול','סיכום מסמכים וחוזים','מסמך ארוך ← עיקרים וסעיפים חריגים','Drive · PDF'],
+      ['תפעול','גיבוי לילי ובקרה','כל לילה ← גיבוי ואישור שהכל רץ','Drive · Supabase'],
+      ['שיווק','תגובה הופכת להודעה','תגובה בפוסט ← הודעה פרטית עם מדריך','Instagram'],
+      ['שיווק','רעיונות לתוכן','כל שבוע ← רעיונות לפי מה שעבד','Instagram · LinkedIn'],
+      ['שיווק','טיוטות לפוסטים','רעיון אושר ← פוסט בטון שלכם','Canva · LinkedIn'],
+      ['שיווק','דיוור ממוקד','קבוצת לקוחות ← הודעה אישית לכל אחד','וואטסאפ · מייל'],
+      ['שיווק','תיאורי מוצר','מוצר חדש ← תיאור, כותרת ומילות מפתח','Shopify · Wix'],
+      ['שיווק','דוח קמפיינים שבועי','כל שבוע ← מה עבד ומה לעצור','Meta · Google'],
+      ['שיווק','ליד מהאתר ל-CRM','טופס באתר ← ליד במאנדיי עם כל הפרטים','WordPress · monday'],
+      ['משאבי אנוש','בוט עובדים','שאלה על שכר או חופשה ← תשובה מהמערכת','וואטסאפ'],
+      ['משאבי אנוש','קליטת עובד חדש','עובד חדש ← טפסים, הרשאות ומדריך','Drive · Gmail'],
+      ['משאבי אנוש','בקשות חופשה','בקשה ← אישור מנהל ועדכון ביומן','וואטסאפ · יומן'],
+      ['משאבי אנוש','הפקדות פנסיה','משכורות שולמו ← הפקדות לכל קופה','Excel · מערכת שכר'],
+      ['משאבי אנוש','נוכחות וחריגים','חריגה בשעות ← התראה למנהל','מערכת נוכחות'],
+      ['ניהול','תדרך בוקר','כל בוקר ← היום שלכם בעמוד אחד','יומן · Gmail'],
+      ['ניהול','סיכום יומי','סוף יום ← מה נעשה ומה פתוח','וואטסאפ'],
+      ['ניהול','דוח שבועי למנהל','יום ראשון ← מספרים, חריגים והמלצות','Excel · CRM'],
+      ['מכירות','חוזה לחתימה דיגיטלית','הצעה אושרה ← חוזה לחתימה ותזכורת','מייל · PDF'],
+      ['שירות','בוט באתר','שאלה באתר ← מענה ותיאום שיחה','Wix · WordPress'],
+      ['כספים','סיכום חודשי לרו״ח','סוף חודש ← הכנסות והוצאות מסודרות','מורנינג · Excel'],
+      ['כספים','סיווג הוצאות אוטומטי','חיוב בכרטיס ← סיווג לקטגוריה','כרטיסי אשראי'],
+      ['כספים','גבייה חודשית','חיוב חודשי ← גבייה וקבלה ללקוח','Cardcom · מורנינג'],
+      ['תפעול','תיאום משלוחים','הזמנה אושרה ← הובלה ועדכון ללקוח','וואטסאפ · Priority'],
+      ['תפעול','מעקב תקלות','דיווח תקלה ← משימה ומעקב עד סגירה','monday'],
+      ['שיווק','ניתוח מתחרים','כל חודש ← מה המתחרים פרסמו ומה עבד','Web'],
+      ['שיווק','מענה לתגובות','תגובה בפוסט ← תשובה בטון שלכם','Instagram · Facebook'],
+      ['משאבי אנוש','סינון קורות חיים','קו״ח נכנס ← דירוג והזמנה לראיון','Gmail · Calendar'],
+      ['ניהול','התראות על מדדים','מדד חורג ← הודעה מיידית למנהל','Excel · CRM'],
+      ['ניהול','פרוטוקול ישיבה','ישיבה הסתיימה ← החלטות ומשימות','Zoom · monday'],
+      ['ניהול','שאלו את העסק','שאלה בעברית ← תשובה מכל המערכות','וואטסאפ · Claude']
+    ];
+    const catNames = ['הכל', 'מכירות', 'שירות', 'כספים', 'תפעול', 'שיווק', 'משאבי אנוש', 'ניהול'];
+    const cats = catNames.map((c) => {
+      const on = c === st.cat;
+      return {
+        label: c, pressed: on ? 'true' : 'false', pick: () => this.setState({ cat: c, all: false }),
+        style: 'min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 15px; ' + (on ? 'background: #111111; color: #C6FF1A; border: 1px solid #111111; font-weight: 700' : 'background: #FFFFFF; color: #424245; border: 1px solid #E5E5EA; font-weight: 500')
+      };
+    });
+
+
+    const steps = [
+      ['1', 'שיחת היכרות', 'כשעה', 'מבינים איך העסק עובד היום, איפה הולך הזמן ומה הכי מעצבן.', 'סיכום כתוב ושלושה רעיונות ראשונים'],
+      ['2', 'אפיון והבנת הבעיה', 'שבוע', 'יושבים עם הצוות וממפים כל תהליך, כולל כמה זמן וכסף הוא עולה.', 'מסמך אפיון ומפת תהליכים'],
+      ['3', 'תכנון הפתרון', 'כמה ימים', 'בוחרים מה בונים קודם לפי ההחזר, ואיפה נשאר אישור אנושי.', 'תוכנית עבודה והצעת מחיר קבועה'],
+      ['4', 'בנייה וחיבור', 'שבועות ספורים', 'מתחברים לבנק, מורנינג, Priority, מאנדיי ועוד, ובונים מעל.', 'גרסה ראשונה על נתונים אמיתיים'],
+      ['5', 'בדיקות והרצה בצל', 'כשבוע', 'הסוכן רץ במקביל בלי לבצע, ומשווים מול מה שקרה בפועל.', 'דוח בדיקות והחלטה משותפת'],
+      ['6', 'עלייה לאוויר', 'יום-יומיים', 'מפעילים בהדרגה ומדריכים את הצוות.', 'מערכת עובדת ומדריך שימוש'],
+      ['7', 'ליווי ושיפור', 'שוטף', 'מנטרים, משפרים ומוסיפים את השכבה הבאה.', 'דוח חודשי על מה שהסוכנים עשו']
+    ].map((s) => ({ num: s[0], title: s[1], time: s[2], body: s[3], gets: s[4] }));
+
+    const proof = [
+      { kind: 'מפעל תעשייתי', title: 'שכבה חכמה מעל Priority', points: ['בוט וואטסאפ לעובדים: שכר, חופשות ונהלים', 'סוכן שקולט חשבוניות ובודק מול ההזמנות', 'מעקב משלוחי יבוא ומכרזים', 'תדרך בוקר ודוח תזרים'] },
+      { kind: 'קליניקת אסתטיקה', title: 'תורים, קבלות ומורנינג', points: ['שאלון ערב שמצליב יומן ותשלומים', 'קבלות שיוצאות רק אחרי אישור עם קוד', 'שליחה אוטומטית ללקוחות בוואטסאפ', 'בדיקה משולשת לפני כל קבלה'] },
+      { kind: 'ניהול עסקי', title: 'צוות סוכנים עם מוח משותף', points: ['סוכנים לשיווק, השקעות, תפעול ומיילים', 'מרכז תוכן עם תזמון ואישור', 'התראות מהבנק ומפת חשבונות', 'הכל מחכה לאישור לפני שיוצא'] }
+    ];
+
+    const key = ['מורנינג · חשבונית ירוקה', 'monday.com', 'חשבונות בנק', 'כרטיסי אשראי', 'Priority', 'SAP', 'וואטסאפ'];
+    const ints = ['מורנינג · חשבונית ירוקה','monday.com','חשבונות בנק','וואטסאפ','Priority','SAP','כרטיסי אשראי','Gmail','Google Calendar','Excel','חשבשבת','Instagram'];
+    const chip = (t) => ({ t: t, style: 'flex: 0 0 auto; border-radius: 18px; padding: 18px 30px; font-family: Rubik, sans-serif; font-size: 22px; font-weight: 700; white-space: nowrap; background: #FFFFFF; border: 1px solid #E5E5EA; color: #1D1D1F; box-shadow: 0 6px 20px -12px rgba(0,0,0,.18)' });
+    const rowOf = (k) => { const r = ints.filter((x, i) => i % 2 === k).map(chip); return r.concat(r, r); };
+
+    const sectorsRaw = [
+      ['סוכני ביטוח ופנסיה', 'חצי יום הולך על מעקב חידושים, טפסים ולקוחות ששואלים את אותן שאלות.', [['חידושים בלי לפספס', 'כשפוליסה מתקרבת לסיום, הלקוח מקבל הודעה אישית והסוכן מקבל משימה.', 'אף חידוש לא נופל בין הכיסאות'], ['קליטת לידים', 'ליד מטופס מקבל תשאול בוואטסאפ, מסווג לפי מוצר ונקבעת שיחה.', 'מענה כשהליד עוד חם'], ['סיכום שיחה', 'כל שיחה מתומללת, מסוכמת ונכנסת לתיק הלקוח.', 'בלי פתקים ושכחות'], ['איסוף מסמכים', 'צילום שלקוח שולח מזוהה, מתויק, ומתקבלת רשימת חוסרים.', 'תיק מלא בלי לרדוף']]],
+      ['קליניקות ויופי', 'הטלפון לא מפסיק, לקוחות שוכחות תורים, ומי שלא חזרה פשוט נעלמת.', [['תורים מסביב לשעון', 'הודעה בוואטסאפ או באינסטגרם הופכת לתור ביומן.', 'קובעים גם בלילה'], ['פחות ביטולים', 'יום לפני יוצאת תזכורת, וביטול עובר לרשימת המתנה.', 'פחות חורים ביומן'], ['קבלות ממורנינג', 'בערב שאלון קצר, ואחרי אישור כל לקוחה מקבלת קבלה בוואטסאפ.', 'בלי לפתוח את מורנינג'], ['החזרת לקוחות', 'לקוחה שלא הגיעה זמן רב מקבלת הצעה אישית.', 'הכנסה מלקוחות קיימות']]],
+      ['רואי חשבון והנהלת חשבונות', 'מסמכים מגיעים מכל כיוון, תמיד משהו חסר, ובסוף החודש לחץ.', [['קליטת חשבוניות', 'חשבונית במייל נשלפת ונכנסת לתוכנה.', 'בלי הקלדה ידנית'], ['מסמכים חסרים', 'לפני מועד דיווח כל לקוח מקבל רשימה של מה שחסר לו.', 'מגיעים לדיווח מוכנים'], ['התאמות בנק', 'תנועות מהבנק מוצלבות מול החשבוניות, רק חריגים מסומנים.', 'מתעסקים רק בחריג'], ['שאלות חוזרות', 'בוט עונה ללקוחות לפי הנהלים של המשרד.', 'הטלפון נרגע']]],
+      ['נדל״ן ותיווך', 'הרבה פניות, מעט רציניות, וכל נכס חדש צריך לעלות בעשרה מקומות.', [['סינון לידים', 'כל פנייה נבדקת לפי תקציב, אזור ולוחות זמנים.', 'זמן רק לקונים אמיתיים'], ['התאמת נכסים', 'נכס חדש נשלח אישית למחפשים המתאימים.', 'הנכס הנכון לאדם הנכון'], ['תיאום סיורים', 'מוצעים זמנים ונשלחת תזכורת עם מיקום.', 'בלי פינג-פונג'], ['פרסום בכל הערוצים', 'תיאור נכתב ומותאם לכל פלטפורמה.', 'פרסום אחד במקום עשרה']]],
+      ['מסעדות ובתי קפה', 'בזמן שירות אין זמן לענות להודעות, לספור מלאי או לטפל בביקורות.', [['הזמנת מקומות', 'שאלה בוואטסאפ נבדקת מול התפוסה ומקבלת אישור.', 'אף הזמנה לא הולכת לאיבוד'], ['ניהול ביקורות', 'כל ביקורת מקבלת תשובה, ושלילית מגיעה אליכם מיד.', 'מוניטין שמור'], ['מלאי וספקים', 'פריט מתחת לסף מייצר הזמנה לספק לאישורכם.', 'לא נגמר באמצע ערב'], ['דוח יומי', 'בכל בוקר מגיעים המכירות והחריגים בוואטסאפ.', 'תמונת מצב בלי מערכות']]],
+      ['חנויות אונליין', 'רוב הפניות הן ״איפה ההזמנה שלי״, ועגלות ננטשות כל יום.', [['שירות לקוחות', 'שאלה על הזמנה נענית מיד עם מספר מעקב.', 'פחות פניות אליכם'], ['עגלות נטושות', 'תזכורת אישית יוצאת בזמן הנכון.', 'מכירות שחוזרות'], ['תיאורי מוצר', 'מוצר חדש מקבל תיאור וכותרת בסגנון המותג.', 'עולים לאוויר מהר'], ['סנכרון מלאי', 'מלאי מתעדכן בין החנות למחסן.', 'בלי למכור מה שאין']]],
+      ['מפעלים ותעשייה', 'הידע אצל כמה אנשים, הניירת לא נגמרת והמערכות לא מדברות זו עם זו.', [['בוט עובדים', 'שאלה על שכר, חופשה או נוהל נענית מתוך נתוני החברה.', 'פחות פניות לכספים'], ['חשבוניות ספקים', 'כל חשבונית נבדקת מול הזמנת הרכש ב-Priority או SAP.', 'סדר בלי הקלדה'], ['מעקב מכרזים', 'מכרזים חדשים מסוננים ומגיע סיכום עם מועדים.', 'לא מפספסים'], ['תזרים ובנקים', 'בכל בוקר יתרות מכל הבנקים ותחזית תזרים.', 'יודעים איפה עומדים']]],
+      ['אדריכלים ומשרדי תכנון', 'שעות על כתבי כמויות, פרוטוקולים ומעקב שינויים, במקום על תכנון.', [['כתב כמויות', 'מהתוכניות והמפרט נבנית טיוטה לפי פרקים, עם סימון מה לבדוק.', 'מטיוטה לתמחור מהר'], ['עדכון מחירים', 'הסעיפים מתומחרים לפי מאגר המחירים שלכם.', 'אומדן עקבי'], ['פרוטוקול פגישה', 'אחרי פגישה מוכן סיכום עם החלטות ומשימות.', 'כולם יודעים מה סוכם'], ['מעקב שינויים', 'גרסה חדשה של תוכנית מסומנת וכתב הכמויות מתעדכן.', 'אף שינוי לא מתפספס']]],
+      ['משרדי עורכי דין', 'הרבה זמן הולך על קליטת פניות, מעקב מועדים ועדכון לקוחות.', [['קליטת פנייה', 'פנייה מהאתר מקבלת תשאול ראשוני וסיכום לעו״ד.', 'פגישה ראשונה ממוקדת'], ['ניהול מועדים', 'מועד מתקרב פותח התראות ומשימות הכנה.', 'שקט מול לוחות זמנים'], ['סיכום מסמכים', 'מסמך ארוך מסוכם וסעיפים חריגים מסומנים.', 'החלטה מהירה'], ['עדכון לקוחות', 'שינוי סטטוס שולח ללקוח עדכון ברור.', 'פחות ״מה קורה?״']]]
+    ];
+    const pill = (on) => 'min-height: 44px; padding: 0 18px; border-radius: 999px; font-size: 15px; ' + (on ? 'background: #111111; color: #C6FF1A; border: 1px solid #111111; font-weight: 700' : 'background: #FFFFFF; color: #424245; border: 1px solid #E5E5EA; font-weight: 500');
+    const sectors = sectorsRaw.map((x, i) => ({ name: x[0], pressed: i === st.sector ? 'true' : 'false', pick: () => this.setState({ sector: st.sector === i ? -1 : i, all: false }), style: pill(i === st.sector) }));
+    const secOn = st.sector >= 0;
+    const secTopics = [['שירות', 'מכירות', 'ניהול', 'תפעול'], ['שירות', 'שירות', 'כספים', 'שיווק'], ['כספים', 'כספים', 'כספים', 'שירות'], ['מכירות', 'מכירות', 'מכירות', 'שיווק'], ['שירות', 'שיווק', 'תפעול', 'ניהול'], ['שירות', 'מכירות', 'שיווק', 'תפעול'], ['משאבי אנוש', 'כספים', 'תפעול', 'כספים'], ['תפעול', 'כספים', 'ניהול', 'תפעול'], ['מכירות', 'ניהול', 'תפעול', 'שירות']];
+    const only = { 'החזרת עגלות נטושות': [5], 'איפה ההזמנה שלי?': [5], 'תיאורי מוצר': [5], 'סנכרון מלאי': [5, 6], 'כתב כמויות מתוכניות': [7], 'מעקב מכרזים': [6, 7], 'מעקב משלוחי יבוא': [6], 'הזמנת רכש אוטומטית': [4, 6], 'בדיקה מול הזמנת רכש': [6], 'תיאום משלוחים': [5, 6], 'הפקדות פנסיה': [6, 2], 'תזכורות ואישור הגעה': [1, 4, 0, 8] };
+    let pool = L.map((x) => ({ cat: x[0], title: x[1], flow: x[2], sys: x[3], own: false }));
+    if (secOn) {
+      const mine = sectorsRaw[st.sector][2].map((x, k) => ({ cat: secTopics[st.sector][k], title: x[0], flow: x[1], sys: x[2], own: true }));
+      pool = mine.concat(pool.filter((x) => !only[x.title] || only[x.title].indexOf(st.sector) >= 0));
+    } else pool = pool.filter((x) => !only[x.title] || true);
+    const filtered = pool.filter((x) => st.cat === 'הכל' || x.cat === st.cat);
+    const limit = st.all ? filtered.length : 12;
+    const libShown = filtered.slice(0, limit).map((x) => ({ cat: x.own ? x.cat + ' · ' + sectorsRaw[st.sector][0] : x.cat, title: x.title, flow: x.flow, sys: x.sys }));
+
+    const guides = [
+      ['מתחילים', 'אוטומציה או סוכן AI? ככה תדעו מה מתאים לכם', 'אוטומציה היא מתכון קבוע, סוכן הוא עובד שחושב. מתי כל אחד משתלם.', 'מבוא'],
+      ['מתחילים', 'AI לעסק קטן, בלי הייפ: מה זה באמת עושה', 'ההבדל בין צ׳אטבוט, אוטומציה וסוכן, בשפה של בעלי עסקים.', 'מבוא'],
+      ['לעסקים', '10 משימות שכדאי להעביר לאוטומציה כבר החודש', 'מה הכי קל, מה הכי משתלם ומאיפה מתחילים.', 'מבוא'],
+      ['חיבורים', 'לחבר את מורנינג (חשבונית ירוקה) לוואטסאפ', 'קבלות וחשבוניות שיוצאות מתוך שיחה, בלי לפתוח את המערכת.', 'בינוני'],
+      ['חיבורים', 'חשבונות הבנק במקום אחד: מה זה בנקאות פתוחה', 'מה אפשר לחבר, מה צריך לאשר ואיך זה נשאר מאובטח.', 'בינוני'],
+      ['כלים', 'מאנדיי שמתעדכן לבד', 'לידים, משימות ופרויקטים שנכנסים ללוחות בלי הקלדה.', 'בינוני'],
+      ['אבטחה', 'מה AI לא אמור לעשות לבד', 'איפה חייבת להישאר נקודת אישור אנושית, ואיך בונים אותה.', 'מתקדם'],
+      ['חיבורים', 'עובדים עם Priority? מה אפשר לחבר אליה', 'רשימה מעשית לפי מחלקה: מכירות, שירות, מחסן, כספים וייצור.', 'בינוני']
+    ].map((g, i) => ({ cat: g[0], title: g[1], desc: g[2], level: g[3], open: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ guide: i }); } }));
+    const GB = [["אוטומציה וסוכן AI נשמעים כמו אותו דבר, אבל הם פותרים בעיות שונות ועולים אחרת. רוב העסקים שמשלמים על \"AI\" קנו בעצם את הכלי הלא נכון לבעיה. הנה איך מבדילים.", "# אוטומציה היא מתכון קבוע", "אם קרה X, עושים Y. תמיד אותו דבר, בלי לחשוב. היא מהירה, זולה, לא מתעייפת ולא טועה כל עוד הכלל ברור.", "> דוגמה: התקבל תשלום ← נשלחת קבלה ללקוח. כל פעם, אותו צעד.", "# סוכן AI הוא עובד שחושב", "הוא מקבל בקשה בשפה חופשית, מבין מה רוצים ממנו, מחפש את המידע במערכות שלכם ומחליט מה לעשות.", "> דוגמה: עובד שואל בוואטסאפ \"אם אקח חופש ביום חמישי, יישאר לי מספיק לאוגוסט?\" הסוכן בודק במערכת השכר, מחשב ועונה במשפט אחד.", "# שלוש שאלות שמכריעות", "- יש כלל ברור שאפשר לכתוב על דף? אוטומציה.", "- הבקשה מגיעה בניסוחים שונים כל פעם, או דורשת לחפש ולהבין? סוכן.", "- כמה עולה טעות? ככל שהיא יקרה יותר, צריך יותר כללים קבועים ונקודת אישור אנושית.", "# השילוב המנצח", "ברוב העסקים התשובה היא גם וגם: אוטומציות לשלד הקבוע (קבלות, תזכורות, סנכרון), וסוכן רק במקומות שבאמת צריך להבין ולהחליט. ככה משלמים על \"חשיבה\" רק איפה שהיא מחזירה את עצמה."], ["לא צריך להבין טכנולוגיה כדי להבין מה AI יכול לעשות בעסק. צריך להבין שלושה כלים, ומה כל אחד עושה טוב.", "# שלושת הכלים", "- צ׳אטבוט: עונה על שאלות לפי מידע שנתתם לו. טוב לשאלות נפוצות ולשירות ראשוני.", "- אוטומציה: מבצעת צעדים קבועים בין מערכות, בלי לחשוב. טובה לכל מה שחוזר על עצמו.", "- סוכן AI: מבין בקשה, אוסף מידע מכמה מקומות ופועל. טוב למשימות שדורשות הקשר.", "# במה AI באמת טוב", "- לקרוא ולסכם: מיילים, חוזים, שיחות ומסמכים ארוכים.", "- לנסח: תשובות ללקוחות, הצעות מחיר, פוסטים, בטון שלכם.", "- למיין ולסווג: פניות, הוצאות, לידים ומסמכים.", "- לחבר נקודות: להצליב בנק מול חשבוניות, יומן מול תשלומים.", "# במה לא לסמוך עליו לבד", "- החלטות כספיות ותשלומים בלי אישור שלכם.", "- עובדות בלי מקור. AI יכול לנסח בביטחון גם משהו שגוי, ולכן בונים אותו כך שיענה רק מתוך הנתונים שלכם.", "> הכלל שלי: AI מכין, אדם מאשר. לפחות בהתחלה, ובכל דבר שיוצא החוצה."], ["לא מתחילים מהמשימה הכי מרשימה, אלא מזו שחוזרת הכי הרבה פעמים וגוזלת הכי הרבה דקות. הנה עשר שכמעט תמיד משתלמות:", "- 1. קבלות שיוצאות לבד אחרי כל תשלום.", "- 2. תזכורת ללקוחות יום לפני תור או פגישה.", "- 3. מענה ראשון לליד חדש תוך דקה, גם בלילה.", "- 4. קליטת חשבוניות ספקים מהמייל ישר למערכת.", "- 5. תזכורת תשלום ללקוחות שלא שילמו 30 יום.", "- 6. דוח בוקר בוואטסאפ: כמה נכנס, כמה יצא, מה מחכה היום.", "- 7. ליד מטופס באתר שנכנס ל-CRM עם כל הפרטים.", "- 8. בקשת ביקורת יומיים אחרי שירות.", "- 9. סיכום ומשימות אחרי כל פגישה.", "- 10. התראה על חיוב חריג או כפול בבנק.", "# איך בוחרים מאיפה להתחיל", "תכפילו כמה פעמים בחודש המשימה קורית בכמה דקות היא לוקחת. מה שיוצא הכי גבוה הולך ראשון. ברוב העסקים שלוש המשימות הראשונות מחזירות לבד כמה שעות בשבוע.", "> טיפ: תתחילו ממשימה אחת, תוודאו שהיא עובדת חודש, ורק אז תוסיפו את הבאה."], ["מורנינג (חשבונית ירוקה) היא המערכת שרוב העסקים הקטנים בישראל מפיקים בה קבלות וחשבוניות. החיבור לוואטסאפ חוסך את הרגע שבו צריך לעצור, לפתוח את המערכת ולהקליד.", "# מה זה נותן", "- קבלה שנשלחת ללקוח בוואטסאפ מיד אחרי תשלום.", "- חשבונית שמופקת מתוך הודעה, למשל \"תפיקי חשבונית לדנה על 1,200\".", "- סיכום ערב של כל מה שהופק היום.", "# איך זה בנוי", "- מפתח API ממורנינג, שמאפשר להפיק מסמכים מבחוץ.", "- מספר וואטסאפ עסקי שמחובר דרך ספק API של וואטסאפ.", "- שכבה באמצע שמבינה את ההודעה, מכינה טיוטה ושולחת אותה לאישור.", "# איך שומרים על סדר", "- כל מסמך יוצא רק אחרי אישור, למשל קוד קצר או לחיצה.", "- בדיקה כפולה מול היומן והתשלומים לפני ההפקה.", "- רשימה של כל מה שהופק, כדי שרו״ח יקבל תמונה מלאה.", "> קבלה היא מסמך חשבונאי. לכן אצלי שום מסמך לא יוצא בלי אישור, גם כשהכל אוטומטי."], ["בנקאות פתוחה מאפשרת לכם לתת הסכמה לשירות מורשה לקרוא את המידע מחשבונות הבנק והכרטיסים שלכם, כדי לראות הכל במקום אחד.", "# מה אפשר לראות", "- יתרות בכל הבנקים יחד, כל בוקר.", "- תנועות שנכנסות ויוצאות, מסווגות לפי קטגוריה.", "- חיובי כרטיסי אשראי, כולל הוראות קבע.", "# מה אפשר לבנות מעל זה", "- דוח תזרים יומי בוואטסאפ.", "- התראה על חיוב חריג, כפול או לא מוכר.", "- התאמה אוטומטית בין תנועות בבנק לחשבוניות.", "# אבטחה בשפה פשוטה", "- אתם נותנים הסכמה, ואפשר לבטל אותה בכל רגע.", "- הגישה דרך גוף מורשה היא לקריאת מידע בלבד, לא להעברת כסף.", "- אף פעם לא מוסרים סיסמה לבנק לאף אחד, כולל לי.", "> כל פעולה שמזיזה כסף נשארת אצלכם, באפליקציית הבנק."], ["מאנדיי הוא לוח מצוין, אבל רק אם הוא מעודכן. ברוב העסקים הוא מתיישן תוך שבוע, כי מישהו צריך להקליד. הפתרון הוא לתת למערכות לעדכן אותו.", "# מה נכנס לבד", "- ליד מטופס באתר, מאינסטגרם או מוואטסאפ נפתח כפריט עם כל הפרטים.", "- הצעת מחיר שנשלחה מזיזה את הליד לשלב הבא.", "- תשלום שהתקבל סוגר את הפריט ומוסיף את הסכום.", "- סיכום של שיחה או פגישה נכנס כעדכון בפריט.", "# אוטומציות פשוטות שכדאי להפעיל", "- פריט שלא זז שלושה ימים מקבל תזכורת לאחראי.", "- משימה חדשה מתחלקת לפי עומס בצוות.", "- סוף שבוע: סיכום של מה נסגר ומה תקוע.", "> המטרה: שאף אחד לא יצטרך \"לעדכן את מאנדיי\". הלוח פשוט משקף מה שקורה."], ["AI יכול לעשות הרבה לבד, אבל יש מקומות שבהם טעות אחת עולה יותר מכל החיסכון. שם תמיד נשארת נקודת אישור אנושית.", "# מה תמיד עובר אישור", "- תשלומים, העברות והחזרים.", "- מסמכים חשבונאיים: קבלות, חשבוניות וזיכויים.", "- הודעה ראשונה ללקוח חדש, או כל דבר רגיש.", "- מחיקה של מידע ושינויים בהרשאות.", "- כל דבר משפטי או התחייבות בשם העסק.", "# איך בונים נקודת אישור", "- הסוכן מכין טיוטה, ואתם מאשרים בלחיצה או בקוד קצר.", "- תקרה: מעל סכום מסוים תמיד עוצרים ושואלים.", "- יומן פעולות: כל מה שהסוכן עשה רשום, עם שעה וסיבה.", "- הרשאות מינימליות: הסוכן מקבל גישה רק למה שהוא צריך.", "> ככל שהאמון גדל אפשר לשחרר עוד, אבל בהדרגה ועם מדידה. לא ביום הראשון."],["עובדים עם Priority? ברגע שמחברים אליה מערכת חכמה, העובדים מפסיקים להקליד פעמיים והמידע מגיע בזמן אמת. הנה רשימה מעשית של מה שאפשר לעשות, לפי מחלקה.", "# שלושה שכדאי להתחיל מהם", "- הצעת מחיר שנפתחת ב-Priority בלחיצה. חוסך הקלדה כפולה כל יום.", "- סוכן גבייה ותשלום בקישור. מכניס כסף מהר יותר.", "- נתונים שמגיעים ישר מ-Priority, בלי קבצים וגיבויים ידניים.", "# מכירות והצעות מחיר", "- הצעת מחיר בלחיצה: בונים את ההצעה, והיא נרשמת ב-Priority עם מספר.", "- הצעה מתוך שיחת טלפון: הסוכן מסכם את השיחה ומציע שורות להצעה, ואיש המכירות מאשר.", "- מחיר ומלאי בזמן ההצעה: רואים מלאי ומחירון עדכני לפני ששולחים ללקוח.", "- אפליקציה לסוכני שטח: סוכן אצל לקוח רואה חוב ומלאי ופותח הזמנה מהטלפון.", "# שירות לקוחות", "- בוט וואטסאפ: לקוח שואל \"איפה ההזמנה שלי\" ומקבל תשובה אוטומטית מהנתונים.", "- כרטיס לקוח שקופץ: לקוח מתקשר, ועל המסך ההזמנות, החוב והמשלוח האחרון שלו.", "- עדכון אוטומטי ללקוח: תעודת משלוח נסגרת, והלקוח מקבל הודעה.", "# רכש, מחסן ומשלוחים", "- סטטוס משלוח ביבוא: תאריך הגעה שמשתנה מתעדכן גם בהזמנת הרכש.", "- סורקי ברקוד במחסן: ליקוט, קליטת סחורה וספירות מלאי שמתעדכנים ישר ב-Priority.", "- חברות שילוח: תעודת משלוח נסגרת, ונפתחת הזמנת הובלה עם מספר מעקב ללקוח.", "- חתימה דיגיטלית: הנהג מחתים את הלקוח בטלפון, והתעודה החתומה נשמרת ב-Priority.", "# כספים וגבייה", "- דשבורד כספים חי: חובות, תזרים והזמנות פתוחות שמתעדכנים תוך דקות.", "- סוכן גבייה: מזהה חוב שעבר את מועדו ומכין תזכורת, שנשלחת רק אחרי אישור.", "- תשלום בקישור: הלקוח משלם, והקבלה נפתחת לבד ב-Priority.", "- התראת חריגת אשראי: התראה לפני שמאשרים הזמנה ללקוח שחרג.", "- חשבוניות ספקים: חשבונית שמגיעה במייל נקראת אוטומטית ונרשמת ב-Priority.", "# ייצור וניהול", "- תכנון חומרי גלם: חישוב אוטומטי של מה חסר לפי ההזמנות הפתוחות.", "- בריף בוקר לכל עובד: כל אחד מקבל בבוקר את המשימות שלו, מנתונים עדכניים.", "# מה חשוב לדעת לפני שמתחילים", "- החיבור נעשה דרך ה-API של Priority, והוא כרוך ברישוי מול Priority. כדאי לברר מראש את המחיר ואת מגבלות השימוש בחבילה.", "- חלק מהיכולות, כמו סורקים, סליקה וחתימה דיגיטלית, הן שירותים חיצוניים בתשלום נפרד.", "> לא חייבים הכל. מתחילים משניים או שלושה דברים שחוסכים הכי הרבה זמן, ומוסיפים בהדרגה."]];
+    const bstyle = { '#': 'font-family: Rubik, sans-serif; font-weight: 800; font-size: 22px; margin: 26px 0 6px; color: #1D1D1F', '-': 'position: relative; padding-right: 20px; margin: 6px 0; font-size: 17px; color: #2C2C30', '>': 'margin: 18px 0; padding: 14px 18px; border-radius: 16px; background: #F3EEFF; color: #3B1E99; font-weight: 600; font-size: 16.5px', 'p': 'margin: 12px 0; font-size: 17px; line-height: 1.7; color: #2C2C30' };
+    const gOpen = st.guide >= 0;
+    const gCur = gOpen ? guides[st.guide] : { cat: '', title: '', level: '' };
+    const gBlocks = gOpen ? GB[st.guide].map((t) => { const k = '#->'.indexOf(t[0]) >= 0 ? t[0] : 'p'; return { t: k === 'p' ? t : (k === '-' ? '•  ' + t.slice(2) : t.slice(2)), style: bstyle[k] }; }) : [];
+
+    const PR = [{"tag": "ניהול עסקי", "title": "מערכת ניהול עם צוות סוכנים", "pain": "בעלת עסקים שמנהלת כמה עסקים במקביל, וכל המידע מפוזר בין מיילים, וואטסאפ וטבלאות.", "pts": ["מרכז בקרה אחד לכל העסקים", "סוכנים לשיווק, השקעות, תפעול ומיילים", "מוח משותף שזוכר הקשר", "כל פעולה מחכה לאישור לפני שיוצאת"], "stack": "Claude · Supabase · Gmail · וואטסאפ"}, {"tag": "תעשייה", "title": "שכבה חכמה מעל ה-ERP של מפעל", "pain": "מפעל שעובד על Priority, עם תשלומים, יבוא ומלאי שמנוהלים בקבצים נפרדים.", "pts": ["איחוד הנתונים למערכת אחת", "מעקב תשלומים ומשלוחי יבוא", "סנכרון דו-כיווני מול ה-ERP", "לוח בקרה להנהלה"], "stack": "Priority · Supabase · Excel"}, {"tag": "תעשייה", "title": "בוט וואטסאפ לעובדים", "pain": "עובדים שמתקשרים לכספים ולמשאבי אנוש עם אותן שאלות שוב ושוב.", "pts": ["תשובות על שכר, חופשות ונהלים", "מבוסס על נתוני החברה בלבד", "זמין 24/7 בוואטסאפ", "העברה לאדם כשצריך"], "stack": "וואטסאפ · Green API · Claude"}, {"tag": "כספים", "title": "סוכן חשבוניות למנהל כספים", "pain": "חשבוניות ספקים שמגיעות במייל ונבדקות ידנית מול ההזמנות.", "pts": ["קליטת חשבוניות מהמייל", "הצלבה מול הזמנות רכש", "סימון חריגים וכפילויות", "סיכום יומי למנהל הכספים"], "stack": "Gmail · Base44 · Claude"}, {"tag": "קליניקה", "title": "קבלות אוטומטיות לקליניקת אסתטיקה", "pain": "בסוף כל יום צריך להוציא קבלות ידנית לכל הלקוחות.", "pts": ["שאלון ערב קצר בוואטסאפ", "הצלבה מול היומן והתשלומים", "קבלה יוצאת רק אחרי אישור בקוד", "שליחה ללקוחה בוואטסאפ"], "stack": "מורנינג · וואטסאפ · יומן"}, {"tag": "פיננסים", "title": "דשבורד הון משפחתי", "pain": "נכסים שמפוזרים בין בנקים, קופות, השקעות ונכסים דיגיטליים, בלי תמונה אחת.", "pts": ["מפת נכסים בסגנון אפליקציה", "כל החשבונות במבט אחד", "הסבר במילים על מה שהשתנה", "התראות על חריגות"], "stack": "בנקים · Excel · Claude"}, {"tag": "השקעות", "title": "סוכן דוח שוק יומי", "pain": "קשה לעקוב כל בוקר אחרי השווקים ולהבין מה זה אומר באופן אישי.", "pts": ["דוח בוקר ויזואלי", "מאקרו, מיקרו והקשר ביניהם", "תרגום למה זה אומר עבורך", "מעקב אחרי התיק"], "stack": "Claude · Web · HTML"}, {"tag": "תעשייה", "title": "מעקב מכרזים שבועי", "pain": "מכרזים רלוונטיים מתפרסמים בהרבה אתרים, וקל לפספס מועדים.", "pts": ["איסוף מכרזים מכמה מקורות", "סינון לפי תחום הפעילות", "סיכום עם מועדים ודרישות", "דוח שבועי מוכן"], "stack": "Web · Claude · Excel"}];
+    const DOCS = { privacy: { title: "מדיניות פרטיות", b: ["עדכון אחרון: נובמבר 2026", "Goldchain AI (להלן: \"אנחנו\") מכבדת את פרטיות המבקרים באתר. מדיניות זו מסבירה איזה מידע נאסף, למה, ומה הזכויות שלכם, בהתאם לחוק הגנת הפרטיות, התשמ״א-1981, ותקנותיו.", "# איזה מידע אנחנו אוספים", "- מידע שאתם מוסרים ביוזמתכם בטופס יצירת הקשר: שם, טלפון ותיאור קצר של העסק.", "- מידע שאתם שולחים לנו בוואטסאפ, במייל או באינסטגרם.", "- האתר אינו משתמש בעוגיות פרסום או בכלי מעקב, ואינו אוסף מידע אוטומטי לצורכי שיווק.", "# איך הטופס עובד", "לחיצה על שליחה פותחת שיחת וואטסאפ עם ההודעה שמילאתם. ההודעה נשלחת רק אם תאשרו אותה בוואטסאפ. הפרטים אינם נשמרים באתר עצמו.", "# למה אנחנו משתמשים במידע", "- כדי לחזור אליכם ולתאם שיחת היכרות.", "- כדי להבין את הצורך העסקי ולהציע פתרון מתאים.", "- לא נשתמש במידע לדיוור שיווקי בלי הסכמה מפורשת, ולא נמכור אותו לאף גורם.", "# עם מי המידע משותף", "המידע עובר דרך שירותים שבהם אתם בוחרים לפנות אלינו (וואטסאפ, Gmail, אינסטגרם), בכפוף לתנאים שלהם. מעבר לכך המידע לא יועבר לצד שלישי, אלא אם נידרש לכך על פי דין.", "# כמה זמן נשמור את המידע", "כל עוד יש בו צורך לטיפול בפנייה או בהתקשרות עסקית איתכם, ולאחר מכן כנדרש על פי דין.", "# הזכויות שלכם", "- לעיין במידע שנשמר עליכם.", "- לבקש לתקן מידע שגוי או למחוק אותו.", "- לבקש שלא נפנה אליכם יותר.", "לכל בקשה כתבו אלינו ל-karinatar9@gmail.com ונטפל בה תוך זמן סביר.", "# אבטחת מידע", "אנחנו נוקטים אמצעים סבירים כדי לשמור על המידע. עם זאת, אין אפשרות להבטיח הגנה מוחלטת על מידע שעובר ברשת.", "# יצירת קשר", "בכל שאלה על המדיניות: karinatar9@gmail.com · וואטסאפ 058-635-2953."] }, a11y: { title: "הצהרת נגישות", b: ["עדכון אחרון: נובמבר 2026", "אנחנו ב-Goldchain AI רואים חשיבות בכך שהאתר יהיה נגיש לכל אדם, כולל אנשים עם מוגבלות. האתר הותאם בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג-2013, ולתקן הישראלי ת״י 5568, ברמה AA.", "# מה עשינו באתר", "- ניווט מלא במקלדת, כולל סימון ברור של הרכיב שבפוקוס.", "- קישור \"דלג לתוכן\" בתחילת העמוד.", "- כותרות במבנה היררכי, ותוויות לכל שדות הטופס.", "- טקסט חלופי לרכיבים גרפיים ואנימציות.", "- ניגודיות צבעים מספקת בטקסטים העיקריים.", "- כיבוד הגדרת \"הפחתת תנועה\" של מערכת ההפעלה.", "- חלונות שנסגרים במקש Esc.", "# תפריט הנגישות", "בכפתור הנגישות שבפינת המסך אפשר להגדיל טקסט, להגביר ניגודיות, לעצור אנימציות ולהדגיש קישורים.", "# מגבלות ידועות", "ייתכן שחלק מהאנימציות וההדגמות הוויזואליות אינן נגישות במלואן לקוראי מסך. התוכן המהותי שלהן מופיע גם כטקסט.", "# נתקלתם בבעיה?", "נשמח לשמוע ולתקן. רכזת הנגישות: קרין עטר · karinatar9@gmail.com · וואטסאפ 058-635-2953. נשתדל לחזור אליכם תוך 3 ימי עבודה."] } };
+    const docOpen = !!st.doc && !!DOCS[st.doc];
+    const docCur = docOpen ? DOCS[st.doc] : { title: '', b: [] };
+    const docBlocks = docCur.b.map((t, n) => { const k = '#->'.indexOf(t[0]) >= 0 ? t[0] : 'p'; return { t: k === 'p' ? t : (k === '-' ? '•  ' + t.slice(2) : t.slice(2)), style: n === 0 ? 'font-size: 14px; color: #6E6E73; margin: 0 0 8px' : bstyle[k] }; });
+    const a11yBtn = (on) => 'display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 48px; padding: 0 14px; border-radius: 12px; font-size: 15.5px; font-weight: 600; text-align: right; ' + (on ? 'background: #111111; color: #FFFFFF; border: 1px solid #111111' : 'background: #F5F5F7; color: #1D1D1F; border: 1px solid #E5E5EA');
+    const a11yItems = [['big', 'הגדלת טקסט'], ['hc', 'ניגודיות גבוהה'], ['still', 'עצירת אנימציות'], ['ul', 'הדגשת קישורים']].map((x) => ({ label: x[1], on: st[x[0]] ? 'true' : 'false', mark: st[x[0]] ? 'פעיל' : '', style: a11yBtn(!!st[x[0]]), pick: () => this.setA11y(x[0]) }));
+    const wsc = this.waScripts();
+    const waCur = wsc[st.wa];
+    const waTabs = wsc.map((w, i) => ({ label: w.label, sub: w.sub, pressed: i === st.wa ? 'true' : 'false', pick: () => this.playWa(i), pstyle: 'min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: 14.5px; font-weight: 600; ' + (i === st.wa ? 'background: #111111; color: #FFFFFF; border: 1px solid #111111' : 'background: rgba(255,255,255,.8); color: #424245; border: 1px solid #DCDCE1'),
+      style: 'text-align: right; min-height: 64px; padding: 12px 18px; border-radius: 16px; ' + (i === st.wa ? 'background: #111111; color: #C6FF1A; border: 1px solid #111111' : 'background: transparent; color: #1D1D1F; border: 1px solid #D2D2D7') }));
+    const waMsgs = waCur.msgs.slice(0, st.waN).map((m) => {
+      const me = m[0] === 'me';
+      return { text: m[1], time: m[2], me: me, doc: !!m[3], docName: m[3] || '', docMeta: m[4] || '',
+        style: (me ? 'align-self: flex-end; background: #D9FDD3; border-radius: 10px 0 10px 10px;' : 'align-self: flex-start; background: #FFFFFF; border-radius: 0 10px 10px 10px;') + ' max-width: 82%; padding: 7px 10px 8px; font-size: 14.5px; line-height: 1.45; color: #111B21; box-shadow: 0 1px .5px rgba(11,20,26,.13)' };
+    });
+
+
+    const tgRaw = [['קבלות ממורנינג', 'אחרי כל תשלום'], ['תזכורות לתורים', 'יום לפני, בוואטסאפ'], ['קליטת חשבוניות ספקים', 'מהמייל ישר למערכת'], ['דוח בוקר בוואטסאפ', 'כל יום ב-08:00'], ['מענה ללידים בלילה', 'תוך דקה, גם באמצע הלילה']];
+    const toggles = tgRaw.map((t, i) => {
+      const on = !!st.tg[i];
+      return { name: t[0], sub: t[1], on: on ? 'true' : 'false',
+        pick: () => { const a = st.tg.slice(); a[i] = !a[i]; this.setState(a[i] ? { tg: a, sim: i, simK: st.simK + 1 } : { tg: a, sim: st.sim === i ? -1 : st.sim }); },
+        track: 'width: 51px; height: 31px; border-radius: 999px; position: relative; flex: 0 0 auto; border: 0; padding: 0; transition: background-color .25s; background: ' + (on ? '#34C759' : '#E3E3E8'),
+        knob: 'position: absolute; top: 2px; width: 27px; height: 27px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 3px 8px rgba(0,0,0,.15); transition: right .25s var(--ease); right: ' + (on ? '22px' : '2px') };
+    });
+    const simRaw = [
+      ['תשלום 350 ₪ בביט', 'מורנינג מפיק קבלה', 'נשלחה ללקוחה ✓'],
+      ['תור מחר 16:30', 'נשלחת תזכורת', '״מגיעה!״ ✓'],
+      ['חשבונית ספק במייל', 'נבדקת מול ההזמנה', 'מוכנה לתשלום ✓'],
+      ['08:00', 'בנקים, יומן ולידים', 'הדוח בוואטסאפ ✓'],
+      ['ליד חדש ב-02:14', 'הודעה אישית תוך 40 שנ׳', 'פגישה נקבעה ✓']
+    ];
+    const simOn = st.sim >= 0 && !!st.tg[st.sim];
+    const an = st.simK % 2 ? 'simA' : 'simB', bn = st.simK % 2 ? 'barA' : 'barB';
+    const simSteps = simOn ? simRaw[st.sim].map((t, k) => ({ t: t,
+      arrow: k === 0 ? 'display: none' : 'color: #6E6E73; animation: ' + an + ' .4s var(--ease) both; animation-delay: ' + (k * 0.8 - 0.2).toFixed(1) + 's',
+      style: 'font-size: 14px; font-weight: 600; padding: 7px 12px; border-radius: 999px; white-space: nowrap; animation: ' + an + ' .5s var(--ease) both; animation-delay: ' + (k * 0.8).toFixed(1) + 's; ' + (k === 2 ? 'background: #34C759; color: #FFFFFF' : 'background: #2C2C2E; color: #F5F5F7') })) : [];
+    const vsData = [
+      { title: 'אוטומציה היא מתכון קבוע.', line: 'אם קרה X, עושים Y. תמיד אותו דבר, בלי לחשוב. מהירה, זולה ולא מתעייפת.', ex: 'התקבל תשלום ← נשלחת קבלה ללקוח', exSub: 'אותו צעד בכל פעם, בלי יוצאים מן הכלל.' },
+      { title: 'סוכן AI הוא עובד שחושב.', line: 'מבין את הבקשה, מחפש את המידע במערכות שלכם, ומחליט מה לעשות.', ex: 'עובד שואל בוואטסאפ: ״אם אקח חופש ביום חמישי, יישאר לי מספיק לאוגוסט?״', exSub: 'הסוכן בודק במערכת השכר, מחשב ועונה במשפט אחד.' }
+    ];
+    const vsTabs = ['אוטומציה', 'סוכן AI'].map((l, i) => ({ label: l, on: st.vs === i ? 'true' : 'false', pick: () => this.setState({ vs: i }),
+      style: 'min-height: 44px; padding: 0 26px; border: 0; border-radius: 999px; font-size: 16px; font-weight: 600; transition: background-color .25s, box-shadow .25s; ' + (st.vs === i ? 'background: #FFFFFF; color: #1D1D1F; box-shadow: 0 3px 10px rgba(0,0,0,.12)' : 'background: transparent; color: #6E6E73') }));
+    const cell = (i) => 'padding: 14px 0; border-top: 1px solid #E5E5EA; transition: color .25s; ' + (st.vs === i ? 'color: #1D1D1F; font-weight: 600' : 'color: #6E6E73');
+    const vsRows = [['איך מחליט', 'כלל קבוע מראש', 'מבין הקשר ומחליט'], ['מה מקבל', 'טריגר מוגדר', 'בקשה בשפה חופשית'], ['משהו לא צפוי', 'נעצר', 'מחפש מידע או שואל'], ['עלות', 'נמוכה', 'גבוהה יותר'], ['מתאים ל', 'משימות חוזרות וברורות', 'שאלות, החלטות והקשר']].map((r) => ({ k: r[0], a: r[1], b: r[2], s0: cell(0), s1: cell(1) }));
+    const head = (i) => 'padding: 14px 0; font-weight: 800; font-size: 16.5px; ' + (st.vs === i ? 'color: var(--ink)' : 'color: #6E6E73');
+    return {
+      gOpen: gOpen, gCur: gCur, gBlocks: gBlocks, gClose: () => this.setState({ guide: -1 }), gNext: () => this.setState({ guide: (st.guide + 1) % guides.length }),
+      docOpen: docOpen, docCur: docCur, docBlocks: docBlocks, closeDoc: () => this.setState({ doc: '' }),
+      openPrivacy: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doc: 'privacy', a11yOpen: false }); },
+      openA11yDoc: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ doc: 'a11y', a11yOpen: false }); },
+      a11yOpen: !!st.a11yOpen, toggleA11y: () => this.setState({ a11yOpen: !st.a11yOpen }), a11yItems: a11yItems, a11yExpanded: st.a11yOpen ? 'true' : 'false',
+      resetA11y: () => { this.setState({ big: false, hc: false, ul: false }); if (st.still) this.setA11y('still'); },
+      dBig: st.big ? '1' : '0', dHc: st.hc ? '1' : '0', dStill: st.still ? '1' : '0', dUl: st.ul ? '1' : '0',
+      sendForm: () => this.sendForm(), fvN: this.fv.n, fvP: this.fv.p,
+      onF1: (e) => { this.fv.n = e.target.value; }, onF2: (e) => { this.fv.p = e.target.value; }, onF3: (e) => { this.fv.m = e.target.value; }, onF4: (e) => { this.fv.ok = !!e.target.checked; }, formErr: st.formErr, hasErr: !!st.formErr, formOk: !!st.formOk,
+      libOpen: !!st.lib, glOpen: !!st.gl, closeLib: () => this.setState({ lib: false }), closeGl: () => this.setState({ gl: false }),
+      openLib: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ lib: true }); }, openGl: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ gl: true }); },
+      openPriority: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ guide: 7 }); },
+      closeAll: () => this.setState({ guide: -1, proj: false, lib: false, gl: false, doc: '' }),
+      projOpen: !!st.proj, projects: PR, openProj: (e) => { if (e && e.preventDefault) e.preventDefault(); this.setState({ proj: true }); }, closeProj: () => this.setState({ proj: false }),
+      toggles: toggles, simOn: simOn, simOff: !simOn, simSteps: simSteps, simName: simOn ? tgRaw[st.sim][0] : '',
+      simDoneStyle: 'color: #34C759; animation: ' + an + ' .4s both; animation-delay: 2.1s',
+      simBar: 'height: 100%; background: linear-gradient(90deg, #34C759, var(--acc)); transform-origin: right; animation: ' + bn + ' 2s linear both', tgCount: st.tg.filter(Boolean).length, doneTxt: st.done.toLocaleString('en-US'),
+      vsTabs: vsTabs, vsCur: vsData[st.vs], vsKey: 'animation-name: ' + (st.vs ? 'fadein' : 'lineup2'), vsRows: vsRows, vsHead0: head(0), vsHead1: head(1),
+      intA: rowOf(0), intB: rowOf(1),
+      sectors: sectors, guides: guides,
+      setWa: this.setWa, waTabs: waTabs, waCur: waCur, waMsgs: waMsgs, waTyping: st.waTyping, waStatus: st.waTyping ? 'מקליד/ה…' : 'מקוון',
+      accent: accent, setRoot: this.setRoot, setCanvas: this.setCanvas,
+      phaseText: ['כל המשימות של העסק…', 'מתחברות למוח אחד…', 'שעובד בשבילכם סביב השעון.'][st.phase] || '',
+      journey: journey, nodes: nodes,
+      cats: cats, libShown: libShown, hasMore: filtered.length > 12, libEmpty: filtered.length === 0, libCount: filtered.length, secOn: secOn, secPain: secOn ? sectorsRaw[st.sector][1] : '',
+      showAll: () => this.setState({ all: !st.all }), moreLabel: st.all ? 'להציג פחות' : 'להציג את כל ' + filtered.length,
+      steps: steps, proof: proof
+    };
+  }
+}
+
+(function(){
+var T=document.getElementById('tpl'),host=document.getElementById('app'),comp=new Component({});
+function res(expr,sc){expr=expr.trim();if(expr==='true')return true;if(expr==='false')return false;var parts=expr.split('.'),v;for(var k=0;k<sc.length;k++){if(sc[k]&&parts[0] in sc[k]){v=sc[k][parts[0]];break}}for(var i=1;i<parts.length;i++){v=v==null?undefined:v[parts[i]]}return v}
+function interp(str,sc){var m=str.match(/^\{\{([^}]*)\}\}$/);if(m)return res(m[1],sc);return str.replace(/\{\{([^}]*)\}\}/g,function(_,e){var v=res(e,sc);return v==null?'':String(v)})}
+function fire(e){var h=this.__h&&this.__h[e.type];if(h){if(e.type==='submit')e.preventDefault();h(e)}}
+function build(node,sc,out){
+ for(var n=node.firstChild;n;n=n.nextSibling){
+  if(n.nodeType===3){out.appendChild(document.createTextNode(interp(n.textContent,sc)));continue}
+  if(n.nodeType!==1)continue;
+  var tag=n.tagName.toLowerCase();
+  if(tag==='sc-for'){var list=res(n.getAttribute('list').replace(/[{}]/g,''),sc)||[],as=n.getAttribute('as');for(var q=0;q<list.length;q++){var o={};o[as]=list[q];build(n,[o].concat(sc),out)}continue}
+  if(tag==='sc-if'){if(res(n.getAttribute('value').replace(/[{}]/g,''),sc))build(n,sc,out);continue}
+  var el=document.createElementNS(n.namespaceURI,n.localName);
+  for(var a=0;a<n.attributes.length;a++){var nm=n.attributes[a].name,val=n.attributes[a].value;
+   if(/^on/i.test(nm)){var f=interp(val,sc);if(typeof f==='function'){(el.__h=el.__h||{})[nm.slice(2).toLowerCase()]=f}continue}
+   if(nm==='ref'){var r=interp(val,sc);if(typeof r==='function')el.__ref=r;continue}
+   var v=interp(val,sc);if(v===false||v==null)continue;el.setAttribute(nm,String(v))}
+  build(n,sc,el);out.appendChild(el)}
+}
+function wire(el){if(el.__h){for(var ev in el.__h){if(!(el.__w&&el.__w[ev])){el.addEventListener(ev,fire);(el.__w=el.__w||{})[ev]=1}}}}
+function morph(oldP,newP){
+ var o=oldP.firstChild,n=newP.firstChild;
+ while(n){var nn=n.nextSibling;
+  if(!o){oldP.appendChild(n);wireAll(n)}
+  else if(o.nodeType!==n.nodeType||(o.nodeType===1&&(o.localName!==n.localName||o.namespaceURI!==n.namespaceURI))){var on=o.nextSibling;oldP.replaceChild(n,o);wireAll(n);o=on;n=nn;continue}
+  else if(o.nodeType===3){if(o.data!==n.data)o.data=n.data;o=o.nextSibling}
+  else{
+   var oa=o.attributes,na=n.attributes,i;
+   for(i=oa.length-1;i>=0;i--){if(!n.hasAttribute(oa[i].name))o.removeAttribute(oa[i].name)}
+   for(i=0;i<na.length;i++){if(o.getAttribute(na[i].name)!==na[i].value){if(na[i].name==='value'&&document.activeElement===o)continue;o.setAttribute(na[i].name,na[i].value)}}
+   o.__h=n.__h;o.__ref=n.__ref;wire(o);
+   if(o.localName!=='canvas'&&o.localName!=='textarea')morph(o,n);
+   o=o.nextSibling}
+  n=nn}
+ while(o){var x=o.nextSibling;oldP.removeChild(o);o=x}
+}
+function wireAll(node){if(node.nodeType!==1)return;wire(node);for(var c=node.firstChild;c;c=c.nextSibling)wireAll(c)}
+function refs(node){if(node.nodeType!==1)return;if(node.__ref)node.__ref(node);for(var c=node.firstChild;c;c=c.nextSibling)refs(c)}
+window.render=function(){var frag=document.createElement('div');build(T.content,[comp.renderVals()],frag);morph(host,frag);refs(host)};
+render();if(comp.componentDidMount)comp.componentDidMount();
+})();
+</script>
+</body>
+</html>
