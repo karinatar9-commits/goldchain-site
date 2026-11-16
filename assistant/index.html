@@ -100,7 +100,7 @@ function render(c){
 }
 community("");
 // returning visitor on the same device: the guide reopens without the form
-(async()=>{ let t=""; try{ t=localStorage.getItem(KEY)||""; }catch(_){}
+(async()=>{ let t=""; try{ const q=new URLSearchParams(location.search).get("t")||""; if(/^[a-f0-9]{20,64}$/.test(q)){ localStorage.setItem(KEY,q); history.replaceState(null,"",location.pathname); } t=localStorage.getItem(KEY)||q||""; }catch(_){}
   if(!t) return;
   try{ const r=await fetch(API,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({mode:"get",token:t,guide:GUIDE})}); const j=await r.json(); if(j.ok&&j.content) render(j.content); }catch(_){}
 })();
