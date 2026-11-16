@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://goldchain-ai.com/sitemap.xml
