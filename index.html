@@ -691,6 +691,7 @@ class Component extends DCLogic {
     if (!ok.checked) { this.setState({ formErr: 'נא לאשר את מדיניות הפרטיות.', formOk: false }); return; }
     this.setState({ formErr: '', formOk: true });
     const text = 'היי, הגעתי מהאתר של Goldchain AI.\nשם: ' + name + '\nטלפון: ' + phone + (msg ? '\n' + msg : '');
+    try { fetch('https://tcnnmbmooynevstasgaj.supabase.co/functions/v1/guide-lead', { method: 'POST', keepalive: true, headers: { 'content-type': 'application/json' }, body: JSON.stringify({ mode: 'contact', name: name, phone: phone, need: msg, consent: true, src: (new URLSearchParams(location.search).get('src') || '') }) }).catch(function(){}); } catch (_) {}
     window.open('https://wa.me/972586352953?text=' + encodeURIComponent(text), '_blank', 'noopener');
   }
   later(fn, ms) { this.timers.push(setTimeout(fn, ms)); }
