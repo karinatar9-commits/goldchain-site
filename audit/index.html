@@ -2,7 +2,8 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070B1F">
 <title>מיפוי משימות חינמי · כמה שעות בשבוע אפשר להוריד מכם? | Goldchain AI</title>
 <meta name="description" content="2 דקות, 3 צעדים: מסמנים את המשימות הכספיות שנעשות אצלכם ידנית, ורואים כמה שעות בשבוע הן לוקחות ומאילו שלוש כדאי להתחיל.">
 <meta property="og:title" content="כמה שעות בשבוע הולכות אצלכם על ניירת?">
@@ -13,151 +14,263 @@
 <link rel="canonical" href="https://goldchain-ai.com/audit/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1437'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23F2B632'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&amp;family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0B1437;--cobalt:#2340F0;--gold:#F2B632;--bg:#F1F3F8;--ink:#0B1437;--mute:#5A6485;--line:#DDE2EE;--ease:cubic-bezier(.23,1,.32,1)}
-*{box-sizing:border-box}
+:root{--bg:#070B1F;--panel:rgba(255,255,255,.055);--edge:rgba(255,255,255,.12);--gold:#F2B632;--blue:#4D6BFF;--cyan:#39E0FF;--green:#35E08A;--txt:#EEF1FF;--mute:#98A2C8;--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0}
-body{background:var(--navy);color:#fff;font-family:"IBM Plex Sans Hebrew",system-ui,sans-serif;min-height:100svh;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--txt);font-family:Heebo,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;min-height:100vh;min-height:100svh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;top:0;left:0;right:0;bottom:0;z-index:0;pointer-events:none;background:
+ radial-gradient(60% 40% at 80% 0%,rgba(77,107,255,.35),transparent 70%),
+ radial-gradient(50% 35% at 10% 30%,rgba(57,224,255,.14),transparent 70%),
+ linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 34px,
+ linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/34px 100%}
 button,input{font-family:inherit}
-button{cursor:pointer}
-a{color:inherit}
-.wrap{max-width:560px;margin:0 auto;padding:20px 18px 120px}
-.top{display:flex;align-items:center;justify-content:space-between;padding:6px 2px 18px}
-.brand{font-weight:700;letter-spacing:.14em;font-size:13px;color:var(--gold);text-decoration:none}
-.steps{display:flex;gap:6px}
-.steps i{width:34px;height:4px;border-radius:4px;background:rgba(255,255,255,.18);transition:background .3s}
-.steps i.on{background:var(--gold)}
-h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(32px,8.4vw,44px);line-height:1.08;margin:8px 0 10px;text-wrap:balance}
-h1 em{font-style:normal;color:var(--gold)}
-.lead{color:#C7CEE6;font-size:17px;line-height:1.55;margin:0 0 22px;text-wrap:pretty}
-.card{background:#fff;color:var(--ink);border-radius:22px;padding:18px;box-shadow:0 24px 60px rgba(0,0,0,.28)}
-.card h2{font-size:19px;margin:2px 0 4px;font-weight:700}
-.card .sub{color:var(--mute);font-size:14.5px;margin:0 0 14px;line-height:1.5}
-.task{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:var(--bg);border:2px solid transparent;border-radius:14px;padding:13px 14px;margin:0 0 8px;font-size:16px;color:var(--ink);transition:border-color .15s,background .15s,transform .12s var(--ease)}
-.task:active{transform:scale(.985)}
-.task .ic{font-size:21px;flex:none}
-.task .bx{margin-inline-start:auto;width:24px;height:24px;border-radius:8px;border:2px solid #B9C1D9;flex:none;display:grid;place-items:center;font-size:15px;color:#fff;transition:all .15s}
-.task[aria-pressed=true]{border-color:var(--cobalt);background:#EEF1FF}
-.task[aria-pressed=true] .bx{background:var(--cobalt);border-color:var(--cobalt)}
-.row{padding:12px 0;border-bottom:1px solid var(--line)}
-.row:last-child{border-bottom:0}
-.row .nm{font-weight:600;font-size:16px;margin-bottom:9px}
-.chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 13px;font-size:14.5px;color:var(--ink);transition:all .15s}
-.chip[aria-pressed=true]{background:var(--navy);border-color:var(--navy);color:#fff}
-.bar{position:fixed;inset:auto 0 0 0;background:linear-gradient(rgba(11,20,55,0),var(--navy) 38%);padding:26px 18px calc(16px + env(safe-area-inset-bottom));display:flex;gap:10px;justify-content:center}
-.bar>div{max-width:560px;width:100%;display:flex;gap:10px}
-.btn{flex:1;border:0;border-radius:16px;padding:16px 18px;font-size:17px;font-weight:700;background:var(--gold);color:var(--navy);transition:transform .14s var(--ease),opacity .2s}
+button{cursor:pointer;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+.wrap{position:relative;z-index:1;max-width:540px;margin:0 auto;padding:14px 16px 150px}
+
+/* live header */
+.hud{position:-webkit-sticky;position:sticky;top:0;z-index:5;margin:0 -16px 14px;padding:12px 16px 10px;background:linear-gradient(var(--bg) 70%,rgba(7,11,31,0));display:flex;align-items:center;gap:12px}
+.orb{flex:none;width:44px;height:44px;border-radius:50%;position:relative;background:radial-gradient(circle at 35% 30%,#fff,var(--cyan) 30%,var(--blue) 65%,#1B2A8F);box-shadow:0 0 22px rgba(77,107,255,.8),0 0 60px rgba(57,224,255,.25);animation:breathe 3.2s ease-in-out infinite}
+.orb:after{content:"";position:absolute;top:-6px;left:-6px;right:-6px;bottom:-6px;border-radius:50%;border:1.5px solid rgba(57,224,255,.45);border-left-color:transparent;border-bottom-color:transparent;animation:spin 2.6s linear infinite}
+.orb.think{animation-duration:.8s}.orb.think:after{animation-duration:.7s}
+@keyframes breathe{50%{transform:scale(1.07)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hud .who{font-size:12px;color:var(--mute);letter-spacing:.08em}
+.hud .who b{color:var(--gold);font-weight:700;letter-spacing:.14em}
+.hud .live{margin-inline-start:auto;text-align:left;line-height:1}
+.hud .live .n{font-weight:900;font-size:30px;color:var(--gold);font-variant-numeric:tabular-nums;display:inline-block;transition:transform .25s var(--ease)}
+.hud .live .n.pop{transform:scale(1.25)}
+.hud .live .l{display:block;font-size:11px;color:var(--mute);margin-top:3px}
+.dots{display:flex;gap:5px;margin-top:5px}
+.dots i{width:22px;height:3px;border-radius:3px;background:rgba(255,255,255,.16)}
+.dots i.on{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+
+/* agent bubble */
+.say{background:var(--panel);border:1px solid var(--edge);border-radius:6px 20px 20px 20px;padding:14px 16px;font-size:17px;line-height:1.55;margin:0 0 16px;min-height:58px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.say b{color:var(--gold);font-weight:700}
+.say .cur{display:inline-block;width:8px;height:18px;background:var(--cyan);vertical-align:-3px;margin-inline-start:3px;animation:blink .8s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* task tiles */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:right;min-height:104px;padding:14px 13px;border-radius:18px;background:var(--panel);border:1.5px solid var(--edge);color:var(--txt);font-size:15.5px;font-weight:500;line-height:1.3;transition:transform .18s var(--ease),border-color .18s,background .18s,box-shadow .18s;opacity:0;animation:rise .5s var(--ease) forwards}
+.tile .ic{font-size:26px;line-height:1;filter:saturate(1.1)}
+.tile .ck{position:absolute;top:10px;left:10px;width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:var(--bg);transition:all .18s var(--ease)}
+.tile:active{transform:scale(.96)}
+.tile.on{background:linear-gradient(160deg,rgba(77,107,255,.38),rgba(57,224,255,.12));border-color:var(--cyan);box-shadow:0 0 0 1px rgba(57,224,255,.35),0 10px 30px rgba(77,107,255,.35)}
+.tile.on .ck{background:var(--cyan);border-color:var(--cyan);transform:scale(1.1)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* time rows */
+.trow{background:var(--panel);border:1px solid var(--edge);border-radius:18px;padding:14px;margin-bottom:10px;opacity:0;animation:rise .5s var(--ease) forwards}
+.trow .nm{font-weight:700;font-size:16px;margin-bottom:10px}
+.chips{display:flex;gap:6px}
+.chip{flex:1;min-width:0;padding:11px 2px;border-radius:12px;border:1.5px solid var(--edge);background:rgba(255,255,255,.04);color:var(--txt);font-size:14px;font-weight:500;transition:all .16s var(--ease)}
+.chip:active{transform:scale(.94)}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#1A1203;font-weight:700;box-shadow:0 6px 20px rgba(242,182,50,.4)}
+
+/* scan */
+.scan{padding:6px 2px}
+.scan div{display:flex;align-items:center;gap:10px;font-size:16px;color:var(--mute);padding:9px 0;opacity:.35;transition:opacity .3s,color .3s}
+.scan div i{flex:none;width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.25);border-top-color:var(--cyan);animation:spin .7s linear infinite;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:var(--bg)}
+.scan div.act{opacity:1;color:var(--txt)}
+.scan div.done{opacity:1;color:var(--txt)}
+.scan div.done i{animation:none;border-color:var(--green);background:var(--green)}
+
+/* result */
+.hero{text-align:center;padding:4px 0 2px}
+.hero .big{font-weight:900;font-size:clamp(96px,30vw,140px);line-height:.9;font-variant-numeric:tabular-nums;background:linear-gradient(180deg,#FFE7A6,var(--gold) 55%,#C98A12);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 30px rgba(242,182,50,.35))}
+.hero .u{font-size:18px;font-weight:700;margin-top:6px}
+.hero .y{color:var(--mute);font-size:15px;margin-top:6px}
+.hero .y b{color:var(--txt)}
+.gauge{margin:18px 0 6px;height:14px;border-radius:14px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+.gauge b{position:absolute;top:0;bottom:0;right:0;width:0;border-radius:14px;background:linear-gradient(270deg,var(--gold),#FF7A59);transition:width 1.2s var(--ease)}
+.glab{display:flex;justify-content:space-between;font-size:12.5px;color:var(--mute);margin-bottom:18px}
+.flow{background:var(--panel);border:1px solid var(--edge);border-radius:20px;padding:16px 14px;margin-bottom:14px}
+.flow h2{font-size:18px;margin:0 0 4px;font-weight:700}
+.flow .sub{color:var(--mute);font-size:14px;margin:0 0 12px;line-height:1.5}
+.lane{display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;color:var(--mute);margin-bottom:8px;padding:0 2px}
+.lane span:last-child{color:var(--cyan)}
+.job{position:relative;display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;background:rgba(255,255,255,.05);border:1.5px solid var(--edge);margin-bottom:8px;transition:all .7s var(--ease);width:78%}
+.job .ic{font-size:20px;flex:none}
+.job .tt{font-weight:700;font-size:15px;line-height:1.3}
+.job .hh{font-size:12.5px;color:var(--mute);margin-top:2px}
+.job .st{margin-inline-start:auto;flex:none;font-size:11.5px;font-weight:700;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.1);color:var(--mute);white-space:nowrap}
+.job.auto{margin-inline-start:22%;background:linear-gradient(160deg,rgba(53,224,138,.2),rgba(57,224,255,.1));border-color:var(--green);box-shadow:0 8px 26px rgba(53,224,138,.22)}
+.job.auto .st{background:var(--green);color:#04210F}
+.job .how{display:none;font-size:13.5px;color:#CFE9DD;line-height:1.45;margin-top:5px}
+.job.auto .how{display:block}
+.sum{margin:12px 2px 0;font-size:15.5px;line-height:1.55;opacity:0;transition:opacity .6s}
+.sum.show{opacity:1}
+.sum b{color:var(--green)}
+.form{background:linear-gradient(160deg,rgba(242,182,50,.14),rgba(255,255,255,.04));border:1px solid rgba(242,182,50,.4);border-radius:20px;padding:16px 14px}
+.form h2{font-size:18px;margin:0 0 4px}
+.form p{color:var(--mute);font-size:14px;line-height:1.5;margin:0 0 6px}
+.form label{display:block;font-size:13px;color:var(--mute);margin:10px 0 5px}
+.form input[type=text],.form input[type=tel]{width:100%;border:1.5px solid var(--edge);border-radius:13px;padding:14px;font-size:16px;color:var(--txt);background:rgba(7,11,31,.6)}
+.form input:focus{outline:0;border-color:var(--gold)}
+.fine{font-size:12px!important;margin-top:10px!important}
+.err{color:#FF8A7A;font-size:14px;margin-top:8px;min-height:1em}
+.note{color:var(--mute);font-size:12.5px;line-height:1.55;margin:14px 4px 0;text-align:center}
+.form{position:relative}
+.big,.hud .live .n,bdi{direction:ltr;unicode-bidi:isolate}
+.job>div{flex:1;min-width:0}
+.form input.hp{position:absolute;top:0;right:0;width:1px!important;height:1px!important;padding:0!important;border:0!important;opacity:0;pointer-events:none}
+
+/* bottom bar: only the buttons catch taps */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:6;padding:34px 16px 16px;padding-bottom:calc(16px + env(safe-area-inset-bottom));background:linear-gradient(rgba(7,11,31,0),var(--bg) 45%);pointer-events:none}
+.bar>div{max-width:540px;margin:0 auto;display:flex;gap:10px}
+.btn{pointer-events:auto;flex:1;border:0;border-radius:16px;padding:17px 16px;font-size:17px;font-weight:700;background:linear-gradient(180deg,#FFD46B,var(--gold));color:#1A1203;box-shadow:0 10px 30px rgba(242,182,50,.35);transition:transform .14s var(--ease),opacity .2s;text-align:center;text-decoration:none;display:block}
 .btn:active{transform:scale(.97)}
-.btn[disabled]{opacity:.4;cursor:default}
-.btn.ghost{flex:none;background:rgba(255,255,255,.1);color:#fff;font-weight:600}
-.btn.wa{background:#22B45E;color:#fff}
-.big{text-align:center;padding:10px 0 4px}
-.big .num{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(84px,24vw,120px);line-height:.95;color:var(--gold);font-variant-numeric:tabular-nums}
-.big .unit{font-size:19px;font-weight:600;margin-top:4px}
-.big .yr{color:#C7CEE6;font-size:15.5px;margin-top:8px;line-height:1.5}
-.meter{height:12px;border-radius:12px;background:rgba(255,255,255,.14);overflow:hidden;margin:18px 0 6px}
-.meter b{display:block;height:100%;width:0;border-radius:12px;background:linear-gradient(90deg,var(--gold),#F7D98A);transition:width 1.1s var(--ease)}
-.mlab{display:flex;justify-content:space-between;color:#9AA4C7;font-size:12.5px;margin-bottom:22px}
-.pick{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
-.pick:last-of-type{border-bottom:0}
-.pick .n{flex:none;width:30px;height:30px;border-radius:10px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-weight:700}
-.pick .t{font-weight:700;font-size:16px}
-.pick .h{color:var(--mute);font-size:14.5px;line-height:1.5;margin-top:3px}
-.pick .hrs{color:var(--cobalt);font-weight:600;font-size:13.5px;margin-top:4px}
-.form{margin-top:16px}
-.form label{display:block;font-size:13.5px;color:var(--mute);margin:10px 0 5px}
-.form input[type=text],.form input[type=tel]{width:100%;border:2px solid var(--line);border-radius:13px;padding:13px 14px;font-size:16px;color:var(--ink);background:#fff}
-.form input:focus{outline:0;border-color:var(--cobalt)}
-.fine{font-size:12.5px;color:var(--mute);line-height:1.5;margin:10px 0 0}
-.err{color:#C0392B;font-size:14px;margin-top:8px;min-height:1em}
-.note{color:#9AA4C7;font-size:13px;line-height:1.55;margin:16px 4px 0;text-align:center}
-.hp{position:absolute;width:1px;height:1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);opacity:0}
-.view{animation:in .5s var(--ease) both}
-@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.view{animation:none}.meter b{transition:none}}
-a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btn[disabled]{opacity:.35;box-shadow:none}
+.btn.ghost{flex:none;background:rgba(255,255,255,.1);color:var(--txt);box-shadow:none;font-weight:500}
+.btn.wa{background:linear-gradient(180deg,#3BE07F,#1FB25A);color:#03210F;box-shadow:0 10px 30px rgba(31,178,90,.35)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <a class="brand" href="/">GOLDCHAIN AI</a>
-    <div class="steps" aria-hidden="true"><i id="s1" class="on"></i><i id="s2"></i><i id="s3"></i></div>
+  <div class="hud">
+    <div class="orb" id="orb" aria-hidden="true"></div>
+    <div><div class="who"><b>GOLDCHAIN</b> · הסוכן</div><div class="dots" aria-hidden="true"><i id="d1" class="on"></i><i id="d2"></i><i id="d3"></i></div></div>
+    <div class="live" aria-live="polite"><span class="n" id="ln">0</span><span class="l" id="ll">משימות</span></div>
   </div>
+  <div class="say" id="say"></div>
   <main id="app"></main>
 </div>
 <div class="bar"><div id="bar"></div></div>
+<noscript><p style="position:relative;z-index:2;padding:20px;text-align:center">כדי להשתמש במיפוי צריך להפעיל JavaScript, או לכתוב לנו בוואטסאפ: 058-6352953</p></noscript>
 
 <script>
 (function(){
   var API='https://tcnnmbmooynevstasgaj.supabase.co/functions/v1/guide-lead';
-  var SRC=(new URLSearchParams(location.search).get('src')||'').slice(0,30);
-  // ease: 3 = usually quick to take off the owner, 1 = takes longer to set up
+  var SRC='';try{SRC=(new URLSearchParams(location.search).get('src')||'').slice(0,30)}catch(e){}
   var TASKS=[
-    {id:'inv',ic:'🧾',t:'הפקת חשבוניות וקבלות',e:3,how:'הסוכן מכין את החשבונית מתוך ההזמנה או היומן. אתם רק מאשרים בלחיצה.'},
-    {id:'col',ic:'💸',t:'גבייה ותזכורות ללקוחות',e:3,how:'תזכורת מנומסת יוצאת לבד לפי ימי האיחור, ואתם רואים בכל רגע מי עדיין חייב.'},
-    {id:'sup',ic:'📥',t:'איסוף חשבוניות ספקים לרואה החשבון',e:3,how:'כל חשבונית שמגיעה במייל או בוואטסאפ נקלטת, מתויקת ועוברת לרו"ח מסודרת.'},
-    {id:'quo',ic:'📝',t:'הצעות מחיר ומעקב אחריהן',e:3,how:'ההצעה נבנית מהמחירון שלכם, ומי שלא ענה מקבל תזכורת בזמן.'},
-    {id:'rep',ic:'📊',t:'דוחות ותמונת מצב: תזרים, מי חייב לי',e:3,how:'כל בוקר מחכה לכם סיכום קצר: מה נכנס, מה יוצא ומה דורש טיפול.'},
-    {id:'bank',ic:'🏦',t:'התאמות בנק וכרטיסי אשראי',e:2,how:'הסוכן מצליב תנועות מול חשבוניות ומסמן רק את מה שלא מסתדר.'},
-    {id:'pay',ic:'✅',t:'תשלומים לספקים ואישורים',e:2,how:'רשימת תשלומים מוכנה לאישור אחד, עם התראה על כפילות או חריגה.'},
-    {id:'sync',ic:'🔁',t:'העתקת נתונים בין מערכות ואקסל',e:2,how:'המערכות מתעדכנות אחת מהשנייה, בלי להקליד את אותו דבר פעמיים.'},
-    {id:'qa',ic:'💬',t:'מענה ללקוחות על חשבון, יתרה או תשלום',e:2,how:'שאלות חוזרות נענות מיד מתוך הנתונים שלכם. מה שרגיש עובר אליכם.'},
-    {id:'sal',ic:'🕒',t:'שכר, שעות ונוכחות',e:1,how:'השעות נאספות ונבדקות לבד, ומגיעות לחשבת השכר מוכנות.'}
+    {id:'inv',ic:'🧾',t:'חשבוניות וקבלות',e:3,how:'הסוכן מכין את החשבונית מההזמנה או מהיומן. אתם רק מאשרים.'},
+    {id:'col',ic:'💸',t:'גבייה ותזכורות',e:3,how:'תזכורת מנומסת יוצאת לבד, ואתם רואים מי עדיין חייב.'},
+    {id:'sup',ic:'📥',t:'חשבוניות ספקים לרו״ח',e:3,how:'כל חשבונית נקלטת, מתויקת ועוברת לרו״ח מסודרת.'},
+    {id:'quo',ic:'📝',t:'הצעות מחיר ומעקב',e:3,how:'ההצעה נבנית מהמחירון, ומי שלא ענה מקבל תזכורת.'},
+    {id:'rep',ic:'📊',t:'דוחות ותמונת מצב',e:3,how:'כל בוקר סיכום קצר: מה נכנס, מה יוצא, מה דורש טיפול.'},
+    {id:'bank',ic:'🏦',t:'התאמות בנק ואשראי',e:2,how:'הסוכן מצליב תנועות ומסמן רק את מה שלא מסתדר.'},
+    {id:'pay',ic:'✅',t:'תשלומים לספקים',e:2,how:'רשימה מוכנה לאישור אחד, עם התראה על כפילות.'},
+    {id:'sync',ic:'🔁',t:'העתקה בין מערכות',e:2,how:'המערכות מתעדכנות אחת מהשנייה, בלי להקליד פעמיים.'},
+    {id:'qa',ic:'💬',t:'שאלות לקוחות על תשלום',e:2,how:'שאלות חוזרות נענות מיד. מה שרגיש עובר אליכם.'},
+    {id:'sal',ic:'🕒',t:'שכר, שעות ונוכחות',e:1,how:'השעות נאספות ונבדקות לבד, ומגיעות מוכנות לשכר.'}
   ];
-  var HRS=[{v:.5,l:'חצי שעה'},{v:1,l:'שעה'},{v:2,l:'שעתיים'},{v:4,l:'4 שעות'},{v:7,l:'יותר'}];
-  var sel={}, step=1, sent=false;
-  var app=document.getElementById('app'), bar=document.getElementById('bar');
+  var HRS=[{v:.5,l:'½ שעה'},{v:1,l:'שעה'},{v:2,l:'שעתיים'},{v:4,l:'4 שע׳'},{v:7,l:'יותר'}];
+  var sel={}, step=1, sent=false, typer=null;
+  var $=function(id){return document.getElementById(id)};
+  var app=$('app'), bar=$('bar'), say=$('say'), ln=$('ln'), ll=$('ll'), orb=$('orb');
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function chosen(){return TASKS.filter(function(t){return t.id in sel})}
-  function total(){return chosen().reduce(function(a,t){return a+(sel[t.id]||0)},0)}
-  function fmt(n){return (Math.round(n*2)/2).toString().replace('.5','½').replace(/^0½$/,'½')}
-  function setStep(n){step=n;for(var i=1;i<=3;i++)document.getElementById('s'+i).className=i<=n?'on':'';render();window.scrollTo({top:0})}
-  function post(body){try{return fetch(API,{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json()}).catch(function(){return null})}catch(e){return Promise.resolve(null)}}
+  function total(){var s=0;chosen().forEach(function(t){s+=sel[t.id]||0});return s}
+  function fmt(n){var r=Math.round(n*2)/2,w=Math.floor(r);return r===w?String(w):(w?w+'½':'½')}
+  function fh(n){return '<bdi>'+fmt(n)+'</bdi>'}
+  function plain(n){return String(Math.round(n*2)/2)}
+  function buzz(){try{if(navigator.vibrate)navigator.vibrate(8)}catch(e){}}
+  function live(v,label){ln.textContent=v;ll.textContent=label;ln.className='n pop';setTimeout(function(){ln.className='n'},180)}
+  function talk(html){ // typewriter for the agent line; tags are kept whole
+    clearInterval(typer);var parts=html.match(/<[^>]+>|[^<]/g)||[],i=0,out='';
+    typer=setInterval(function(){var k=0;while(i<parts.length&&k<2){out+=parts[i];if(parts[i].charAt(0)!=='<')k++;i++}
+      say.innerHTML=out+(i<parts.length?'<span class="cur"></span>':'');if(i>=parts.length)clearInterval(typer)},18);
+  }
+  function post(body){try{return fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json()}).catch(function(){return null})}catch(e){return Promise.resolve(null)}}
+  function go(n){step=n;for(var i=1;i<=3;i++)$('d'+i).className=i<=Math.min(n,3)?'on':'';render();try{window.scrollTo(0,0)}catch(e){}}
 
   function render(){
+    orb.className='orb';
     if(step===1){
-      app.innerHTML='<div class="view"><h1>כמה שעות בשבוע הולכות אצלכם על <em>ניירת?</em></h1><p class="lead">מיפוי של 2 דקות. מסמנים, ורואים מספר אחד: כמה זמן אפשר להוריד מכם, ומאיפה כדאי להתחיל.</p><div class="card"><h2>מה נעשה אצלכם ידנית?</h2><p class="sub">סמנו כל משימה שמישהו בעסק עושה ביד, שוב ושוב.</p><div id="list"></div></div></div>';
-      var list=document.getElementById('list');
-      TASKS.forEach(function(t){var b=document.createElement('button');b.type='button';b.className='task';b.setAttribute('aria-pressed',t.id in sel);b.innerHTML='<span class="ic">'+t.ic+'</span><span>'+esc(t.t)+'</span><span class="bx">'+(t.id in sel?'✓':'')+'</span>';
-        b.onclick=function(){if(t.id in sel)delete sel[t.id];else sel[t.id]=0;b.setAttribute('aria-pressed',t.id in sel);b.querySelector('.bx').textContent=t.id in sel?'✓':'';bars()};list.appendChild(b)});
+      talk('היי 👋 אני הסוכן של Goldchain. בואו נבדוק <b>כמה שעות בשבוע</b> הניירת לוקחת לכם. סמנו כל מה שנעשה אצלכם ביד:');
+      live(chosen().length,'משימות');
+      app.innerHTML='<div class="grid" id="grid"></div>';
+      TASKS.forEach(function(t,i){
+        var b=document.createElement('button');b.type='button';b.className='tile'+(t.id in sel?' on':'');b.style.animationDelay=(i*45)+'ms';b.setAttribute('aria-pressed',t.id in sel?'true':'false');
+        b.innerHTML='<span class="ck">'+(t.id in sel?'✓':'')+'</span><span class="ic">'+t.ic+'</span><span>'+esc(t.t)+'</span>';
+        b.addEventListener('click',function(){
+          if(t.id in sel)delete sel[t.id];else sel[t.id]=0;var on=t.id in sel;
+          b.className='tile'+(on?' on':'');b.style.opacity=1;b.style.animation='none';b.setAttribute('aria-pressed',on?'true':'false');b.firstChild.textContent=on?'✓':'';
+          buzz();live(chosen().length,'משימות');bars();
+        });
+        $('grid').appendChild(b);
+      });
     } else if(step===2){
-      app.innerHTML='<div class="view"><h1>כמה זמן כל אחת <em>לוקחת?</em></h1><p class="lead">בערך, בשבוע רגיל. של כל מי שמטפל בזה יחד.</p><div class="card" id="rows"></div></div>';
-      var rows=document.getElementById('rows');
-      chosen().forEach(function(t){var r=document.createElement('div');r.className='row';r.innerHTML='<div class="nm">'+t.ic+' '+esc(t.t)+'</div><div class="chips"></div>';var c=r.querySelector('.chips');
-        HRS.forEach(function(h){var b=document.createElement('button');b.type='button';b.className='chip';b.textContent=h.l;b.setAttribute('aria-pressed',sel[t.id]===h.v);b.onclick=function(){sel[t.id]=h.v;[].forEach.call(c.children,function(x){x.setAttribute('aria-pressed',x===b)});bars()};c.appendChild(b)});rows.appendChild(r)});
+      talk('מעולה. עכשיו <b>בערך כמה זמן בשבוע</b> כל אחת לוקחת? של כל מי שמטפל בזה, ביחד.');
+      live(fmt(total()),'שעות בשבוע');
+      app.innerHTML='<div id="rows"></div>';
+      chosen().forEach(function(t,i){
+        var r=document.createElement('div');r.className='trow';r.style.animationDelay=(i*60)+'ms';r.innerHTML='<div class="nm">'+t.ic+' '+esc(t.t)+'</div><div class="chips"></div>';var c=r.lastChild;
+        HRS.forEach(function(h){var b=document.createElement('button');b.type='button';b.className='chip'+(sel[t.id]===h.v?' on':'');b.textContent=h.l;
+          b.addEventListener('click',function(){sel[t.id]=h.v;for(var k=0;k<c.children.length;k++)c.children[k].className='chip'+(c.children[k]===b?' on':'');buzz();live(fmt(total()),'שעות בשבוע');bars()});c.appendChild(b)});
+        $('rows').appendChild(r);
+      });
+    } else if(step===3){
+      orb.className='orb think';talk('שנייה, אני עובר על מה שסימנתם…');
+      app.innerHTML='<div class="scan" id="scan"><div><i></i>ממפה את המשימות</div><div><i></i>מחשב שעות בשבוע ובשנה</div><div><i></i>מסדר לפי מה שהכי משתלם להוריד</div></div>';
+      bar.innerHTML='';
+      var ls=$('scan').children,k=0;ls[0].className='act';
+      var iv=setInterval(function(){ls[k].className='done';ls[k].firstChild.textContent='✓';k++;if(k<ls.length)ls[k].className='act';else{clearInterval(iv);setTimeout(function(){step=4;render()},350)}},650);
+      return;
     } else {
-      var tot=total(), yr=Math.round(tot*48), days=Math.round(yr/9);
-      var top=chosen().slice().sort(function(a,b){return sel[b.id]*b.e-sel[a.id]*a.e}).slice(0,3);
-      var pct=Math.min(100,Math.round(tot/45*100));
-      app.innerHTML='<div class="view"><div class="big"><div class="num" id="num">0</div><div class="unit">שעות בשבוע על משימות ידניות</div><div class="yr">זה בערך <b>'+yr+' שעות בשנה</b>, כמו '+days+' ימי עבודה מלאים.</div></div><div class="meter"><b id="mb"></b></div><div class="mlab"><span>מד העומס שלכם</span><span>'+pct+'% משבוע עבודה</span></div>'+
-        '<div class="card"><h2>מאיפה כדאי להתחיל</h2><p class="sub">שלוש המשימות שלוקחות לכם הכי הרבה זמן ושהכי פשוט להוריד.</p>'+top.map(function(t,i){return '<div class="pick"><div class="n">'+(i+1)+'</div><div><div class="t">'+esc(t.t)+'</div><div class="h">'+esc(t.how)+'</div><div class="hrs">היום: כ-'+fmt(sel[t.id])+' שעות בשבוע</div></div></div>'}).join('')+
-        '<div class="form" id="form">'+(sent?'<p class="sub" style="margin:14px 0 0"><b>קיבלנו ✓</b> נחזור אליכם בוואטסאפ עם מפת ההורדה המלאה.</p>':
-        '<h2 style="margin-top:14px">רוצים את מפת ההורדה המלאה?</h2><p class="sub">נעבור על המיפוי שלכם ונחזור עם תוכנית: מה יורד ראשון, כמה זמן זה לוקח וכמה זה עולה. בלי התחייבות.</p><label for="nm">שם</label><input id="nm" type="text" autocomplete="name" maxlength="80"><label for="ph">טלפון</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" dir="ltr" style="text-align:right"><input class="hp" id="ws" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="err" id="err" role="alert"></div><p class="fine">בשליחה אתם מאשרים שנחזור אליכם בוואטסאפ או בטלפון לגבי המיפוי. לא נשלח שום דבר אחר.</p>')+'</div></div>'+
-        '<p class="note">המספרים מבוססים על ההערכה שסימנתם. במיפוי מלא מודדים אותם בפועל, ורואים כל שבוע כמה ירד.</p></div>';
-      var n=document.getElementById('num'), t0=null;
-      (function tick(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/900),v=tot*(1-Math.pow(1-p,3));n.textContent=p<1?Math.round(v):fmt(tot);if(p<1)requestAnimationFrame(tick)})(performance.now());
-      setTimeout(function(){document.getElementById('mb').style.width=pct+'%'},60);
-      post({mode:'audit_done',hours:tot,tasks:chosen().map(function(t){return t.id}),src:SRC});
+      result();
     }
     bars();
   }
-  function summary(){var tot=total();return 'מיפוי משימות: '+fmt(tot)+' שעות בשבוע על משימות ידניות.\n'+chosen().slice().sort(function(a,b){return sel[b.id]-sel[a.id]}).map(function(t){return '• '+t.t+' — '+fmt(sel[t.id])+' ש׳'}).join('\n')}
+
+  function result(){
+    var tot=total(), yr=Math.round(tot*48), days=Math.round(yr/9), pct=Math.min(100,Math.round(tot/45*100));
+    var all=chosen().slice().sort(function(a,b){return sel[b.id]*b.e-sel[a.id]*a.e});
+    var top=all.slice(0,3), topH=0;top.forEach(function(t){topH+=sel[t.id]});
+    talk('הנה התמונה שלכם. עכשיו תראו מה קורה כשאני לוקח את <b>'+(top.length===1?'המשימה הראשונה':top.length+' הראשונות')+'</b> 👇');
+    live(fmt(tot),'שעות בשבוע');
+    app.innerHTML='<div class="hero"><div class="big" id="big">0</div><div class="u">שעות בשבוע על משימות ידניות</div><div class="y">בערך <b>'+yr+' שעות בשנה</b> · כמו '+days+' ימי עבודה מלאים</div></div>'+
+      '<div class="gauge"><b id="gb"></b></div><div class="glab"><span>מד העומס</span><span id="gp">'+pct+'% משבוע עבודה</span></div>'+
+      '<div class="flow"><h2>מאיפה מתחילים</h2><p class="sub">לפי הזמן שכל משימה לוקחת וכמה פשוט להוריד אותה.</p><div class="lane"><span>אתם · ידני</span><span>הסוכן · אוטומטי</span></div><div id="jobs">'+
+      all.map(function(t,i){return '<div class="job" data-i="'+i+'"><span class="ic">'+t.ic+'</span><div><div class="tt">'+esc(t.t)+'</div><div class="hh">'+fh(sel[t.id])+' שעות בשבוע</div><div class="how">'+esc(t.how)+'</div></div><span class="st">ידני</span></div>'}).join('')+
+      '</div><div class="sum" id="sum">'+(top.length===1?'המשימה הזאת היא':'שלוש אלה הן')+' <b>'+fh(topH)+' מתוך '+fh(tot)+' השעות</b> שלכם. מהן הכי כדאי להתחיל.</div></div>'+
+      '<div class="form" id="form">'+(sent?'<h2>קיבלנו ✓</h2><p>נחזור אליכם בוואטסאפ עם מפת ההורדה המלאה.</p>':
+      '<h2>רוצים את מפת ההורדה המלאה?</h2><p>נעבור על המיפוי שלכם ונחזור עם תוכנית: מה יורד ראשון, כמה זמן זה לוקח וכמה זה עולה. בלי התחייבות.</p><label for="nm">שם</label><input id="nm" type="text" autocomplete="name" maxlength="80"><label for="ph">טלפון</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" dir="ltr" style="text-align:right"><input class="hp" id="ws" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="err" id="err" role="alert"></div><p class="fine">בשליחה אתם מאשרים שנחזור אליכם בוואטסאפ או בטלפון לגבי המיפוי. לא נשלח שום דבר אחר.</p>')+'</div>'+
+      '<p class="note">המספרים מבוססים על ההערכה שסימנתם. במיפוי מלא מודדים אותם בפועל, ורואים כל שבוע כמה ירד.</p>';
+    var big=$('big'), t0=0;
+    function tick(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1000),v=tot*(1-Math.pow(1-p,3));big.textContent=p<1?Math.round(v):fmt(tot);if(p<1)requestAnimationFrame(tick)}
+    requestAnimationFrame(tick);
+    setTimeout(function(){$('gb').style.width=pct+'%'},80);
+    // the automation moment: top tasks move to the agent lane one by one, and the load meter drops
+    if(!result.played){
+      result.played=true;
+      var jobs=$('jobs').children, left=tot;
+      top.forEach(function(t,i){setTimeout(function(){
+        var j=jobs[i];if(!j)return;j.className='job auto';j.lastChild.textContent='הסוכן ✓';buzz();
+        left-=sel[t.id];var p2=Math.min(100,Math.round(left/45*100));if($('gb'))$('gb').style.width=p2+'%';if($('gp'))$('gp').innerHTML='נשארו '+fh(left)+' שעות ידניות';live(fmt(left),'שעות נשארו');
+        if(i===top.length-1)setTimeout(function(){if($('sum'))$('sum').className='sum show'},500);
+      },1700+i*900)});
+      post({mode:'audit_done',hours:tot,tasks:chosen().map(function(t){return t.id}),src:SRC});
+    } else {
+      for(var i=0;i<top.length;i++){$('jobs').children[i].className='job auto';$('jobs').children[i].lastChild.textContent='הסוכן ✓'}
+      $('sum').className='sum show';
+    }
+    bars();
+  }
+
+  function summary(){var tot=total();return 'מיפוי משימות: '+plain(tot)+' שעות בשבוע על משימות ידניות.\n'+chosen().slice().sort(function(a,b){return sel[b.id]-sel[a.id]}).map(function(t){return '• '+t.t+' — '+plain(sel[t.id])+' ש׳'}).join('\n')}
+  function btn(id,cls,txt,dis){return '<button type="button" class="btn '+cls+'" id="'+id+'"'+(dis?' disabled':'')+'>'+txt+'</button>'}
   function bars(){
-    if(step===1){var c=chosen().length;bar.innerHTML='<button class="btn" id="nx" '+(c?'':'disabled')+'>'+(c?'המשך · '+c+' משימות':'סמנו לפחות משימה אחת')+'</button>';document.getElementById('nx').onclick=function(){if(chosen().length)setStep(2)}}
-    else if(step===2){var ok=chosen().every(function(t){return sel[t.id]>0});bar.innerHTML='<button class="btn ghost" id="bk">חזרה</button><button class="btn" id="nx" '+(ok?'':'disabled')+'>'+(ok?'להראות לי את המספר':'בחרו זמן לכל משימה')+'</button>';document.getElementById('bk').onclick=function(){setStep(1)};document.getElementById('nx').onclick=function(){if(ok)setStep(3)}}
-    else if(sent){bar.innerHTML='<a class="btn wa" style="text-align:center;text-decoration:none" href="https://wa.me/972586352953?text='+encodeURIComponent('היי קרין, עשיתי את מיפוי המשימות באתר.\n'+summary())+'">לדבר איתנו עכשיו בוואטסאפ</a>'}
-    else{bar.innerHTML='<button class="btn ghost" id="bk">חזרה</button><button class="btn" id="sd">שלחו לי את המפה</button>';document.getElementById('bk').onclick=function(){setStep(2)};document.getElementById('sd').onclick=send}
+    if(step===1){var c=chosen().length;bar.innerHTML=btn('nx','',c?'המשך · '+c+' משימות ←':'סמנו לפחות משימה אחת',!c);$('nx').addEventListener('click',function(){if(chosen().length)go(2)})}
+    else if(step===2){var ok=chosen().every(function(t){return sel[t.id]>0});bar.innerHTML=btn('bk','ghost','חזרה')+btn('nx','',ok?'תראה לי את המספר ⚡':'בחרו זמן לכל משימה',!ok);$('bk').addEventListener('click',function(){go(1)});$('nx').addEventListener('click',function(){if(ok)go(3)})}
+    else if(step===4){
+      if(sent){bar.innerHTML='<a class="btn wa" href="https://wa.me/972586352953?text='+encodeURIComponent('היי קרין, עשיתי את מיפוי המשימות באתר.\n'+summary())+'">לדבר איתנו עכשיו בוואטסאפ</a>'}
+      else{bar.innerHTML=btn('bk','ghost','מחדש')+btn('sd','','שלחו לי את המפה');$('bk').addEventListener('click',function(){result.played=false;go(1)});$('sd').addEventListener('click',send)}
+    }
   }
   function send(){
-    var nm=document.getElementById('nm').value.trim(), ph=document.getElementById('ph').value.trim(), err=document.getElementById('err');
-    if(nm.length<2){err.textContent='חסר שם.';document.getElementById('nm').focus();return}
-    if(ph.replace(/\D/g,'').length<9){err.textContent='מספר הטלפון לא נראה תקין.';document.getElementById('ph').focus();return}
-    var b=document.getElementById('sd');b.disabled=true;b.textContent='שולח…';
-    post({mode:'contact',name:nm,phone:ph,need:summary(),consent:true,src:'audit'+(SRC?'-'+SRC:''),website:document.getElementById('ws').value}).then(function(j){
-      if(j&&j.ok){sent=true;render()}else{b.disabled=false;b.textContent='שלחו לי את המפה';err.textContent='לא הצלחנו לשלוח. אפשר לנסות שוב, או לכתוב לנו בוואטסאפ: 058-6352953'}
+    var nmEl=$('nm'), phEl=$('ph'), err=$('err');
+    if(!nmEl){return}
+    var nm=nmEl.value.trim(), ph=phEl.value.trim();
+    if(nm.length<2||ph.replace(/\D/g,'').length<9){err.textContent=nm.length<2?'חסר שם.':'מספר הטלפון לא נראה תקין.';$('form').scrollIntoView({behavior:'smooth',block:'center'});(nm.length<2?nmEl:phEl).focus();return}
+    var b=$('sd');b.disabled=true;b.textContent='שולח…';
+    post({mode:'contact',name:nm,phone:ph,need:summary(),consent:true,src:'audit'+(SRC?'-'+SRC:''),website:$('ws').value}).then(function(j){
+      if(j&&j.ok){sent=true;result()}else{b.disabled=false;b.textContent='שלחו לי את המפה';err.textContent='לא הצלחנו לשלוח. אפשר לנסות שוב, או לכתוב לנו בוואטסאפ: 058-6352953'}
     });
   }
   render();
