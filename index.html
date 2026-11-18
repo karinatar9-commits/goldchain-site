@@ -290,6 +290,16 @@ input:focus-visible,textarea:focus-visible{border-color:var(--ink) !important}
 #contact form button{font-family:inherit !important}
 #guides>div>div:first-child{padding-inline-end:60px}
 
+/* featured project cards */
+.tile[data-new="1"]{position:relative;overflow:hidden;border-color:transparent !important;background:linear-gradient(#FFFFFF,#FFFFFF) padding-box,conic-gradient(from var(--ang,0deg),#F2B632,#2340F0,#F2B632,#FFE9A8,#F2B632) border-box !important;border:2px solid transparent !important;box-shadow:0 24px 50px -28px rgba(242,182,50,.9);animation:spinb 5s linear infinite}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spinb{to{--ang:360deg}}
+.tile[data-new="1"]::before{content:"חדש";position:absolute;top:22px;left:22px;background:#0B1437;color:#F2B632;font-size:12.5px;font-weight:700;padding:4px 12px;border-radius:999px}
+.tile[data-new="1"]::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 40%,rgba(242,182,50,.22) 50%,transparent 60%);transform:translateX(120%);animation:sheen 4.5s ease-in-out infinite}
+@keyframes sheen{0%,55%{transform:translateX(120%)}100%{transform:translateX(-120%)}}
+.tile[data-new="1"] h3{font-size:25px !important}
+@media (prefers-reduced-motion:reduce){.tile[data-new="1"],.tile[data-new="1"]::after{animation:none}}
+
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&amp;family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
@@ -397,6 +407,29 @@ html{scroll-snap-type:y proximity}
 [role="dialog"]{--paper:#F1F3F8;--navy:#0B1437;--cob:#7A6328;--gold:#CDBE96;--line:#D5DBEA;--mut:#465176;color:#0B1437;font-weight:400}
 [role="dialog"] .h2,[role="dialog"] h2,[role="dialog"] h3{font-weight:500 !important}
 [role="dialog"] .grad{color:#7A6328}
+
+/* audit questionnaire teaser + pop-up */
+.aud{position:fixed;right:18px;bottom:18px;z-index:45;width:min(340px,calc(100vw - 36px));background:#111;color:#EFEAE0;border-radius:18px;padding:18px 18px 16px;box-shadow:inset 0 0 0 1px rgba(205,190,150,.55),0 30px 70px -20px rgba(0,0,0,.9);font-family:'IBM Plex Sans Hebrew',system-ui,sans-serif;direction:rtl;transform:translateY(140%);opacity:0;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.aud.in{transform:none;opacity:1}
+.aud::before{content:"";position:absolute;inset:-1px;border-radius:19px;pointer-events:none;box-shadow:0 0 0 0 rgba(205,190,150,.5);animation:audp 2.6s ease-out infinite}
+@keyframes audp{to{box-shadow:0 0 0 16px rgba(205,190,150,0)}}
+.aud-k{font-size:13px;letter-spacing:.1em;color:#CDBE96}
+.aud-t{font-family:'Frank Ruhl Libre',serif;font-weight:400;font-size:24px;line-height:1.2;margin:6px 0 14px}
+.aud-go{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border-radius:999px;border:0;background:#CDBE96;color:#060606;font:600 16px 'IBM Plex Sans Hebrew',system-ui,sans-serif;cursor:pointer}
+.aud-x{position:absolute;top:8px;left:8px;width:34px;height:34px;border-radius:50%;border:0;background:transparent;color:#A29C8F;font-size:20px;cursor:pointer}
+.audm{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.78);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .3s}
+.audm.in{opacity:1}
+.audm-b{position:relative;width:min(440px,100%);height:min(820px,calc(100vh - 32px));border-radius:26px;overflow:hidden;background:#0A0F1E;box-shadow:0 0 0 1px rgba(205,190,150,.5),0 50px 120px -30px #000;transform:scale(.94);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.audm.in .audm-b{transform:none}
+.audm iframe{width:100%;height:100%;border:0;display:block}
+.audm-x{position:absolute;top:10px;left:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:22px;cursor:pointer}
+@media (max-width:760px){.aud{right:12px;left:12px;width:auto;bottom:12px}.audm{padding:0}.audm-b{width:100%;height:100%;border-radius:0}}
+@media (prefers-reduced-motion:reduce){.aud::before{animation:none}}
+.audm-b{display:flex;flex-direction:column}
+.audm-bar{flex:0 0 46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px 0 6px;background:#0A0F1E;color:#CDBE96;font:500 14px 'IBM Plex Sans Hebrew',system-ui,sans-serif;direction:rtl;border-bottom:1px solid rgba(205,190,150,.25)}
+.audm-x{position:static;background:transparent;width:40px;height:40px}
+.audm iframe{flex:1 1 auto;height:auto;min-height:0}
+@media (max-width:760px){.aud{left:78px}}
 
 </style>
 
@@ -741,7 +774,7 @@ html{scroll-snap-type:y proximity}
 <p style="margin: 14px 0 0; font-size: 18px; color: #515154; max-width: 56ch">כמה מהפרויקטים שבנינו. בלי שמות ובלי מספרים, כדי לשמור על פרטיות הלקוחות.</p>
 <div style="margin-top: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px">
 <sc-for list="{{projects}}" as="pj" hint-placeholder-count="8">
-<article class="tile" style="background: #FFFFFF; border: 1px solid #E4E9F8; border-radius: 22px; padding: 24px; display: flex; flex-direction: column">
+<article class="tile" data-new="{{pj.isnew}}" style="background: #FFFFFF; border: 1px solid #E4E9F8; border-radius: 22px; padding: 24px; display: flex; flex-direction: column">
 <span style="align-self: flex-start; font-size: 12.5px; font-weight: 700; color: var(--ink); background: #E9EDFB; padding: 4px 12px; border-radius: 999px">{{pj.tag}}</span>
 <h3 style="font-family: Frank Ruhl Libre, serif; font-weight: 800; font-size: 22px; line-height: 1.2; margin: 14px 0 6px">{{pj.title}}</h3>
 <p style="margin: 0; font-size: 15px; color: #6E6E73">{{pj.pain}}</p>
@@ -1273,7 +1306,7 @@ class Component extends DCLogic {
     const gCur = { cat: '', title: '', level: '' };
     const gBlocks = [];
 
-    const PR = [{"tag": "ניהול עסקי", "title": "מערכת ניהול עם צוות סוכנים", "pain": "בעלת עסקים שמנהלת כמה עסקים במקביל, וכל המידע מפוזר בין מיילים, וואטסאפ וטבלאות.", "pts": ["מרכז בקרה אחד לכל העסקים", "סוכנים לשיווק, השקעות, תפעול ומיילים", "מוח משותף שזוכר הקשר", "כל פעולה מחכה לאישור לפני שיוצאת"], "stack": "Claude · Supabase · Gmail · וואטסאפ"}, {"tag": "תעשייה", "title": "שכבה חכמה מעל ה-ERP של מפעל", "pain": "מפעל שעובד על Priority, עם תשלומים, יבוא ומלאי שמנוהלים בקבצים נפרדים.", "pts": ["איחוד הנתונים למערכת אחת", "מעקב תשלומים ומשלוחי יבוא", "סנכרון דו-כיווני מול ה-ERP", "לוח בקרה להנהלה"], "stack": "Priority · Supabase · Excel"}, {"tag": "תעשייה", "title": "בוט וואטסאפ לעובדים", "pain": "עובדים שמתקשרים לכספים ולמשאבי אנוש עם אותן שאלות שוב ושוב.", "pts": ["תשובות על שכר, חופשות ונהלים", "מבוסס על נתוני החברה בלבד", "זמין 24/7 בוואטסאפ", "העברה לאדם כשצריך"], "stack": "וואטסאפ · Green API · Claude"}, {"tag": "כספים", "title": "סוכן חשבוניות למנהל כספים", "pain": "חשבוניות ספקים שמגיעות במייל ונבדקות ידנית מול ההזמנות.", "pts": ["קליטת חשבוניות מהמייל", "הצלבה מול הזמנות רכש", "סימון חריגים וכפילויות", "סיכום יומי למנהל הכספים"], "stack": "Gmail · Base44 · Claude"}, {"tag": "קליניקה", "title": "קבלות אוטומטיות לקליניקת אסתטיקה", "pain": "בסוף כל יום צריך להוציא קבלות ידנית לכל הלקוחות.", "pts": ["שאלון ערב קצר בוואטסאפ", "הצלבה מול היומן והתשלומים", "קבלה יוצאת רק אחרי אישור בקוד", "שליחה ללקוחה בוואטסאפ"], "stack": "מורנינג · וואטסאפ · יומן"}, {"tag": "פיננסים", "title": "דשבורד הון משפחתי", "pain": "נכסים שמפוזרים בין בנקים, קופות, השקעות ונכסים דיגיטליים, בלי תמונה אחת.", "pts": ["מפת נכסים בסגנון אפליקציה", "כל החשבונות במבט אחד", "הסבר במילים על מה שהשתנה", "התראות על חריגות"], "stack": "בנקים · Excel · Claude"}, {"tag": "השקעות", "title": "סוכן דוח שוק יומי", "pain": "קשה לעקוב כל בוקר אחרי השווקים ולהבין מה זה אומר באופן אישי.", "pts": ["דוח בוקר ויזואלי", "מאקרו, מיקרו והקשר ביניהם", "תרגום למה זה אומר עבורך", "מעקב אחרי התיק"], "stack": "Claude · Web · HTML"}, {"tag": "תעשייה", "title": "מעקב מכרזים שבועי", "pain": "מכרזים רלוונטיים מתפרסמים בהרבה אתרים, וקל לפספס מועדים.", "pts": ["איסוף מכרזים מכמה מקורות", "סינון לפי תחום הפעילות", "סיכום עם מועדים ודרישות", "דוח שבועי מוכן"], "stack": "Web · Claude · Excel"}];
+    const PR = [{"isnew": "1", "tag": "קליניקה", "title": "זימון תורים אונליין", "pain": "קליניקה שקבעה תורים בוואטסאפ ובטלפון, ובזבזה זמן על תיאומים וביטולים.", "pts": ["הלקוחה בוחרת טיפול, יום ושעה פנויה", "התור נכנס ישר ליומן Google", "מקדמה לפני הקביעה וביטול בקישור", "אפליקציית ניהול בטלפון של בעלת העסק"], "stack": "Supabase · Google Calendar"}, {"isnew": "1", "tag": "מכירות", "title": "הצעת מחיר תוך כדי השיחה", "pain": "איש מכירות שמסיים שיחה עם לקוח, ורק אחר כך יושב לכתוב את ההצעה מהזיכרון.", "pts": ["סוכן שמתמלל את השיחה בזמן אמת", "שולף מהשיחה מה הלקוח ביקש", "הצעת מחיר מוכנה כשהשיחה נגמרת", "יוצאת רק אחרי אישור שלכם"], "stack": "Claude · תמלול שיחה"}, {"tag": "ניהול עסקי", "title": "מערכת ניהול עם צוות סוכנים", "pain": "בעלת עסקים שמנהלת כמה עסקים במקביל, וכל המידע מפוזר בין מיילים, וואטסאפ וטבלאות.", "pts": ["מרכז בקרה אחד לכל העסקים", "סוכנים לשיווק, השקעות, תפעול ומיילים", "מוח משותף שזוכר הקשר", "כל פעולה מחכה לאישור לפני שיוצאת"], "stack": "Claude · Supabase · Gmail · וואטסאפ"}, {"tag": "תעשייה", "title": "שכבה חכמה מעל ה-ERP של מפעל", "pain": "מפעל שעובד על Priority, עם תשלומים, יבוא ומלאי שמנוהלים בקבצים נפרדים.", "pts": ["איחוד הנתונים למערכת אחת", "מעקב תשלומים ומשלוחי יבוא", "סנכרון דו-כיווני מול ה-ERP", "לוח בקרה להנהלה"], "stack": "Priority · Supabase · Excel"}, {"tag": "תעשייה", "title": "בוט וואטסאפ לעובדים", "pain": "עובדים שמתקשרים לכספים ולמשאבי אנוש עם אותן שאלות שוב ושוב.", "pts": ["תשובות על שכר, חופשות ונהלים", "מבוסס על נתוני החברה בלבד", "זמין 24/7 בוואטסאפ", "העברה לאדם כשצריך"], "stack": "וואטסאפ · Green API · Claude"}, {"tag": "כספים", "title": "סוכן חשבוניות למנהל כספים", "pain": "חשבוניות ספקים שמגיעות במייל ונבדקות ידנית מול ההזמנות.", "pts": ["קליטת חשבוניות מהמייל", "הצלבה מול הזמנות רכש", "סימון חריגים וכפילויות", "סיכום יומי למנהל הכספים"], "stack": "Gmail · Base44 · Claude"}, {"tag": "קליניקה", "title": "קבלות אוטומטיות לקליניקת אסתטיקה", "pain": "בסוף כל יום צריך להוציא קבלות ידנית לכל הלקוחות.", "pts": ["שאלון ערב קצר בוואטסאפ", "הצלבה מול היומן והתשלומים", "קבלה יוצאת רק אחרי אישור בקוד", "שליחה ללקוחה בוואטסאפ"], "stack": "מורנינג · וואטסאפ · יומן"}, {"tag": "פיננסים", "title": "דשבורד הון משפחתי", "pain": "נכסים שמפוזרים בין בנקים, קופות, השקעות ונכסים דיגיטליים, בלי תמונה אחת.", "pts": ["מפת נכסים בסגנון אפליקציה", "כל החשבונות במבט אחד", "הסבר במילים על מה שהשתנה", "התראות על חריגות"], "stack": "בנקים · Excel · Claude"}, {"tag": "השקעות", "title": "סוכן דוח שוק יומי", "pain": "קשה לעקוב כל בוקר אחרי השווקים ולהבין מה זה אומר באופן אישי.", "pts": ["דוח בוקר ויזואלי", "מאקרו, מיקרו והקשר ביניהם", "תרגום למה זה אומר עבורך", "מעקב אחרי התיק"], "stack": "Claude · Web · HTML"}, {"tag": "תעשייה", "title": "מעקב מכרזים שבועי", "pain": "מכרזים רלוונטיים מתפרסמים בהרבה אתרים, וקל לפספס מועדים.", "pts": ["איסוף מכרזים מכמה מקורות", "סינון לפי תחום הפעילות", "סיכום עם מועדים ודרישות", "דוח שבועי מוכן"], "stack": "Web · Claude · Excel"}];
     const DOCS = { privacy: { title: "מדיניות פרטיות", b: ["עדכון אחרון: נובמבר 2026", "Goldchain AI (להלן: \"אנחנו\") מכבדת את פרטיות המבקרים באתר. מדיניות זו מסבירה איזה מידע נאסף, למה, ומה הזכויות שלכם, בהתאם לחוק הגנת הפרטיות, התשמ״א-1981, ותקנותיו.", "# איזה מידע אנחנו אוספים", "- מידע שאתם מוסרים ביוזמתכם בטופס יצירת הקשר: שם, טלפון ותיאור קצר של העסק.", "- מידע שאתם שולחים לנו בוואטסאפ, במייל או באינסטגרם.", "- האתר אינו משתמש בעוגיות פרסום או בכלי מעקב, ואינו אוסף מידע אוטומטי לצורכי שיווק.", "# איך הטופס עובד", "לחיצה על שליחה פותחת שיחת וואטסאפ עם ההודעה שמילאתם. ההודעה נשלחת רק אם תאשרו אותה בוואטסאפ. הפרטים אינם נשמרים באתר עצמו.", "# למה אנחנו משתמשים במידע", "- כדי לחזור אליכם ולתאם שיחת היכרות.", "- כדי להבין את הצורך העסקי ולהציע פתרון מתאים.", "- לא נשתמש במידע לדיוור שיווקי בלי הסכמה מפורשת, ולא נמכור אותו לאף גורם.", "# עם מי המידע משותף", "המידע עובר דרך שירותים שבהם אתם בוחרים לפנות אלינו (וואטסאפ, Gmail, אינסטגרם), בכפוף לתנאים שלהם. מעבר לכך המידע לא יועבר לצד שלישי, אלא אם נידרש לכך על פי דין.", "# כמה זמן נשמור את המידע", "כל עוד יש בו צורך לטיפול בפנייה או בהתקשרות עסקית איתכם, ולאחר מכן כנדרש על פי דין.", "# הזכויות שלכם", "- לעיין במידע שנשמר עליכם.", "- לבקש לתקן מידע שגוי או למחוק אותו.", "- לבקש שלא נפנה אליכם יותר.", "לכל בקשה כתבו אלינו ל-karinatar9@gmail.com ונטפל בה תוך זמן סביר.", "# אבטחת מידע", "אנחנו נוקטים אמצעים סבירים כדי לשמור על המידע. עם זאת, אין אפשרות להבטיח הגנה מוחלטת על מידע שעובר ברשת.", "# יצירת קשר", "בכל שאלה על המדיניות: karinatar9@gmail.com · וואטסאפ 058-635-2953."] }, a11y: { title: "הצהרת נגישות", b: ["עדכון אחרון: נובמבר 2026", "אנחנו ב-Goldchain AI רואים חשיבות בכך שהאתר יהיה נגיש לכל אדם, כולל אנשים עם מוגבלות. האתר הותאם בהתאם לתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג-2013, ולתקן הישראלי ת״י 5568, ברמה AA.", "# מה עשינו באתר", "- ניווט מלא במקלדת, כולל סימון ברור של הרכיב שבפוקוס.", "- קישור \"דלג לתוכן\" בתחילת העמוד.", "- כותרות במבנה היררכי, ותוויות לכל שדות הטופס.", "- טקסט חלופי לרכיבים גרפיים ואנימציות.", "- ניגודיות צבעים מספקת בטקסטים העיקריים.", "- כיבוד הגדרת \"הפחתת תנועה\" של מערכת ההפעלה.", "- חלונות שנסגרים במקש Esc.", "# תפריט הנגישות", "בכפתור הנגישות שבפינת המסך אפשר להגדיל טקסט, להגביר ניגודיות, לעצור אנימציות ולהדגיש קישורים.", "# מגבלות ידועות", "ייתכן שחלק מהאנימציות וההדגמות הוויזואליות אינן נגישות במלואן לקוראי מסך. התוכן המהותי שלהן מופיע גם כטקסט.", "# נתקלתם בבעיה?", "נשמח לשמוע ולתקן. רכזת הנגישות: קרין עטר · karinatar9@gmail.com · וואטסאפ 058-635-2953. נשתדל לחזור אליכם תוך 3 ימי עבודה."] } };
     const docOpen = !!st.doc && !!DOCS[st.doc];
     const docCur = docOpen ? DOCS[st.doc] : { title: '', b: [] };
@@ -1432,6 +1465,22 @@ addEventListener('resize',size);addEventListener('pointermove',function(e){mx=e.
 function act(){var sc=+de.getAttribute('data-scene')||0;[].forEach.call(nav.children,function(a,i){a.classList.toggle('on',i===sc)})}
 new MutationObserver(act).observe(de,{attributes:true,attributeFilter:['data-scene']});act();
 size();if(reduce){for(var q=0;q<160;q++)draw()}else draw();
+})();
+
+(function(){var seen=false;try{seen=sessionStorage.getItem('gc_aud')==='1'}catch(e){}
+var c=document.createElement('aside');c.className='aud';c.setAttribute('aria-label','מיפוי משימות חינמי');
+c.innerHTML='<button type="button" class="aud-x" aria-label="סגירה">×</button><div class="aud-k">מיפוי משימות חינמי</div><div class="aud-t">כמה שעות בשבוע אפשר להוריד מכם?</div><button type="button" class="aud-go">לשאלון</button>';
+document.body.appendChild(c);var last=null;
+function show(){if(seen)return;seen=true;c.classList.add('in')}
+function hide(){c.classList.remove('in');try{sessionStorage.setItem('gc_aud','1')}catch(e){}}
+function open(){hide();last=document.activeElement;var m=document.createElement('div');m.className='audm';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.setAttribute('aria-label','מיפוי משימות חינמי');
+m.innerHTML='<div class="audm-b"><div class="audm-bar"><span>מיפוי משימות חינמי</span><button type="button" class="audm-x" aria-label="סגירה">×</button></div><iframe src="/audit/?src=site-popup" title="מיפוי משימות חינמי" loading="eager"></iframe></div>';document.body.appendChild(m);
+requestAnimationFrame(function(){m.classList.add('in')});m.querySelector('.audm-x').focus();
+function close(){m.remove();removeEventListener('keydown',key);if(last&&last.focus)last.focus()}
+function key(e){if(e.key==='Escape')close()}addEventListener('keydown',key);
+m.addEventListener('click',function(e){if(e.target===m||e.target.closest('.audm-x'))close()})}
+c.querySelector('.aud-x').addEventListener('click',hide);c.querySelector('.aud-go').addEventListener('click',open);
+setTimeout(show,9000);addEventListener('scroll',function s(){if(scrollY>innerHeight*.6){show();removeEventListener('scroll',s)}},{passive:true});
 })();
 
 </script>
