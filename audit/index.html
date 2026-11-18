@@ -108,12 +108,24 @@ button{cursor:pointer;touch-action:manipulation;-webkit-appearance:none;appearan
 .form h2{font-size:18px;margin:0 0 4px}
 .form p{color:var(--mute);font-size:14px;line-height:1.5;margin:0 0 6px}
 .form label{display:block;font-size:13px;color:var(--mute);margin:10px 0 5px}
-.form input[type=text],.form input[type=tel]{width:100%;border:1.5px solid var(--edge);border-radius:13px;padding:14px;font-size:16px;color:var(--txt);background:rgba(7,11,31,.6)}
+.form input[type=text],.form input[type=tel],.form input[type=email]{width:100%;border:1.5px solid var(--edge);border-radius:13px;padding:14px;font-size:16px;color:var(--txt);background:rgba(7,11,31,.6)}
 .form input:focus{outline:0;border-color:var(--gold)}
 .fine{font-size:12px!important;margin-top:10px!important}
 .err{color:#FF8A7A;font-size:14px;margin-top:8px;min-height:1em}
 .note{color:var(--mute);font-size:12.5px;line-height:1.55;margin:14px 4px 0;text-align:center}
 .form{position:relative}
+.stage{background:var(--panel);border:1px solid var(--edge);border-radius:20px;padding:16px 14px;margin-bottom:12px;opacity:0;animation:rise .6s var(--ease) forwards}
+.stage .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;padding:5px 10px;border-radius:999px;background:var(--gold);color:#1A1203;margin-bottom:10px}
+.stage.s2 .tag{background:var(--cyan)}.stage.s3 .tag{background:rgba(255,255,255,.16);color:var(--txt)}
+.stage h3{font-size:17px;margin:0 0 4px}.stage .hint{color:var(--mute);font-size:13.5px;margin:0 0 10px;line-height:1.5}
+.mt{border-top:1px solid var(--edge);padding:12px 0 2px;margin-top:10px}
+.mt:first-of-type{border-top:0;margin-top:0;padding-top:2px}
+.mt .tt{font-weight:700;font-size:16px}.mt .tt small{font-weight:500;color:var(--gold);font-size:13px;margin-inline-start:6px}
+.mt dl{margin:8px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 10px;font-size:14px;line-height:1.5}
+.mt dt{color:var(--mute);white-space:nowrap}.mt dd{margin:0}
+.next{background:linear-gradient(160deg,rgba(53,224,138,.16),rgba(255,255,255,.04));border:1px solid rgba(53,224,138,.45);border-radius:20px;padding:16px 14px;font-size:15px;line-height:1.6}
+.next h3{margin:0 0 6px;font-size:17px}.next ol{margin:6px 0 0;padding-inline-start:20px}.next li{margin-bottom:4px}
+.maphead{text-align:center;margin:0 0 16px}.maphead .k{font-size:13px;color:var(--mute);letter-spacing:.08em}.maphead h1{font-size:28px;font-weight:900;margin:4px 0 6px;line-height:1.15}.maphead p{margin:0;color:var(--mute);font-size:15px}.maphead b{color:var(--gold)}
 .big,.hud .live .n,bdi{direction:ltr;unicode-bidi:isolate}
 .job>div{flex:1;min-width:0}
 .form input.hp{position:absolute;top:0;right:0;width:1px!important;height:1px!important;padding:0!important;border:0!important;opacity:0;pointer-events:none}
@@ -148,19 +160,19 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
   var API='https://tcnnmbmooynevstasgaj.supabase.co/functions/v1/guide-lead';
   var SRC='';try{SRC=(new URLSearchParams(location.search).get('src')||'').slice(0,30)}catch(e){}
   var TASKS=[
-    {id:'inv',ic:'🧾',t:'חשבוניות וקבלות',e:3,how:'הסוכן מכין את החשבונית מההזמנה או מהיומן. אתם רק מאשרים.'},
-    {id:'col',ic:'💸',t:'גבייה ותזכורות',e:3,how:'תזכורת מנומסת יוצאת לבד, ואתם רואים מי עדיין חייב.'},
-    {id:'sup',ic:'📥',t:'חשבוניות ספקים לרו״ח',e:3,how:'כל חשבונית נקלטת, מתויקת ועוברת לרו״ח מסודרת.'},
-    {id:'quo',ic:'📝',t:'הצעות מחיר ומעקב',e:3,how:'ההצעה נבנית מהמחירון, ומי שלא ענה מקבל תזכורת.'},
-    {id:'rep',ic:'📊',t:'דוחות ותמונת מצב',e:3,how:'כל בוקר סיכום קצר: מה נכנס, מה יוצא, מה דורש טיפול.'},
-    {id:'bank',ic:'🏦',t:'התאמות בנק ואשראי',e:2,how:'הסוכן מצליב תנועות ומסמן רק את מה שלא מסתדר.'},
-    {id:'pay',ic:'✅',t:'תשלומים לספקים',e:2,how:'רשימה מוכנה לאישור אחד, עם התראה על כפילות.'},
-    {id:'sync',ic:'🔁',t:'העתקה בין מערכות',e:2,how:'המערכות מתעדכנות אחת מהשנייה, בלי להקליד פעמיים.'},
-    {id:'qa',ic:'💬',t:'שאלות לקוחות על תשלום',e:2,how:'שאלות חוזרות נענות מיד. מה שרגיש עובר אליכם.'},
-    {id:'sal',ic:'🕒',t:'שכר, שעות ונוכחות',e:1,how:'השעות נאספות ונבדקות לבד, ומגיעות מוכנות לשכר.'}
+    {id:'inv',stay:'אישור לפני שהחשבונית יוצאת ללקוח',con:'מורנינג או Priority · יומן · וואטסאפ',ic:'🧾',t:'חשבוניות וקבלות',e:3,how:'הסוכן מכין את החשבונית מההזמנה או מהיומן. אתם רק מאשרים.'},
+    {id:'col',stay:'מי מקבל תזכורת, ומתי עוצרים',con:'מורנינג או Priority · וואטסאפ · מייל',ic:'💸',t:'גבייה ותזכורות',e:3,how:'תזכורת מנומסת יוצאת לבד, ואתם רואים מי עדיין חייב.'},
+    {id:'sup',stay:'מבט על החריגים בלבד',con:'מייל · וואטסאפ · התיקייה של הרו״ח',ic:'📥',t:'חשבוניות ספקים לרו״ח',e:3,how:'כל חשבונית נקלטת, מתויקת ועוברת לרו״ח מסודרת.'},
+    {id:'quo',stay:'אישור המחיר לפני שליחה',con:'המחירון שלכם · מייל · וואטסאפ',ic:'📝',t:'הצעות מחיר ומעקב',e:3,how:'ההצעה נבנית מהמחירון, ומי שלא ענה מקבל תזכורת.'},
+    {id:'rep',stay:'ההחלטות עצמן',con:'מורנינג או Priority · בנק · אקסל',ic:'📊',t:'דוחות ותמונת מצב',e:3,how:'כל בוקר סיכום קצר: מה נכנס, מה יוצא, מה דורש טיפול.'},
+    {id:'bank',stay:'טיפול במה שלא מסתדר',con:'בנק · כרטיסי אשראי · הנהלת החשבונות',ic:'🏦',t:'התאמות בנק ואשראי',e:2,how:'הסוכן מצליב תנועות ומסמן רק את מה שלא מסתדר.'},
+    {id:'pay',stay:'אישור התשלום עצמו',con:'Priority או אקסל · בנק (צפייה בלבד)',ic:'✅',t:'תשלומים לספקים',e:2,how:'רשימה מוכנה לאישור אחד, עם התראה על כפילות.'},
+    {id:'sync',stay:'בדיקה מדגמית מדי פעם',con:'Priority · אקסל · מורנינג',ic:'🔁',t:'העתקה בין מערכות',e:2,how:'המערכות מתעדכנות אחת מהשנייה, בלי להקליד פעמיים.'},
+    {id:'qa',stay:'שאלות רגישות וחריגות',con:'וואטסאפ · מורנינג או Priority',ic:'💬',t:'שאלות לקוחות על תשלום',e:2,how:'שאלות חוזרות נענות מיד. מה שרגיש עובר אליכם.'},
+    {id:'sal',stay:'אישור סופי לפני העברה לשכר',con:'שעון נוכחות · אקסל · חשבת השכר',ic:'🕒',t:'שכר, שעות ונוכחות',e:1,how:'השעות נאספות ונבדקות לבד, ומגיעות מוכנות לשכר.'}
   ];
   var HRS=[{v:.5,l:'½ שעה'},{v:1,l:'שעה'},{v:2,l:'שעתיים'},{v:4,l:'4 שע׳'},{v:7,l:'יותר'}];
-  var sel={}, step=1, sent=false, typer=null;
+  var sel={}, step=1, sent=false, typer=null, mapName='';
   var $=function(id){return document.getElementById(id)};
   var app=$('app'), bar=$('bar'), say=$('say'), ln=$('ln'), ll=$('ll'), orb=$('orb');
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -212,10 +224,27 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
       var ls=$('scan').children,k=0;ls[0].className='act';
       var iv=setInterval(function(){ls[k].className='done';ls[k].firstChild.textContent='✓';k++;if(k<ls.length)ls[k].className='act';else{clearInterval(iv);setTimeout(function(){step=4;render()},350)}},650);
       return;
+    } else if(step===5){
+      mapView();
     } else {
       result();
     }
     bars();
+  }
+
+  function mapStr(){return chosen().map(function(t){return t.id+':'+plain(sel[t.id])}).join(',')}
+  function mapLink(){return 'https://goldchain-ai.com/audit/?m='+mapStr()}
+  function taskCard(t){return '<div class="mt"><div class="tt">'+t.ic+' '+esc(t.t)+'<small>'+fh(sel[t.id])+' שע׳ בשבוע</small></div><dl><dt>הסוכן</dt><dd>'+esc(t.how)+'</dd><dt>נשאר אצלכם</dt><dd>'+esc(t.stay)+'</dd><dt>מתחבר ל</dt><dd>'+esc(t.con)+'</dd></dl></div>'}
+  function mapView(){
+    var tot=total(), all=chosen().slice().sort(function(a,b){return sel[b.id]*b.e-sel[a.id]*a.e});
+    var g=[all.slice(0,1),all.slice(1,3),all.slice(3)], names=['שלב 1 · מתחילים כאן','שלב 2 · ממשיכים','שלב 3 · משלימים'], hints=['המשימה שהכי משתלם להוריד ראשונה. בדרך כלל היא עובדת תוך שבוע עד שבועיים.','אחרי שהראשונה רצה, אלה הבאות בתור.','משימות שלוקחות פחות זמן, או שדורשות יותר הכנה.'];
+    talk('זו <b>מפת ההורדה</b> שלכם, לפי מה שסימנתם. שמרו את הקישור, אפשר לחזור אליה מתי שרוצים.');
+    live(fmt(tot),'שעות בשבוע');
+    var h='<div class="maphead"><div class="k">GOLDCHAIN · מפת הורדה</div><h1>'+(mapName?esc(mapName)+', זו המפה שלך':'מפת ההורדה שלכם')+'</h1><p><b>'+fh(tot)+' שעות בשבוע</b> על '+all.length+' משימות ידניות. ככה מורידים אותן:</p></div>';
+    g.forEach(function(list,i){if(!list.length)return;var hs=0;list.forEach(function(t){hs+=sel[t.id]});
+      h+='<div class="stage s'+(i+1)+'" style="animation-delay:'+(i*160)+'ms"><span class="tag">'+names[i]+'</span><h3>'+fh(hs)+' שעות בשבוע</h3><p class="hint">'+hints[i]+'</p>'+list.map(taskCard).join('')+'</div>'});
+    h+='<div class="next"><h3>איך זה מתקדם מכאן</h3><ol><li>שיחת היכרות קצרה: עוברים יחד על המפה ומדייקים את המספרים.</li><li>מחברים את הסוכן למערכות שכבר יש לכם. לא מחליפים שום מערכת.</li><li>המשימה הראשונה עולה לאוויר, וכל מה שיוצא החוצה עובר קודם אישור שלכם.</li><li>כל שבוע מקבלים את מד העומס: כמה שעות ידניות נשארו.</li></ol></div><p class="note">המספרים מבוססים על ההערכה שסימנתם. לוחות הזמנים הם הערכה כללית ומתעדכנים אחרי שיחת ההיכרות.</p>';
+    app.innerHTML=h;
   }
 
   function result(){
@@ -229,8 +258,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
       '<div class="flow"><h2>מאיפה מתחילים</h2><p class="sub">לפי הזמן שכל משימה לוקחת וכמה פשוט להוריד אותה.</p><div class="lane"><span>אתם · ידני</span><span>הסוכן · אוטומטי</span></div><div id="jobs">'+
       all.map(function(t,i){return '<div class="job" data-i="'+i+'"><span class="ic">'+t.ic+'</span><div><div class="tt">'+esc(t.t)+'</div><div class="hh">'+fh(sel[t.id])+' שעות בשבוע</div><div class="how">'+esc(t.how)+'</div></div><span class="st">ידני</span></div>'}).join('')+
       '</div><div class="sum" id="sum">'+(top.length===1?'המשימה הזאת היא':'שלוש אלה הן')+' <b>'+fh(topH)+' מתוך '+fh(tot)+' השעות</b> שלכם. מהן הכי כדאי להתחיל.</div></div>'+
-      '<div class="form" id="form">'+(sent?'<h2>קיבלנו ✓</h2><p>נחזור אליכם בוואטסאפ עם מפת ההורדה המלאה.</p>':
-      '<h2>רוצים את מפת ההורדה המלאה?</h2><p>נעבור על המיפוי שלכם ונחזור עם תוכנית: מה יורד ראשון, כמה זמן זה לוקח וכמה זה עולה. בלי התחייבות.</p><label for="nm">שם</label><input id="nm" type="text" autocomplete="name" maxlength="80"><label for="ph">טלפון</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" dir="ltr" style="text-align:right"><input class="hp" id="ws" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="err" id="err" role="alert"></div><p class="fine">בשליחה אתם מאשרים שנחזור אליכם בוואטסאפ או בטלפון לגבי המיפוי. לא נשלח שום דבר אחר.</p>')+'</div>'+
+      '<div class="form" id="form">'+(sent?'<h2>קיבלנו ✓</h2><p>המפה המלאה שלכם מוכנה.</p>':
+      '<h2>קבלו את מפת ההורדה המלאה</h2><p>מפה אישית לפי מה שסימנתם: מה יורד ראשון, מה הסוכן עושה בכל משימה ומה נשאר אצלכם. היא נפתחת מיד, ונשלחת גם למייל.</p><label for="nm">שם</label><input id="nm" type="text" autocomplete="name" maxlength="80"><label for="ph">טלפון</label><input id="ph" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" dir="ltr" style="text-align:right"><label for="em">מייל (לא חובה, כדי לקבל את המפה גם למייל)</label><input id="em" type="email" inputmode="email" autocomplete="email" maxlength="120" dir="ltr" style="text-align:right"><input class="hp" id="ws" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="err" id="err" role="alert"></div><p class="fine">בשליחה אתם מאשרים שנשלח לכם את המפה ונחזור אליכם לגבי המיפוי. לא נשלח שום דבר אחר.</p>')+'</div>'+
       '<p class="note">המספרים מבוססים על ההערכה שסימנתם. במיפוי מלא מודדים אותם בפועל, ורואים כל שבוע כמה ירד.</p>';
     var big=$('big'), t0=0;
     function tick(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1000),v=tot*(1-Math.pow(1-p,3));big.textContent=p<1?Math.round(v):fmt(tot);if(p<1)requestAnimationFrame(tick)}
@@ -258,21 +287,29 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(-
   function bars(){
     if(step===1){var c=chosen().length;bar.innerHTML=btn('nx','',c?'המשך · '+c+' משימות ←':'סמנו לפחות משימה אחת',!c);$('nx').addEventListener('click',function(){if(chosen().length)go(2)})}
     else if(step===2){var ok=chosen().every(function(t){return sel[t.id]>0});bar.innerHTML=btn('bk','ghost','חזרה')+btn('nx','',ok?'תראה לי את המספר ⚡':'בחרו זמן לכל משימה',!ok);$('bk').addEventListener('click',function(){go(1)});$('nx').addEventListener('click',function(){if(ok)go(3)})}
+    else if(step===5){
+      bar.innerHTML=btn('cp','ghost','העתקת קישור')+'<a class="btn wa" href="https://wa.me/972586352953?text='+encodeURIComponent('היי קרין, קיבלתי את מפת ההורדה ואשמח לשיחת היכרות.\n'+mapLink())+'">לקבוע שיחת היכרות</a>';
+      $('cp').addEventListener('click',function(){var b=$('cp');function ok(){b.textContent='הועתק ✓'}try{navigator.clipboard.writeText(mapLink()).then(ok,function(){prompt('הקישור למפה:',mapLink())})}catch(e){prompt('הקישור למפה:',mapLink())}});
+    }
     else if(step===4){
       if(sent){bar.innerHTML='<a class="btn wa" href="https://wa.me/972586352953?text='+encodeURIComponent('היי קרין, עשיתי את מיפוי המשימות באתר.\n'+summary())+'">לדבר איתנו עכשיו בוואטסאפ</a>'}
-      else{bar.innerHTML=btn('bk','ghost','מחדש')+btn('sd','','שלחו לי את המפה');$('bk').addEventListener('click',function(){result.played=false;go(1)});$('sd').addEventListener('click',send)}
+      else{bar.innerHTML=btn('bk','ghost','מחדש')+btn('sd','','לפתוח את המפה שלי ⚡');$('bk').addEventListener('click',function(){result.played=false;go(1)});$('sd').addEventListener('click',send)}
     }
   }
   function send(){
     var nmEl=$('nm'), phEl=$('ph'), err=$('err');
     if(!nmEl){return}
-    var nm=nmEl.value.trim(), ph=phEl.value.trim();
+    var nm=nmEl.value.trim(), ph=phEl.value.trim(), em=$('em').value.trim();
+    if(em&&!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){err.textContent='כתובת המייל לא נראית תקינה.';$('em').focus();return}
     if(nm.length<2||ph.replace(/\D/g,'').length<9){err.textContent=nm.length<2?'חסר שם.':'מספר הטלפון לא נראה תקין.';$('form').scrollIntoView({behavior:'smooth',block:'center'});(nm.length<2?nmEl:phEl).focus();return}
     var b=$('sd');b.disabled=true;b.textContent='שולח…';
-    post({mode:'contact',name:nm,phone:ph,need:summary(),consent:true,src:'audit'+(SRC?'-'+SRC:''),website:$('ws').value}).then(function(j){
-      if(j&&j.ok){sent=true;result()}else{b.disabled=false;b.textContent='שלחו לי את המפה';err.textContent='לא הצלחנו לשלוח. אפשר לנסות שוב, או לכתוב לנו בוואטסאפ: 058-6352953'}
+    post({mode:'contact',name:nm,phone:ph,email:em,map:mapStr(),need:summary(),consent:true,src:'audit'+(SRC?'-'+SRC:''),website:$('ws').value}).then(function(j){
+      if(j&&j.ok){sent=true;mapName=nm.split(' ')[0];try{history.replaceState(null,'','?m='+mapStr())}catch(e){}go(5)}else{b.disabled=false;b.textContent='לפתוח את המפה שלי ⚡';err.textContent='לא הצלחנו לשלוח. אפשר לנסות שוב, או לכתוב לנו בוואטסאפ: 058-6352953'}
     });
   }
+  try{var m=new URLSearchParams(location.search).get('m')||'';
+    if(/^[a-z]+:\d+(\.5)?(,[a-z]+:\d+(\.5)?){0,11}$/.test(m)){m.split(',').forEach(function(x){var a=x.split(':'),h=parseFloat(a[1]);if(TASKS.some(function(t){return t.id===a[0]})&&h>0&&h<=40)sel[a[0]]=h});
+      if(chosen().length){sent=true;step=5;for(var i=1;i<=3;i++)$('d'+i).className='on'}}}catch(e){}
   render();
 })();
 </script>
