@@ -388,6 +388,11 @@ html{scroll-snap-type:y proximity}
 .chain-list li{animation-name:linkonA}.chain-list li span{background:transparent;animation:none}
 @keyframes linkonA{0%,3%{background:transparent;color:#EFEAE0}6%,14%{background:#CDBE96;color:#060606}20%,100%{background:transparent;color:#EFEAE0}}
 
+.know-list li{display:block;padding:24px 0 8px;color:#C9C3B6}
+.know-t{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(23px,2.1vw,30px);line-height:1.2;color:#EFEAE0;margin-bottom:8px}
+.know-h{max-width:22em}
+.know-h{max-width:none}.know-list li span{display:inline}
+
 </style>
 <style>.dsw{position:fixed;right:14px;bottom:14px;z-index:60;display:flex;align-items:center;gap:4px;padding:5px 6px 5px 12px;border-radius:999px;background:rgba(20,20,20,.86);color:#fff;font:500 13px system-ui,sans-serif;direction:rtl;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.dsw a{color:#fff;text-decoration:none;min-width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}.dsw a[aria-current]{background:#fff;color:#141414}</style>
 </head>
@@ -492,7 +497,7 @@ html{scroll-snap-type:y proximity}
 <section id="what" class="what">
 <div class="wrap">
 <h2 class="h2" data-sc="in"><span class="wipe">מה זה נותן לכם</span></h2>
-<div class="know"><p class="know-h">המערכת מכירה אתכם ואת העסק.</p><ol class="know-list"><li><span class="know-n" aria-hidden="true">1</span><span>שואלת על המשימות הקבועות ובודקת בכלים המחוברים.</span></li><li><span class="know-n" aria-hidden="true">2</span><span>מציעה אילו משימות להפוך ראשונות לאוטומטיות.</span></li><li><span class="know-n" aria-hidden="true">3</span><span>כשמשימה נגמרת, שואלים ״על מה עובדים עכשיו?״ והיא שולפת את הבאה.</span></li></ol></div><div class="chain">
+<div class="know"><p class="know-h">אתם חוזרים לנהל את העסק. את העבודה השחורה המערכת עושה.</p><ul class="know-list"><li><strong class="know-t">מפסיקים להקליד פעמיים</strong><span>הצעת מחיר נכתבת פעם אחת ונרשמת לבד <span style="white-space:nowrap">ב-Priority.</span></span></li><li><strong class="know-t">לקוחות מקבלים תשובה מיד</strong><span>״איפה ההזמנה שלי?״ נענה לבד, ישר מהנתונים שלכם.</span></li><li><strong class="know-t">הכסף נכנס בזמן</strong><span>תזכורת לכל חוב פתוח, ונשלחת רק אחרי אישור שלכם.</span></li></ul></div><div class="chain">
 <strong class="chain-h">עובד עם מה שכבר יש לכם:</strong>
 <ul class="chain-list">
 <li style="--i: 0"><span dir="ltr">Priority</span></li>
@@ -685,7 +690,7 @@ html{scroll-snap-type:y proximity}
 <section id="what" class="what">
 <div class="wrap">
 <h2 class="h2" data-sc="in"><span class="wipe">מה זה נותן לכם</span></h2>
-<div class="know"><p class="know-h">המערכת מכירה אתכם ואת העסק.</p><ol class="know-list"><li><span class="know-n" aria-hidden="true">1</span><span>שואלת על המשימות הקבועות ובודקת בכלים המחוברים.</span></li><li><span class="know-n" aria-hidden="true">2</span><span>מציעה אילו משימות להפוך ראשונות לאוטומטיות.</span></li><li><span class="know-n" aria-hidden="true">3</span><span>כשמשימה נגמרת, שואלים ״על מה עובדים עכשיו?״ והיא שולפת את הבאה.</span></li></ol></div><div class="chain">
+<div class="know"><p class="know-h">אתם חוזרים לנהל את העסק. את העבודה השחורה המערכת עושה.</p><ul class="know-list"><li><strong class="know-t">מפסיקים להקליד פעמיים</strong><span>הצעת מחיר נכתבת פעם אחת ונרשמת לבד <span style="white-space:nowrap">ב-Priority.</span></span></li><li><strong class="know-t">לקוחות מקבלים תשובה מיד</strong><span>״איפה ההזמנה שלי?״ נענה לבד, ישר מהנתונים שלכם.</span></li><li><strong class="know-t">הכסף נכנס בזמן</strong><span>תזכורת לכל חוב פתוח, ונשלחת רק אחרי אישור שלכם.</span></li></ul></div><div class="chain">
 <strong class="chain-h">עובד עם מה שכבר יש לכם:</strong>
 <ul class="chain-list">
 <li style="--i: 0"><span dir="ltr">Priority</span></li>
