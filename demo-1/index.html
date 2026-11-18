@@ -392,6 +392,10 @@ html{scroll-snap-type:y proximity}
 .know-t{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(23px,2.1vw,30px);line-height:1.2;color:#EFEAE0;margin-bottom:8px}
 .know-h{max-width:22em}
 .know-h{max-width:none}.know-list li span{display:inline}
+/* pop-ups stay light and readable on the dark page */
+[role="dialog"]{--paper:#F1F3F8;--navy:#0B1437;--cob:#7A6328;--gold:#CDBE96;--line:#D5DBEA;--mut:#465176;color:#0B1437;font-weight:400}
+[role="dialog"] .h2,[role="dialog"] h2,[role="dialog"] h3{font-weight:500 !important}
+[role="dialog"] .grad{color:#7A6328}
 
 </style>
 <style>.dsw{position:fixed;right:14px;bottom:14px;z-index:60;display:flex;align-items:center;gap:4px;padding:5px 6px 5px 12px;border-radius:999px;background:rgba(20,20,20,.86);color:#fff;font:500 13px system-ui,sans-serif;direction:rtl;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.dsw a{color:#fff;text-decoration:none;min-width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}.dsw a[aria-current]{background:#fff;color:#141414}</style>
