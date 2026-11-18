@@ -378,6 +378,16 @@ html{scroll-snap-type:y proximity}
 }
 @media (prefers-reduced-motion:reduce){#top>.wrap,#pain>.wrap,#what>.wrap,#process>.wrap,#contact>div{opacity:1 !important;transform:none !important;filter:none !important}}
 
+/* "the system knows you" block */
+.know{margin-top:30px}
+.know-h{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.4vw,50px);line-height:1.15;color:#CDBE96}
+.know-list{list-style:none;margin:30px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 44px;border-top:1px solid var(--line)}
+.know-list li{display:flex;gap:18px;align-items:flex-start;padding:26px 0 8px;font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:#EFEAE0}
+.know-n{font-family:var(--serif);font-weight:300;font-size:clamp(46px,4.4vw,68px);line-height:.85;color:#CDBE96;flex:0 0 auto}
+@media (max-width:980px){.know-list{grid-template-columns:minmax(0,1fr)}.know-list li{padding:18px 0;border-bottom:1px solid var(--line)}}
+.chain-list li{animation-name:linkonA}.chain-list li span{background:transparent;animation:none}
+@keyframes linkonA{0%,3%{background:transparent;color:#EFEAE0}6%,14%{background:#CDBE96;color:#060606}20%,100%{background:transparent;color:#EFEAE0}}
+
 </style>
 <style>.dsw{position:fixed;right:14px;bottom:14px;z-index:60;display:flex;align-items:center;gap:4px;padding:5px 6px 5px 12px;border-radius:999px;background:rgba(20,20,20,.86);color:#fff;font:500 13px system-ui,sans-serif;direction:rtl;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}.dsw a{color:#fff;text-decoration:none;min-width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center}.dsw a[aria-current]{background:#fff;color:#141414}</style>
 </head>
@@ -482,54 +492,7 @@ html{scroll-snap-type:y proximity}
 <section id="what" class="what">
 <div class="wrap">
 <h2 class="h2" data-sc="in"><span class="wipe">מה זה נותן לכם</span></h2>
-<div class="tiles">
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">מכירות</span>
-<h3>הצעת מחיר בלחיצה</h3>
-<p>בונים הצעה, והיא נרשמת ב-Priority לבד. בלי להקליד פעמיים.</p>
-</div>
-<div class="vg vg-quote" aria-hidden="true">
-<div class="vq-doc"><i></i><i></i><i></i><b></b></div>
-<div class="vq-stamp">Priority<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></div>
-</div>
-</article>
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">שירות לקוחות</span>
-<h3>לקוחות מקבלים תשובה מיד</h3>
-<p>השאלה ״איפה ההזמנה שלי״ נענית אוטומטית, ישר מהנתונים שלכם.</p>
-</div>
-<div class="vg vg-chat" aria-hidden="true">
-<span class="vc vc-q"><i></i></span>
-<span class="vc vc-a"><i></i><i></i></span>
-</div>
-</article>
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">כספים וגבייה</span>
-<h3>הכסף נכנס מהר יותר</h3>
-<p>תזכורות לחובות פתוחים ותשלום בקישור. נשלח רק אחרי אישור שלכם.</p>
-</div>
-<div class="vg vg-pay" aria-hidden="true">
-<div class="vp-row"><i></i><span class="vp-sw"><b></b></span></div>
-<div class="vp-row vp-2"><i></i><span class="vp-sw"><b></b></span></div>
-<div class="vp-coin"></div>
-</div>
-</article>
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">מחסן ומשלוחים</span>
-<h3>הלקוח תמיד מעודכן</h3>
-<p>תעודת משלוח נסגרת, והלקוח מקבל הודעה עם מספר מעקב.</p>
-</div>
-<div class="vg vg-ship" aria-hidden="true">
-<div class="vs-track"><b></b><span class="vs-dot"></span></div>
-<div class="vs-stops"><i></i><i></i><i></i></div>
-</div>
-</article>
-</div>
-<div class="chain">
+<div class="know"><p class="know-h">המערכת מכירה אתכם ואת העסק.</p><ol class="know-list"><li><span class="know-n" aria-hidden="true">1</span><span>שואלת על המשימות הקבועות ובודקת בכלים המחוברים.</span></li><li><span class="know-n" aria-hidden="true">2</span><span>מציעה אילו משימות להפוך ראשונות לאוטומטיות.</span></li><li><span class="know-n" aria-hidden="true">3</span><span>כשמשימה נגמרת, שואלים ״על מה עובדים עכשיו?״ והיא שולפת את הבאה.</span></li></ol></div><div class="chain">
 <strong class="chain-h">עובד עם מה שכבר יש לכם:</strong>
 <ul class="chain-list">
 <li style="--i: 0"><span dir="ltr">Priority</span></li>
@@ -722,54 +685,7 @@ html{scroll-snap-type:y proximity}
 <section id="what" class="what">
 <div class="wrap">
 <h2 class="h2" data-sc="in"><span class="wipe">מה זה נותן לכם</span></h2>
-<div class="tiles">
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">מכירות</span>
-<h3>הצעת מחיר בלחיצה</h3>
-<p>בונים הצעה, והיא נרשמת ב-Priority לבד. בלי להקליד פעמיים.</p>
-</div>
-<div class="vg vg-quote" aria-hidden="true">
-<div class="vq-doc"><i></i><i></i><i></i><b></b></div>
-<div class="vq-stamp">Priority<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></div>
-</div>
-</article>
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">שירות לקוחות</span>
-<h3>לקוחות מקבלים תשובה מיד</h3>
-<p>השאלה ״איפה ההזמנה שלי״ נענית אוטומטית, ישר מהנתונים שלכם.</p>
-</div>
-<div class="vg vg-chat" aria-hidden="true">
-<span class="vc vc-q"><i></i></span>
-<span class="vc vc-a"><i></i><i></i></span>
-</div>
-</article>
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">כספים וגבייה</span>
-<h3>הכסף נכנס מהר יותר</h3>
-<p>תזכורות לחובות פתוחים ותשלום בקישור. נשלח רק אחרי אישור שלכם.</p>
-</div>
-<div class="vg vg-pay" aria-hidden="true">
-<div class="vp-row"><i></i><span class="vp-sw"><b></b></span></div>
-<div class="vp-row vp-2"><i></i><span class="vp-sw"><b></b></span></div>
-<div class="vp-coin"></div>
-</div>
-</article>
-<article class="tl">
-<div class="tl-text">
-<span class="tl-k">מחסן ומשלוחים</span>
-<h3>הלקוח תמיד מעודכן</h3>
-<p>תעודת משלוח נסגרת, והלקוח מקבל הודעה עם מספר מעקב.</p>
-</div>
-<div class="vg vg-ship" aria-hidden="true">
-<div class="vs-track"><b></b><span class="vs-dot"></span></div>
-<div class="vs-stops"><i></i><i></i><i></i></div>
-</div>
-</article>
-</div>
-<div class="chain">
+<div class="know"><p class="know-h">המערכת מכירה אתכם ואת העסק.</p><ol class="know-list"><li><span class="know-n" aria-hidden="true">1</span><span>שואלת על המשימות הקבועות ובודקת בכלים המחוברים.</span></li><li><span class="know-n" aria-hidden="true">2</span><span>מציעה אילו משימות להפוך ראשונות לאוטומטיות.</span></li><li><span class="know-n" aria-hidden="true">3</span><span>כשמשימה נגמרת, שואלים ״על מה עובדים עכשיו?״ והיא שולפת את הבאה.</span></li></ol></div><div class="chain">
 <strong class="chain-h">עובד עם מה שכבר יש לכם:</strong>
 <ul class="chain-list">
 <li style="--i: 0"><span dir="ltr">Priority</span></li>
