@@ -108,7 +108,7 @@ function render(c){
 }
 community("");
 // returning visitor on the same device: the guide reopens without the form
-(async()=>{ let t=""; try{ const q=new URLSearchParams(location.search).get("t")||""; if(/^[a-f0-9]{20,64}$/.test(q)){ localStorage.setItem(KEY,q); history.replaceState(null,"",location.pathname); } t=localStorage.getItem(KEY)||q||""; }catch(_){}
+(async()=>{ let t=""; try{ const q=new URLSearchParams(location.search).get("t")||""; if(/^[a-f0-9]{20,64}$/.test(q)){ localStorage.setItem(KEY,q); localStorage.setItem("gc_all",q); history.replaceState(null,"",location.pathname); } t=localStorage.getItem(KEY)||localStorage.getItem("gc_all")||q||""; if(!t){ for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i)||"", val=localStorage.getItem(k)||""; if(k.indexOf("gc_")===0&&/^[a-f0-9]{20,64}$/.test(val)){ t=val; break; } } } if(t) localStorage.setItem("gc_all",t); }catch(_){}
   if(!t) return;
   try{ const r=await fetch(API,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({mode:"get",token:t,guide:GUIDE})}); const j=await r.json(); if(j.ok&&j.content) render(j.content); }catch(_){}
 })();
@@ -120,7 +120,7 @@ $("lf").addEventListener("submit",async e=>{ e.preventDefault();
   er.textContent=""; sb.disabled=true; sb.textContent="שולח…";
   try{ const r=await fetch(API,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({first:v("f1"),last:v("f2"),email:v("f3"),consent:true,website:v("hp"),guide:GUIDE})});
     const j=await r.json(); if(!j.ok||!j.content) throw 0;
-    try{ localStorage.setItem(KEY,j.token); }catch(_){}
+    try{ localStorage.setItem(KEY,j.token); localStorage.setItem("gc_all",j.token); }catch(_){}
     render(j.content); const t=$("toast"); t.style.display="block"; setTimeout(()=>t.style.display="none",3500); scrollTo(0,0);
   }catch(_){ er.textContent="משהו השתבש, נסו שוב"; sb.disabled=false; sb.textContent="שלחו לי את המדריך"; }
 });
