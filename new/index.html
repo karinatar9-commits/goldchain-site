@@ -524,7 +524,9 @@ const WA_TXT = {
 };
 const src = new URLSearchParams(location.search).get('src') || '';
 let aud = 'general';
-function waUrl(k){return 'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(WA_TXT[k]||WA_TXT.general)}
+const IS_MOBILE=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+function waLink(text){const t=encodeURIComponent(text); return IS_MOBILE?'https://wa.me/'+WA_NUM+'?text='+t:'https://web.whatsapp.com/send?phone='+WA_NUM+'&text='+t}
+function waUrl(k){return waLink(WA_TXT[k]||WA_TXT.general)}
 document.addEventListener('click',e=>{
  const a=e.target.closest('[data-wa]'); if(a){e.preventDefault(); const k=a.dataset.wa==='general'&&aud!=='general'?aud:a.dataset.wa;
   window.open(waUrl(k),'_blank','noopener');
@@ -601,7 +603,7 @@ document.getElementById('form').addEventListener('submit',e=>{e.preventDefault()
  const text='היי, הגעתי מהאתר של Goldchain AI.\nשם: '+name+'\nטלפון: '+phone+(msg?'\n'+msg:'');
  try{fetch('https://tcnnmbmooynevstasgaj.supabase.co/functions/v1/guide-lead',{method:'POST',keepalive:true,headers:{'content-type':'application/json'},body:JSON.stringify({mode:'contact',name:name,phone:phone,need:msg,consent:true,src:src})}).catch(()=>{})}catch(_){}
  try{window.clarity&&clarity('event','form_submit');window.fbq&&fbq('track','Lead');}catch(_){}
- window.open('https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(text),'_blank','noopener');
+ window.open(waLink(text),'_blank','noopener');
 });
 /* docs */
 const dlg=document.getElementById('dlg');
